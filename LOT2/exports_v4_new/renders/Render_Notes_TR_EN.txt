@@ -1,0 +1,18 @@
+JESB LOT 2 V4 - RENDER NOTES / RENDER NOTLARI
+2026-10-07
+
+TR
+PDF'deki dört cephe, aynı klasördeki v4 SketchUp PNG görselleri referans alınarak ImageGen ile fotogerçekçi olarak görselleştirildi. Dosyalar: Front (ön), Left (sol/garaj), Rear (arka), Right (sağ).
+Malzeme kaynağı: C:/Projects/JESB/ACC MATERIAL PACKAGE.xlsx, EXTERIOR, Lot 2, B10:B32.
+Çatı: Charcoal. Tuğla: Whitestone Brickcraft. Taş: Valders Dovewhite Dimensional Splitface. Siding ve trim: beyaz. Soffit/fascia, oluk ve inişler, giriş kapısı, pencere/patio doğramaları ve garaj kapıları: siyah. Garaj kapısı: üst camlı LONG RAISED.
+Model görsellerindeki malzeme bölgeleri esas alındı; arka ve sağ cephedeki bodrum kaplaması beyaz tuğla olarak düzeltildi. Arka cephede üretim sırasında oluşan fazladan yatay açıklık kaldırıldı.
+Bunlar SketchUp render motorundan alınmış ölçüsel çıktılar değil, kaynak cephelere dayalı AI görselleştirmeleridir. Doku, renk, ince detaylar ve çevre ışığı görsel yorum içerir; üreticiye ait kalibre edilmiş numune eşleşmesi değildir. Kaynak PDF, SKP ve Excel değiştirilmedi.
+Tam üretim ve düzeltme istemleri Render_Prompts.json dosyasında bulunur.
+
+EN
+The four PDF elevations were visualized with built-in ImageGen using the corresponding v4 SketchUp PNG exports in the same source folder. Files: Front, Left (garage), Rear, Right.
+Material source: C:/Projects/JESB/ACC MATERIAL PACKAGE.xlsx, EXTERIOR, Lot 2, B10:B32.
+Roof: Charcoal. Brick: Whitestone Brickcraft. Stone: Valders Dovewhite Dimensional Splitface. Siding and trims: white. Soffit/fascia, gutters/downspouts, front door, window/patio frames and garage doors: black. Garage door style: LONG RAISED with glass on top.
+Material regions follow the model exports. Rear and right basement cladding was corrected to white brick, and an invented horizontal opening in the rear rendering was removed.
+These are AI visualizations based on the source elevations, not dimensionally authoritative outputs from a SketchUp rendering engine. Textures, colors, fine details and environmental lighting are visual interpretations, not calibrated manufacturer sample matches. Source PDF, SKP and Excel files were not modified.
+Full generation and correction prompts are saved in Render_Prompts.json.

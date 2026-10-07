@@ -1,0 +1,6 @@
+Method: Built-in ImageGen
+Output: JESB_Lot2_v4_Render_Left_v2.png
+Input: JESB_Lot2_v4_Render_Left.png
+Change: Extend concrete driveway in front of both garage doors to foreground; replace grass in driveway corridor. Original render preserved.
+
+Precise local edit to this architectural render. Extend the existing light-gray concrete driveway apron directly in front of BOTH black garage doors continuously toward the camera all the way to the bottom edge of the image. Remove and replace all grass in that driveway corridor with matching realistic light-gray concrete. The driveway spans both doors plus their center pier and a small margin beyond the outer jambs, starting at the existing apron edges, approximately x=420 to x=1175 in this 1586-wide image, extending straight to the foreground bottom boundary. No grass strip may remain between either garage threshold and the bottom edge within the driveway. Give concrete subtle natural fine texture and restrained control joints. Keep lawn outside the left and right driveway boundaries. Preserve the entire house pixel-faithfully as much as possible: camera, roof, brick/stone/siding, all windows, both garage doors, stairs, sky, lighting, color and composition unchanged. No cars, people, new architecture or text. Only change the driveway/grass directly in front of the garage.

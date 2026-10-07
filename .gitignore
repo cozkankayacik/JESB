@@ -1,0 +1,14 @@
+# Scratch and local Python libraries (PyMuPDF, ezdxf, numpy)
+tmp/
+
+# Session transcript export and chat images (private, local only)
+session_archive/
+
+# AutoCAD / SketchUp backups, error files, logs
+*.bak
+*.skb
+*.err
+*.log
+
+# Large intermediate exports
+*.dxf
