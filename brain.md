@@ -1,6 +1,6 @@
 # JESB — Project Brain
 
-Last updated: 2026-10-07. Working notes for Jade Estates, South Barrington. Keep this file current as decisions land.
+Last updated: 2026-10-08. Working notes for Jade Estates, South Barrington. Keep this file current as decisions land.
 
 ## 1. Project
 
@@ -9,7 +9,17 @@ Last updated: 2026-10-07. Working notes for Jade Estates, South Barrington. Keep
 - Architect of record: **John Anthony Nelson**, John Nelson – Architect, Inc. (CBO, Architect, NCARB), 1420 Whispering Spring Circle, Palatine IL 60074. IL# 001-009966, expires 11/30/26. Initials "JN" = checked.
 - Drafting: **Serrato Smart Solutions** — Jesus Serrato, 847.815.8557. Drawn by "LE".
 - Status: preliminary. Title block date 1/24/26; revision row dated 10/5/26, issued for "ACC meeting, preliminary items". Project number is unfinished ("2026-").
-- Work so far: SketchUp model updated to the 10/5/26 exterior revisions (see section 8). Deliverables and files are written in English at the user's request.
+- Work so far: Lot 2 SketchUp model taken from v1 to v4 against the 10/5/26 set, elevation exports, V-Ray and AI renders, a review report; Lot 20 DWG-vs-model comparison and model v2 (see section 8).
+- The development has more lots than the two in this folder: the ACC tracker lists Lots 2, 3, 4, 6, 7, 8, 9, 10, 11, 16, 19, 20, 21, 23 (section 7b).
+
+### Working conventions (from the user)
+
+- The user chats in Turkish (sometimes English); **all deliverables and files are in English**.
+- Each model revision is a **new file** `JESB_LotN_v[X+1].skp` with its own `exports_vX/` (four elevations + one perspective PNG) and a change log listing changes and open questions.
+- Touch nothing outside the requested revision. Where the DWG is unclear, do not assume; record an open question and let the owner decide.
+- Detail level follows the existing model: do not add gutters, downspouts, fascia or soffits unless asked.
+- The user edits the models in SketchUp themselves and drops reference images into the export folders. Never save over their files; open a copy.
+- Keep this file current and commit + push after each piece of work (section 2, Git).
 
 ## 2. Files
 
@@ -113,6 +123,24 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 7. General notes contain renovation boilerplate ("modify existing ductwork", "existing supply to remain") although this is new construction.
 8. Sheets 5, 7 and 8 were read as text only, not reviewed visually.
 
+9. Sheet 4 ventilation schedule: master bath requires 202.4 CFM, selected 200 CFM (from the 2026-10-06 review).
+
+### Lot 2 review of 2026-10-06 (`LOT2/Reviews/2026-10-06/`, made by another session against v3)
+
+- EN and TR reports plus `Evidence/` (all 11 PDF pages as images, v3 elevations, ventilation close-up), `Data/` (DWG text/block data, model bounds, roof lines, PDF text) and copies of the v2/v3 change logs.
+- Seven findings: (1) terrain/exposed foundation misleading in the model — **addressed in v4**; (2) no site or grading plan in the set — open, architect; (3) 8" fascia/frieze and gutters not modelled — open, and deliberately not added so far; (4) white surface above the entry instead of brick — **fixed in v4**; (5) ventilation schedule 202.4 vs 200 CFM — open, architect; (6) stale `A-Area` labels — open, architect; (7) sheet titles, project number, renovation boilerplate — open, architect.
+- Its recommended order: align DWG and SKP wall boundaries and settle the overhang reference face; complete terrain, driveway and walk-out grades; match cladding and eave details and re-export; then the drawing corrections.
+
+### Lot 2 open decisions (model)
+
+1. Correct stone (to Valders Dovewhite), trims/sills/corner boards (to white), soffit/fascia (black) and add black gutters/downspouts per the ACC list, then re-render? A larger stone sample image is needed; the one in the workbook is 226x212 px.
+2. Lower the front door and stoop 12"–16" to the drawn height (drawing shows four risers, model needs six)?
+3. Patio deck top: +16.9 in the model, +8.8 drawn.
+4. 12" overhang measured from the wall face (used) or the framing line (roof plan reading)?
+5. Model walls 5"–10" outside the DWG lines at the rear and east; rear garage pier 51" vs 46".
+6. Flat patch (about 12" x 17") on top of the entry tower roof as drawn — ask the architect.
+7. Driveway margin 5.3" beyond the door jambs and all ground away from the walls are assumptions; no site plan.
+
 ## 7. Tooling notes
 
 - AutoCAD LT 2022 (`C:\Program Files\Autodesk\AutoCAD LT 2022\accoreconsole.exe`) and SketchUp 2026 are installed. The DWG was last plotted from LT 2027 on another machine; LT 2022 opens it fine.
@@ -140,7 +168,36 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 - Comparison of 2026-10-07 is in `LOT20/comparison_2026-10-07/` (report + overlay images). Main differences: front upper windows 3 → 2, siding horizontal → vertical board and batten, three left-side windows 12" toward the rear, ridges 7.6" / 14" higher, roof vents, fascia/gutters, basement windows and grade. The model has not been changed.
 - Comparison method that worked: rasterise DXF lines with PIL (ezdxf's drawing add-on gave black images), export model views with a known scale, brute-force the best x/y shift against an edge map, draw the DWG in red. A vertical best-fit can be pulled off by roof differences; trust the window fit.
 
+- Model v2 (`JESB_Lot20_v2.skp`, `exports_v2/`, change log, `textures/board_batten_white_16in.jpg`): front upper wall windows and board-and-batten siding done. **Still open from the comparison:** three left-side windows 12" toward the rear; ridge heights (main 381.6" drawn vs 374.0", garage front hip 201" vs 187"; DWG draws those hips 4:12 and the main roof 6:12; eave about 257" matches); four roof vents; 8" fascia and gutters; full basement with four 48" x 48" escape windows and a grade line (model stops at the slab, no ground); balcony / covered patio depth (left elevation shows 15"–20" more than the model, right elevation agrees with the model — one DWG elevation may be wrong, measure from the plan); garage door style.
+- Board-and-batten is a texture, not geometry; batten spacing restarts on each wall piece, so battens do not always line up at joints. The 16" spacing comes from the DWG hatch pattern name, not a dimension.
+- Interiors and floor plans of Lot 20 have not been compared.
+
+## 7b. ACC material package (`ACC MATERIAL PACKAGE.xlsx`)
+
+- Title: "South Barrington – Selection Tracker – Elevation". Sheet `EXTERIOR` (A1:AF34, 82 embedded sample images) has one column pair per lot: Lot 2 = B, Lot 3 = D, Lot 7 = F, Lot 19 = H, Lot 20 = J, Lot 21 = L, Lot 23 = N, Lot 16 = R, Lot 4 = T, Lot 6 = V, Lot 8 = X, Lot 9 = Z, Lot 10 = AB, Lot 11 = AD. `Sheet2` is a small side table.
+- Row 3 status: Lot 2 Phase 1, Lot 3 Approved, Lot 7 Phase 1, Lot 19 Phase 2, Lot 20 Phase 1, Lot 21 Approved. Rows 4–9 name each lot's SketchUp file, video, colour scheme PDF, 3D elevations and old/new architect sets (Lot 2 new set: "LOT 2 - ARCHITECTURAL - PHASE 1 0824.pdf"); those files are not in this folder.
+- Rows 10–32, one item every two rows (the row below each is a "selection" checkbox):
+
+| Item | Lot 2 | Lot 20 |
+|---|---|---|
+| Roof | Charcoal | Charcoal |
+| Brick | Whitestone Brickcraft | Glen Gery Aspen White Wirecut |
+| Stone | Valders Dovewhite Dimensional Splitface | Valders Dovewhite Dimensional Splitface |
+| Siding | White | White |
+| Siding dec | — | Black |
+| Trims | White | White |
+| Soffit / fascia (LP SmartSide) | Black | White |
+| Gutters and downspouts | Black | Black |
+| Front door | Black | Black |
+| Windows / patio doors | Black | Black |
+| Garage door colour | Black | Black |
+| Garage door style | Long raised with glass on top | Long raised without glass |
+
+- Lot 20's black "siding dec" has not been applied anywhere: the drawings do not show where it goes.
+
 ## 8. Log
+
+- **2026-10-08** — Brain file brought up to date with everything learned so far: working conventions, the 2026-10-06 review findings and their status, consolidated Lot 2 open decisions, Lot 20 open items, and the ACC tracker structure with the Lot 2 and Lot 20 selections. No model or drawing changes.
 
 - **2026-10-07** — Git repository initialised and pushed to github.com/cozkankayacik/JESB (user request: upload all work there, commit and push regularly).
 - **2026-10-07** — (Another session, 15:09–15:44, reconstructed from its files.) Lot 2 rear elevation re-exported with the projecting patio slab visible (`exports_v4/JESB_Lot2_v4_Elevation_Rear_new.png`, `exports_v4_new/…Rear_new.jpg`); AI (ImageGen) rear render redone from it (`renders/JESB_Lot2_v4_Render_Rear_new.png`, then `_v2` with the smooth white band right of the deck replaced by lap siding); rear page of `renders/JESB_Lot2_v4_Render_Elevations.pdf` updated. Model not changed.
