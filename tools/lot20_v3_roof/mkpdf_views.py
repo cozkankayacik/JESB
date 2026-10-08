@@ -5,8 +5,9 @@ sys.path.insert(0, r"C:\Projects\JESB\tmp\python-libs")
 import pymupdf
 src, prefix, label, date = sys.argv[1:5]
 out = src + "\\%s_Views.pdf" % prefix
+# elevations only: the user asked for the perspective page to be left out (2026-10-08)
 views = [("Elevation_Front", "Front Elevation"), ("Elevation_Left", "Left Side Elevation"), ("Elevation_Rear", "Rear Elevation"),
-         ("Elevation_Right", "Right Side Elevation"), ("Perspective", "Perspective")]
+         ("Elevation_Right", "Right Side Elevation")]
 doc = pymupdf.open()
 W, H = 17 * 72, 11 * 72
 m, cap = 36, 34
