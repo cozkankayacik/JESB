@@ -202,6 +202,8 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
+- **2026-10-08** — Lot 20: the user edited `JESB_Lot20_v3.skp` themselves (saved 12:07): lawn and driveway ground slabs (top-level groups, z -8.8..0) and three `deck` components at the rear were added, and the saved view is now a front-right perspective; the roof groups are unchanged. On request, the five views were re-exported from that file (copy, not saved) into `LOT20/exports_v3/` and combined into `exports_v3/JESB_Lot20_v3_Views.pdf` (11x17 landscape, five pages: front, left, rear, right, perspective). Script: `tools/lot20_v3_roof/export_views.rb` + `mkpdf_views.py`. Elevation framing still uses the house group bounds, so the ground slabs run past the frame edges a little.
+
 - **2026-10-08** — Lot 20 model v3: roof updated to the DWG roof (user task list "JESB Lot20 project — to do"). Whole roof rebuilt from the roof plan with heights from the elevations; eaves moved to the DWG lines (up to 25"), 8" roof edge added, all ridges 7.6" higher. Verified by overlaying DWG lines on the top, front and left views (`LOT20/exports_v3/dwg_overlay_checks/`). Vents and gutters not added. Four open questions in `LOT20/JESB_Lot20_v3_Change_Log.md`. Scripts in `tools/lot20_v3_roof/`.
 
 - **2026-10-08** — Brain file brought up to date with everything learned so far: working conventions, the 2026-10-06 review findings and their status, consolidated Lot 2 open decisions, Lot 20 open items, and the ACC tracker structure with the Lot 2 and Lot 20 selections. No model or drawing changes.
