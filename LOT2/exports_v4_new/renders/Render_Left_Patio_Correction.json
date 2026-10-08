@@ -1,0 +1,5 @@
+{
+  "method": "Built-in ImageGen",
+  "prompt": "EDIT image: fix ONLY the small patio wing at FAR LEFT of house, the low roof volume with tall blue window. Its upper wall STILL SHOWS BRICK and must be changed. In the 1586x992 image, target wall region approximately x174..360, y566..709, excluding black window x205..323. Replace ALL visible masonry there with smooth white HORIZONTAL LAP SIDING: long continuous parallel horizontal boards, clearly no short brick pieces, NO vertical mortar joints. This includes left narrow jamb, right narrow jamb and header above window. Below the existing horizontal trim at y711, KEEP WHITE BRICK (x174..360, y714..765). Do not change glass or window frame. Upper part SIDING, lower part BRICK. Make this material correction visible. All other image content must remain exactly unchanged: main siding, stone plinth, doors, roof, lawn, camera.",
+  "output": "JESB_Lot2_v4_Render_Left_updated_v2.png"
+}
