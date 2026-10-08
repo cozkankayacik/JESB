@@ -1,0 +1,25 @@
+{
+  "method": "Built-in ImageGen for Left/Rear; user supplied approved Front/Right used directly",
+  "records": [
+    {
+      "side": "Left",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Left.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-fc004d59-eaec-43f2-ba77-157173f33700.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-4d70de58-539c-46f9-93b8-6fcbebdf3496.png"
+      ],
+      "prompt": "Edit image 1 (Left elevation) to have exactly the GROUND PRESENTATION and tight bottom framing of reference images 2 and 3. Preserve entire building, exact materials, roof silhouette, all openings and black deck/railings of image1. References 2/3 are OTHER elevations, do not copy their architecture. Remove all broad FOREGROUND grass and asphalt driveway area. This is a true flat parallel architectural elevation: ground represented ONLY by a thin horizontal white/light grey edge with fine dark outline at building base, a tiny green grass fringe just above it. Image must end immediately BELOW this thin ground edge, exactly as reference images. No ground-plane top surfaces, no driveway trapezoid or rectangle, no wide blank white lower area. Retain full roof and sky above, full house width with modest side margins. Blue sky and distant background trees at sides matching references. Match reference wide aspect ratio about 2.15:1, e.g. 1584x736. Ground baseline lies at 98.5% of image height, not 75%. The lower edge is the architectural ground line itself. Existing house pixels/geometry should stay unchanged, only remove foreground and reframe. All deck front faces preserved completely. No labels/text/watermark.",
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-82b0bd76-41b1-4eab-91ee-52d7034f1c3e.png"
+    },
+    {
+      "side": "Rear",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Rear.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-fc004d59-eaec-43f2-ba77-157173f33700.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-4d70de58-539c-46f9-93b8-6fcbebdf3496.png"
+      ],
+      "prompt": "Edit image 1 (Rear elevation) to have exactly the GROUND PRESENTATION and tight bottom framing of reference images 2 and 3. Preserve entire building, exact materials, roof silhouette, all openings and black deck/railings of image1. References 2/3 are OTHER elevations, do not copy their architecture. Remove all broad FOREGROUND grass and asphalt driveway area. This is a true flat parallel architectural elevation: ground represented ONLY by a thin horizontal white/light grey edge with fine dark outline at building base, a tiny green grass fringe just above it. Image must end immediately BELOW this thin ground edge, exactly as reference images. No ground-plane top surfaces, no driveway trapezoid or rectangle, no wide blank white lower area. Retain full roof and sky above, full house width with modest side margins. Blue sky and distant background trees at sides matching references. Match reference wide aspect ratio about 2.15:1, e.g. 1584x736. Ground baseline lies at 98.5% of image height, not 75%. The lower edge is the architectural ground line itself. Existing house pixels/geometry should stay unchanged, only remove foreground and reframe. All deck front faces preserved completely. No labels/text/watermark.",
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-313e3c41-f1e0-4059-93c3-ea977340bdd1.png"
+    }
+  ]
+}
