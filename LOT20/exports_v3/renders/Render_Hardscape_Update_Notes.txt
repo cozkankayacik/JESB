@@ -1,0 +1,33 @@
+JESB LOT 20 V3 - RENDER HARDSCAPE UPDATE
+2026-10-08
+
+What changed
+The driveways in the four elevation renders now follow JESB_Lot20_v3.skp (as saved 2026-10-08 12:07).
+Only the ground below the grade line was edited. The house, roof, sky and trees are the previous AI renders, unchanged.
+
+Hardscape taken from the model (material Asphalt_06_1K), model inches:
+- Front driveway, L-shaped: (12614.8,3446.0) (12789.9,3446.0) (12789.9,3330.2) (12948.7,3330.2) (12948.7,3764.4) (12614.8,3764.4)
+  = court in front of the side-load garage doors and the entry, with a leg to the street on the entry side.
+- Rear driveway: x 12361.7..12493.0, y 4040.1..4417.4 = straight strip from the rear garage door to the rear lot edge.
+
+Per render
+- Front: blank presentation ground replaced by lawn; L-shaped driveway added.
+- Right: blank presentation ground replaced by lawn; driveway court in front of both garage doors added (the leg to the street runs out of frame to the left).
+- Rear: diagonal driveway replaced by the straight strip at the model position and width.
+- Left: rear driveway strip redrawn at the model position (now reaches the left-wing corner where the rear garage door is).
+
+Method
+Not regenerated with an image model. The driveway outlines were projected from the model plan and composited:
+true scale at the wall base, one-point perspective toward the viewer (vanishing point on the image centre line,
+190 px above grade, camera 820 in from the wall). Lawn texture is taken from the left render; asphalt tone is
+sampled from the previous rear render.
+
+Limits
+An elevation sees the ground edge-on, so the foreground is an illustration of the plan, not a measured view.
+Positions and widths along the wall base are to scale; depth toward the viewer is foreshortened.
+On the front render the driveway is drawn 9 in from the entry steps along its whole width; in the model the lawn strip
+between driveway and main wall is 47 in.
+The lawn is drawn to the image edges; the model lawn is a finite slab.
+
+Previous files: archive_before_hardscape_update/
+Script: tools/lot20_v3_roof/render_hardscape.py, render_pdf_update.py

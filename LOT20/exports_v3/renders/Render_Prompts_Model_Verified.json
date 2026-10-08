@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-08",
+  "method": "Built-in ImageGen edit using native SketchUp geometry extraction",
+  "model": "C:/Projects/JESB/LOT20/JESB_Lot20_v3.skp",
+  "measurements": {
+    "front_drive_material": "Asphalt_06_1K",
+    "front_neck_width_m": 4.0322499999999994,
+    "front_court_width_m": 8.4820125,
+    "rear_width_m": 3.3353375
+  },
+  "records": [
+    {
+      "side": "Front",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Front.png",
+        "C:/Projects/JESB/tmp/lot20_site/Front_Site.png",
+        "C:/Projects/JESB/tmp/lot20_site/Top.png"
+      ],
+      "prompt": "Use case: precise-object-edit. IMAGE 1 is the render to edit. LOCK all HOUSE PIXELS, architecture, camera, roof, doors, windows, decks, walls and sky. DO NOT change camera to image2. Images 2 and 3 are read-only reference for GROUND FOOTPRINT ONLY from actual SketchUp geometry, not building/roof appearance. Edit ONLY ground hardscape shape/material and neighboring lawn in image1. Keep distant trees small, as existing.\nUser wants exact model paving: model material Asphalt_06_1K appears medium gray matte fine asphalt aggregate, NOT pale concrete. NO slab joints or huge aggregate. Preserve all rest of image1.\nReplace existing broad pale driveway with correctly dimensioned L-shaped medium-gray asphalt. At house: broad motor court between inner right garage wall and entry steps, roughly image x580..1020. Front neck is only 47.5% of that court width, along its RIGHT side immediately in front of entry door. LEFT 52.5% of former broad mouth MUST become lawn, large rectangular lawn notch extending from lawn in front of garage. This is a rectangular L footprint, no broad trapezoid, no outward flare. The front neck's left edge aligns roughly with LEFT stone pillar of entry portal (image x810), its right edge aligns with RIGHT edge of entry steps (image x1020). Project parallel edges naturally in same camera as image1; do not flare width 3x. Wide section extends to inward-facing garage doors at left, stays on right of garage front facade. Along central wall left of entry retain narrow grass strip between wall and motor court. Make narrow drive mouth reach foreground boundary/street. This sharp right-hand neck and large left grass notch are crucial.\nAll asphalt boundaries straight/right angled in world space per model. Existing building and camera must remain pixel-for-pixel intact, including original SIMPLE smooth hip roof silhouette, not roofs from reference2. Photorealistic, no labels.",
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-ee609d57-8b97-4bfb-8d51-dd201b1bbfd1.png"
+    },
+    {
+      "side": "Left",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Left.png",
+        "C:/Projects/JESB/tmp/lot20_site/Left_Site.png",
+        "C:/Projects/JESB/tmp/lot20_site/Top.png"
+      ],
+      "prompt": "Use case: precise-object-edit. IMAGE 1 is the render to edit. LOCK all HOUSE PIXELS, architecture, camera, roof, doors, windows, decks, walls and sky. DO NOT change camera to image2. Images 2 and 3 are read-only reference for GROUND FOOTPRINT ONLY from actual SketchUp geometry, not building/roof appearance. Edit ONLY ground hardscape shape/material and neighboring lawn in image1. Keep distant trees small, as existing.\nUser wants exact model paving: model material Asphalt_06_1K appears medium gray matte fine asphalt aggregate, NOT pale concrete. NO slab joints or huge aggregate. Preserve all rest of image1.\nCurrent image1 incorrectly has grass everywhere. Add model's REAR garage access driveway visible at LEFT foreground near base of rear balcony. This straight horizontal strip runs from image LEFT edge toward the base of the stepped-in wall around x240, then continues behind the foreground wing where occluded. In model reference2 it runs left-to-right in front of recessed main wall, but the foreground side wall at x~500 occludes it. Interpret this in image1's straight elevation: thin visible gray asphalt strip from left edge to just before/at the tall main wall's left edge (~x240). Grass remains the entire broad foreground below that strip and along the long siding wall. Do not create a path along entire side elevation. Preserve deck black. Narrow strip must be visible, not omitted.\nAll asphalt boundaries straight/right angled in world space per model. Existing building and camera must remain pixel-for-pixel intact, including original SIMPLE smooth hip roof silhouette, not roofs from reference2. Photorealistic, no labels.",
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-95e4a2ac-f61c-4bf0-a855-8ab8f181b883.png"
+    },
+    {
+      "side": "Rear",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Rear.png",
+        "C:/Projects/JESB/tmp/lot20_site/Rear_Site.png",
+        "C:/Projects/JESB/tmp/lot20_site/Top.png"
+      ],
+      "prompt": "Use case: precise-object-edit. IMAGE 1 is the render to edit. LOCK all HOUSE PIXELS, architecture, camera, roof, doors, windows, decks, walls and sky. DO NOT change camera to image2. Images 2 and 3 are read-only reference for GROUND FOOTPRINT ONLY from actual SketchUp geometry, not building/roof appearance. Edit ONLY ground hardscape shape/material and neighboring lawn in image1. Keep distant trees small, as existing.\nUser wants exact model paving: model material Asphalt_06_1K appears medium gray matte fine asphalt aggregate, NOT pale concrete. NO slab joints or huge aggregate. Preserve all rest of image1.\nChange current light concrete rear driveway into constant-width medium-gray asphalt. Width 10.94 feet, only slightly wider than single garage opening. Keep straight edges and constant width in this nearly orthographic camera, no broad fan toward bottom right. It must extend from threshold to bottom boundary as model reference. Maintain lawn on both sides and black ground deck. No concrete walkway along rest of building.\nAll asphalt boundaries straight/right angled in world space per model. Existing building and camera must remain pixel-for-pixel intact, including original SIMPLE smooth hip roof silhouette, not roofs from reference2. Photorealistic, no labels.",
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-9cb60cc0-0a26-43ca-a29d-e8cd76c9a47c.png"
+    },
+    {
+      "side": "Right",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Right.png",
+        "C:/Projects/JESB/tmp/lot20_site/Right_Site.png",
+        "C:/Projects/JESB/tmp/lot20_site/Top.png"
+      ],
+      "prompt": "Use case: precise-object-edit. IMAGE 1 is the render to edit. LOCK all HOUSE PIXELS, architecture, camera, roof, doors, windows, decks, walls and sky. DO NOT change camera to image2. Images 2 and 3 are read-only reference for GROUND FOOTPRINT ONLY from actual SketchUp geometry, not building/roof appearance. Edit ONLY ground hardscape shape/material and neighboring lawn in image1. Keep distant trees small, as existing.\nUser wants exact model paving: model material Asphalt_06_1K appears medium gray matte fine asphalt aggregate, NOT pale concrete. NO slab joints or huge aggregate. Preserve all rest of image1.\nChange pale concrete apron to model's medium-gray asphalt motor court directly in front of double+single garages at LEFT. It is a generous parking/maneuvering court about 27.8 ft deep perpendicular to garage wall, not just a narrow walkway. Extend its near edge further down within left ground area (roughly image y830-860, garage thresholds around y750), leaving ample lawn foreground below that. Its right border ends at house inner corner around x700, all foreground and area along tall wall at right stay grass. At far LEFT, a rectangular grass notch at the garage-front corner forces drive's exit to occupy only the near/front half of court width toward left image edge. Keep L footprint from model reference2. Rear access strip may show at far right beyond balcony as narrow asphalt, as reference2. No pavement across whole foreground.\nAll asphalt boundaries straight/right angled in world space per model. Existing building and camera must remain pixel-for-pixel intact, including original SIMPLE smooth hip roof silhouette, not roofs from reference2. Photorealistic, no labels.",
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-a7cba9f3-cbce-49d3-ae02-60851aa45f44.png"
+    }
+  ]
+}

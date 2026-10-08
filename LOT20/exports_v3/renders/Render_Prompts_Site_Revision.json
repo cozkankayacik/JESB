@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-08",
+  "method": "Built-in ImageGen",
+  "records": [
+    {
+      "side": "Front",
+      "prompt": "Use case: precise-object-edit. Edit target image 1: existing LOT20 Front elevation photoreal render. Images 2 and 3: authoritative front and rear perspective SITE LAYOUT references of this same building. Image 4: LOT2 distant tree style reference only, do not copy that house. Update ONLY ground paving/lawn layout and distant background trees. Preserve image 1 camera, elevation view, house silhouette, ALL windows/doors, roof, facade material placements, lighting and image size. Project reference perspective ground footprints consistently into this elevation; do not change to a perspective camera.\nFront view: the projecting garage wing at image left has its garage doors facing inward to the right (hidden in this front view). A concrete motor court occupies the recess to the RIGHT of that garage wing, in front of the central left window bay and entry steps. This court connects by a straight driveway to the front foreground/street, approximately between garage wing's right edge and entry tower's right edge. Lawn stays in front of the garage wing, with the small inward lawn notch shown in reference 2, and the whole right front garden stays lawn. Replace current uninterrupted foreground grass with this correctly positioned central driveway. Remove invented full-width concrete perimeter walkway; grass meets house except entry steps/court.\nAdd only a few very distant small tree groups along low horizon beyond property, like image 4; subtle atmospheric distance, no trees near building, no shrubs, flowers, vehicles, people, fences or new site objects. Keep foreground lawn open. Realistic clean neutral concrete, natural cut grass, existing blue sky. No labels/text/watermarks.",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Front.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-ada564c8-42fe-4a22-a8a3-6eba4d3040b5.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-02f27e1b-4b3e-4df9-9ca8-65edc59fa418.png",
+        "C:/Projects/JESB/LOT2/exports_v4_new/renders/JESB_Lot2_v4_Render_Front.png"
+      ],
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-501177ae-e347-4cfe-b8f3-06c0dfc1baf3.png"
+    },
+    {
+      "side": "Left",
+      "prompt": "Use case: precise-object-edit. Edit target image 1: existing LOT20 Left elevation photoreal render. Images 2 and 3: authoritative front and rear perspective SITE LAYOUT references of this same building. Image 4: LOT2 distant tree style reference only, do not copy that house. Update ONLY ground paving/lawn layout and distant background trees. Preserve image 1 camera, elevation view, house silhouette, ALL windows/doors, roof, facade material placements, lighting and image size. Project reference perspective ground footprints consistently into this elevation; do not change to a perspective camera.\nThis long outer side with no garage doors is entirely lawn up to the building as seen along the right side of rear perspective reference 3. Remove invented continuous pale concrete walkway along this whole side. Only the rear black deck edge at far left remains, no driveway across this side.\nAdd only a few very distant small tree groups along low horizon beyond property, like image 4; subtle atmospheric distance, no trees near building, no shrubs, flowers, vehicles, people, fences or new site objects. Keep foreground lawn open. Realistic clean neutral concrete, natural cut grass, existing blue sky. No labels/text/watermarks.",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Left.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-ada564c8-42fe-4a22-a8a3-6eba4d3040b5.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-02f27e1b-4b3e-4df9-9ca8-65edc59fa418.png",
+        "C:/Projects/JESB/LOT2/exports_v4_new/renders/JESB_Lot2_v4_Render_Front.png"
+      ],
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-e4618dc1-d634-458d-a9f0-0946032b105d.png"
+    },
+    {
+      "side": "Rear",
+      "prompt": "Use case: precise-object-edit. Edit target image 1: existing LOT20 Rear elevation photoreal render. Images 2 and 3: authoritative front and rear perspective SITE LAYOUT references of this same building. Image 4: LOT2 distant tree style reference only, do not copy that house. Update ONLY ground paving/lawn layout and distant background trees. Preserve image 1 camera, elevation view, house silhouette, ALL windows/doors, roof, facade material placements, lighting and image size. Project reference perspective ground footprints consistently into this elevation; do not change to a perspective camera.\nRear single black garage at far RIGHT must have its own straight concrete driveway from its threshold all the way to foreground property boundary, slightly wider than the door, exactly as reference 3. Lawn on both sides. Preserve long black ground deck below balcony/glazing. Remove invented continuous light concrete apron across full house width. All other rear ground is grass to the deck and building. Do not remove brick piers or change openings.\nAdd only a few very distant small tree groups along low horizon beyond property, like image 4; subtle atmospheric distance, no trees near building, no shrubs, flowers, vehicles, people, fences or new site objects. Keep foreground lawn open. Realistic clean neutral concrete, natural cut grass, existing blue sky. No labels/text/watermarks.",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Rear.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-ada564c8-42fe-4a22-a8a3-6eba4d3040b5.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-02f27e1b-4b3e-4df9-9ca8-65edc59fa418.png",
+        "C:/Projects/JESB/LOT2/exports_v4_new/renders/JESB_Lot2_v4_Render_Front.png"
+      ],
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-47a02771-530c-449d-9958-6caf133b853e.png"
+    },
+    {
+      "side": "Right",
+      "prompt": "Use case: precise-object-edit. Edit target image 1: existing LOT20 Right elevation photoreal render. Images 2 and 3: authoritative front and rear perspective SITE LAYOUT references of this same building. Image 4: LOT2 distant tree style reference only, do not copy that house. Update ONLY ground paving/lawn layout and distant background trees. Preserve image 1 camera, elevation view, house silhouette, ALL windows/doors, roof, facade material placements, lighting and image size. Project reference perspective ground footprints consistently into this elevation; do not change to a perspective camera.\nThis side shows double + single front garage doors at image LEFT. Their concrete motor court lies directly in front of both doors and connects toward the FRONT of house (image LEFT) to the street, as reference 2. It does NOT continue straight toward the entire bottom foreground as current image wrongly shows. Shape a shallow transverse apron in front of both garage doors, then run the access toward/through image LEFT edge. Lawn occupies foreground farther from garage and all ground along tall side wing at image RIGHT, up to wall. Remove invented continuous perimeter concrete walkway along tall wing. Preserve tiny rear deck edge at far right.\nAdd only a few very distant small tree groups along low horizon beyond property, like image 4; subtle atmospheric distance, no trees near building, no shrubs, flowers, vehicles, people, fences or new site objects. Keep foreground lawn open. Realistic clean neutral concrete, natural cut grass, existing blue sky. No labels/text/watermarks.",
+      "referenced_image_paths": [
+        "C:/Projects/JESB/LOT20/exports_v3/renders/JESB_Lot20_v3_Render_Right.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-ada564c8-42fe-4a22-a8a3-6eba4d3040b5.png",
+        "C:/Users/ozkan/AppData/Local/Temp/codex-clipboard-02f27e1b-4b3e-4df9-9ca8-65edc59fa418.png",
+        "C:/Projects/JESB/LOT2/exports_v4_new/renders/JESB_Lot2_v4_Render_Front.png"
+      ],
+      "generated": "C:\\Users\\ozkan\\.codex\\generated_images\\01a112ef-aeb8-7970-950f-64f02af54018\\exec-8bb6a035-f049-461a-bc98-fb22608ace72.png"
+    }
+  ]
+}
