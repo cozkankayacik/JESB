@@ -50,6 +50,26 @@ Assumptions to confirm:
 2. **Joints are lines, not recessed reveals**, at the same level of detail as the rest of the model.
 3. The v4 questions about colour matching and the small grey panel above the garage side door still stand. The question about board direction and width no longer applies.
 
+## Third change in v5 (same day): white Hardie panels divided into equal panels
+
+Instruction: divide the Hardie panel boards into equal parts; the white panels were not equal.
+
+The joints that followed the window lines were removed. Every white panel area now has an even grid, all panels of an area the same size (panel size chosen as close as possible to a 48" x 96" sheet):
+
+| Area | Size | Panels | Each panel |
+|---|---|---|---|
+| Front — garage bay | 120" x 135" | 3 x 1 | 40.0" x 135.3" |
+| Front — bay left of the entry | 149" x 251" | 3 x 3 | 49.7" x 83.7" |
+| Front — tall window bay right of the entry | 99.6" x 251" | 2 x 3 | 49.8" x 83.7" |
+| Right side — panel bay | 112" x 257" | 2 x 3 | 56.0" x 85.7" |
+
+- The narrow side returns of the bays carry the same horizontal joints as the face they belong to.
+- Joints stop at window openings, so a joint that falls on a window shows only above and below it. On the tall window bay and the right-side bay the middle joint runs through the window column.
+- The black panels were already equal (two panels on each front one, three on the rear one) and are unchanged.
+- The joints of the white and black panels no longer line up with each other or with the window edges; that follows from dividing each area equally.
+
+This replaces the joint layout described in the second change above.
+
 ## Still open
 
 1. **The DWG views do not agree exactly with each other here.** No single flat roof plane fits the plan valley, the 4:12 slope at the wall and the 201.1" apex at once, which is why the extra facet is needed; its own pitch works out at about 7.7:12. The large plane over the angled wall still works out at about 3.4:12 from the plan valley. If the architect intends one plane at a true 4:12, the valley on the roof plan would have to run almost straight west from the wall corner instead of diagonally.
