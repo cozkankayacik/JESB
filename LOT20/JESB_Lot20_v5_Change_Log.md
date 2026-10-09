@@ -32,6 +32,24 @@ Checked by drawing the DWG lines over the model views (`exports_v5/dwg_overlay_c
 | Highest point at the two-storey wall | 195.7 | 201.1 | 201.15 |
 | East slope at the wall (front elevation) | about 3.4:12 | 4:12 | 4:12 |
 
+## Second change in v5 (same day): siding boards shown as Hardie board panels
+
+Instruction: the "siding boards" of the Kami notes are Hardie board panels like the owner's reference image — smooth flat panels with thin joints, not lap boards. Saved into the same v5 file at the owner's request.
+
+- The two cladding materials are now smooth, without texture: `Hardie Panel - Arctic White` (523 sq ft) and `Hardie Panel - Black` (132 sq ft). They are on exactly the same faces as in v4 (notes F1–F5, R1, S1); colours unchanged.
+- Panel joints are drawn as lines on the wall faces, 174 ft in total:
+  - vertical joints at the window jambs, running the full height of each bay;
+  - horizontal joints at the head of the lower windows and the sill of the upper windows (127.0" and 182.7" above the slab), so the black panels sit exactly in that band;
+  - on the tall three-window bay, horizontal joints between the windows (92.75" and 172.75");
+  - black panels split into equal panels: two on each front panel, three on the rear panel (in line with the window mullions above).
+- The garage bay has vertical joints at the window jambs only.
+
+Assumptions to confirm:
+
+1. **Joint layout.** The Kami notes and the reference image do not give a panel layout for this house. The layout above follows the window lines, as in the reference image; panels come out between 17" and 64" wide.
+2. **Joints are lines, not recessed reveals**, at the same level of detail as the rest of the model.
+3. The v4 questions about colour matching and the small grey panel above the garage side door still stand. The question about board direction and width no longer applies.
+
 ## Still open
 
 1. **The DWG views do not agree exactly with each other here.** No single flat roof plane fits the plan valley, the 4:12 slope at the wall and the 201.1" apex at once, which is why the extra facet is needed; its own pitch works out at about 7.7:12. The large plane over the angled wall still works out at about 3.4:12 from the plan valley. If the architect intends one plane at a true 4:12, the valley on the roof plan would have to run almost straight west from the wall corner instead of diagonally.
