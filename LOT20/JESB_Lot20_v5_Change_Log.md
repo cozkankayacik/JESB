@@ -70,6 +70,15 @@ The joints that followed the window lines were removed. Every white panel area n
 
 This replaces the joint layout described in the second change above.
 
+## Fourth change in v5 (same day): black Hardie panels
+
+Instruction: the black panels on the front elevation are one piece each; the black panel on the rear elevation is two pieces.
+
+- Front, bay left of the entry and right-hand bay: the centre joint was removed; each black panel is a single 96.0" x 55.7" panel.
+- Rear: the two joints were removed and one centre joint added; two equal panels of 91.0" x 45.5".
+
+This replaces what the second and third changes above say about the black panels. The white panels are unchanged.
+
 ## Still open
 
 1. **The DWG views do not agree exactly with each other here.** No single flat roof plane fits the plan valley, the 4:12 slope at the wall and the 201.1" apex at once, which is why the extra facet is needed; its own pitch works out at about 7.7:12. The large plane over the angled wall still works out at about 3.4:12 from the plan valley. If the architect intends one plane at a true 4:12, the valley on the roof plan would have to run almost straight west from the wall corner instead of diagonally.
