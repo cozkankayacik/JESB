@@ -45,6 +45,25 @@ Result: `JESB_Lot20_v6.skp`, images in `exports_v6/`
 
 Nothing else was changed: roofs, other windows, site and the saved camera view are as in v5.
 
+## Follow-up changes in v6 (same day, saved into the same file)
+
+Instructions from the owner's representative after reviewing v6:
+
+- **Black panel between the paired windows above the garage.** The 4" of brick between the two windows of each pair is now `Hardie Panel - Black` (4" x 30"), so each pair reads as one unit, as in the owner's sample image.
+- **Rear black panel in one piece.** The centre joint was removed; the panel is a single 182" x 45.5" piece. No black or white Hardie panel has a joint line now.
+- **Downspouts.** Seven black 3" x 4" downspouts were added (group `Downspouts - Black (v6)`), each with an offset from the gutter back to the wall:
+  1. right side, at the front corner
+  2. rear, at the right corner
+  3. rear, at the left corner (ends on the deck)
+  4. left side, at the rear corner of the left wing
+  5. front, at the inside corner where the garage meets the house
+  6. garage, left side, at the front corner
+  7. garage front, at the right corner
+
+  The DWG does not locate the downspouts clearly (two are drawn on the right elevation only), so the positions are a proposal: at corners, clear of windows and doors. Number 5 runs down the edge of the white panel bay left of the entry.
+
+Items 2 and 3 of "To confirm" below are settled by this.
+
 ## To confirm
 
 1. **Window positions above the garage** are scaled from the small plan on slide 2 (accuracy about ±1"). The contract drawing set of 2026-05-18 is not in the project folder; with it the positions can be set exactly.
