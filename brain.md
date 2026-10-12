@@ -202,6 +202,8 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
+- **2026-10-12** — Lot 20: the user edited `JESB_Lot20_v8.skp` themselves (saved 14:24; visible on the front: the wall between the entry door and the window above it is now black) and asked for the front elevation PDF output to follow it. All five PNGs in `exports_v8/` and `JESB_Lot20_v8_Views.pdf` re-exported from a copy (model not saved by me). The v8 change log describes v8 as delivered, not the user's later hand edits.
+
 - **2026-10-12** — **Lot 20 direction change: back to v5.** Instruction: return to `JESB_Lot20_v5.skp` and add only black gutters. Result `LOT20/JESB_Lot20_v8.skp` (**current**; `exports_v8/`; change log) = the v5 file as hand-edited by the user on 2026-10-12 13:39 + group `Gutters - Black (v8)` (5 x 5 in, 334 ft). No downspouts. **v6 and v7 are superseded** (four windows above the garage, sill / frieze removal, extra black panels, seamless white panels, downspouts are all NOT in the current model); do not build on them unless asked. The owner style rules noted from the 10/10 feedback are therefore not applied at present. Script `tools/lot20_v8_gutters/build_v8.rb`.
 
 - **2026-10-12** — Lot 20: the user edited `JESB_Lot20_v7.skp` themselves (saved 12:36) and asked for the v7 exports to be redone from it. Five PNGs in `exports_v7/` and `JESB_Lot20_v7_Views.pdf` re-exported from a copy (model not saved by me). Differences against my v7 exports are small (front, rear, right and perspective; left identical); what exactly was edited was not identified. Generic export script for any Lot 20 version: `tools/lot20_export_views.rb` (prefix from the file name, fixed framing) + `tools/lot20_v3_roof/mkpdf_views.py`.
