@@ -64,6 +64,15 @@ Instructions from the owner's representative after reviewing v6:
 
 Items 2 and 3 of "To confirm" below are settled by this.
 
+### Downspouts repositioned (same day)
+
+All seven downspouts now sit 2" from the end line of the wall they run down, instead of 6"–13" in from it. Two were moved further:
+
+- No. 4 (left side): now at the rear end of the left-wing wall, 2" from where that wall ends.
+- No. 7: moved from the garage front to the garage's right side wall (the garage-door wall), at its front corner, 2" from the corner and 21" clear of the 16' door.
+
+This replaces the positions listed above for nos. 4 and 7.
+
 ## To confirm
 
 1. **Window positions above the garage** are scaled from the small plan on slide 2 (accuracy about ±1"). The contract drawing set of 2026-05-18 is not in the project folder; with it the positions can be set exactly.
