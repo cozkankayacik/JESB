@@ -1,6 +1,6 @@
 # JESB — Project Brain
 
-Last updated: 2026-10-08. Working notes for Jade Estates, South Barrington. Keep this file current as decisions land.
+Last updated: 2026-10-13. Working notes for Jade Estates, South Barrington. Keep this file current as decisions land.
 
 ## 1. Project
 
@@ -201,6 +201,8 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 - Lot 20's black "siding dec" has not been applied anywhere: the drawings do not show where it goes.
 
 ## 8. Log
+
+- **2026-10-13** — Lot 20 model v9 (`LOT20/JESB_Lot20_v9.skp`, **current**; `exports_v9/`; change log) = the user's hand-edited v8 (14:41 on 10/12) with the entry double door moved 2.3" forward. Complaint (in English, with a crop of an AI render): the black Hardie panel between the entry door and the window above 'pops out'. Cause in the model: the panel (user's own edit, face on the entry wall plane y 3854.07, x 12836.26..12920.26, z 118.16..138.93) and the window frame (front y 3854.03) were flush, but the door leaf face was at y 3856.44, 2.4" back; the AI render exaggerated that step. Fix: doors 131211/131212 translated so the leaf face is at y 3854.12. Lessons: component bounds of the door include the handle (1.2" proud) — measure the leaf by its large front face; keep an element that is wider than its wall opening 0.05" behind the wall plane rather than coplanar. When a render shows a defect, check the model first: the render follows model depth offsets. Script `tools/lot20_v9_entry/build_v9.rb`.
 
 - **2026-10-12** — Lot 20: the user edited `JESB_Lot20_v8.skp` again (saved 14:41; rear side) and asked for the rear elevation PDF output to follow it. `exports_v8/` PNGs and `JESB_Lot20_v8_Views.pdf` re-exported from a copy. Working pattern today: the user edits the current model by hand in SketchUp, then asks for the exports/PDF to be refreshed from it — run `tools/lot20_export_views.rb` on a copy named `JESB_Lot20_vN_*.skp`, then `mkpdf_views.py`.
 
