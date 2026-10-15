@@ -13,9 +13,12 @@ def half(px, py, nx, ny):
     l = math.hypot(nx, ny); nx, ny = nx / l, ny / l
     return (nx, ny, -(nx * px + ny * py))
 def z(pl, x, y): return pl['a'] * x + pl['b'] * y + pl['c']
-def hipblock(name, x0, x1, y0, y1):
-    pls = [plane(x0, 0, 1, 0), plane(x1, 0, -1, 0), plane(0, y0, 0, 1), plane(0, y1, 0, -1)]
-    return {'name': name, 'planes': pls, 'hs': [half(p['p0'][0], p['p0'][1], p['n'][0], p['n'][1]) for p in pls]}
+def hipblock(name, x0, x1, y0, y1, ps=P, pe=P, pw=P, pn=P, ymax=None):
+    pls = [plane(x0, 0, 1, 0, pw), plane(x1, 0, -1, 0, pe), plane(0, y0, 0, 1, ps)]
+    if pn: pls.append(plane(0, y1, 0, -1, pn))
+    hs = [half(p['p0'][0], p['p0'][1], p['n'][0], p['n'][1]) for p in pls]
+    if ymax is not None: hs.append(half(0, ymax, 0, -1))
+    return {'name': name, 'planes': pls, 'hs': hs}
 
 MAIN = [
     hipblock('A', 1170.0, 1620.0, 1405.7, 1807.7),     # west part, ridge 1371..1419, rise 100.5
@@ -26,6 +29,12 @@ MAIN = [
     hipblock('F', 1180.0, 1382.0, 1154.0, 1318.0),     # west bump of that bay, ridge along x, rise 41
 ]
 TOWER = [hipblock('T', 1504.5, 1688.5, 1388.5, 1643.5)]  # entry tower, eave 31 in. higher, ridge along y
+# v2: the main roof stops at the entry tower walls (A-300: main eave line breaks at the tower), so its fascia no longer
+# runs across the tower face. Hole = tower walls footprint up to the back of the tower frieze.
+MAIN_HOLES = [(1517.6, 1678.3, 0.0, 1462.8)]
+# v2: first-floor garage roof per A-300 / A-310: eave top 132.5, 7.3 in. fascia, sides 4:12, south ends 6:12.
+GARAGE = [hipblock('G1', 1170.0, 1466.0, 975.8, 0, ps=0.5, pe=1/3, pw=1/3, pn=None, ymax=1405.91),
+          hipblock('G2', 1170.0, 1324.0, 963.1, 0, ps=0.5, pe=1/3, pw=1/3, pn=None, ymax=1040.0)]
 
 def clip(poly, h, keep=True):
     a, b, c = h
@@ -54,7 +63,7 @@ def diffline(p, q):
     a, b, c = p['a'] - q['a'], p['b'] - q['b'], p['c'] - q['c']; l = math.hypot(a, b)
     return None if l < 1e-9 else (a / l, b / l, c / l)
 
-def envelope(bodies):
+def envelope(bodies, holes=()):
     cells = []
     for bi, b in enumerate(bodies):
         foot = [(0, 0), (4000, 0), (4000, 4000), (0, 4000)]
@@ -76,6 +85,19 @@ def envelope(bodies):
                             part = clip(cell, ln, side)
                             if part and abs(area(part)) > 1e-4: nxt.append(part)
                     cs = nxt
+            for (hx0, hx1, hy0, hy1) in holes:
+                nxt = []
+                for cell in cs:
+                    parts = [cell]
+                    for ln in (half(hx0, 0, 1, 0), half(hx1, 0, -1, 0), half(0, hy0, 0, 1), half(0, hy1, 0, -1)):
+                        nn = []
+                        for c2 in parts:
+                            for side in (True, False):
+                                p2 = clip(c2, ln, side)
+                                if p2 and abs(area(p2)) > 1e-4: nn.append(p2)
+                        parts = nn
+                    nxt.extend(parts)
+                cs = [c for c in nxt if not (hx0 < centroid(c)[0] < hx1 and hy0 < centroid(c)[1] < hy1)]
             for cell in cs:
                 cx, cy = centroid(cell); zb = z(pl, cx, cy); ok = True
                 for ci, c in enumerate(bodies):
@@ -100,10 +122,10 @@ def export(cells, zt):
         out.append({'key': '%s.%d' % (c['body'], c['plane']), 'pts': [[round(x, 4), round(y, 4), round(zt + z(pl, x, y), 4)] for x, y in poly]})
     return out
 
-mc = envelope(MAIN); tc = envelope(TOWER)
-data = {'main': {'zt': 279.7, 'zb': 272.5, 'faces': export(mc, 279.7)}, 'tower': {'zt': 310.2, 'zb': 299.0, 'faces': export(tc, 310.2)}}
+mc = envelope(MAIN, MAIN_HOLES); tc = envelope(TOWER); gc = envelope(GARAGE)
+data = {'main': {'zt': 279.7, 'zb': 272.5, 'faces': export(mc, 279.7)}, 'tower': {'zt': 310.2, 'zb': 299.0, 'faces': export(tc, 310.2)}, 'garage': {'zt': 132.5, 'zb': 125.2, 'faces': export(gc, 132.5)}}
 json.dump(data, open(os.path.join(W, 'roof19.json'), 'w'))
-for name, cells, zt in (('main', mc, 279.7), ('tower', tc, 310.2)):
+for name, cells, zt in (('main', mc, 279.7), ('tower', tc, 310.2), ('garage', gc, 132.5)):
     print(name, 'cells', len(cells))
     for b in sorted(set(c['body'] for c in cells)):
         cs = [c for c in cells if c['body'] == b]
