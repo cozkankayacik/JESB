@@ -1,6 +1,6 @@
 # JESB — Project Brain
 
-Last updated: 2026-10-13. Working notes for Jade Estates, South Barrington. Keep this file current as decisions land.
+Last updated: 2026-10-15. Working notes for Jade Estates, South Barrington. Keep this file current as decisions land.
 
 ## 1. Project
 
@@ -200,8 +200,17 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 - Lot 20's black "siding dec" has not been applied anywhere: the drawings do not show where it goes.
 
+## 7c. Lot 19
+
+- Folder `LOT19/`: owner's model `JESB_LOT19_MODELLING.skp` (SketchUp, 26 MB), `JESB - LOT 19  ARCHITECTURAL PLAN_REVISION1.pdf` (Purohit Architects, 10 sheets, issued 10.15.2026 for Village ACC review #2; A-220 roof plan, A-300/A-310 elevations, 1/4" = 1'-0"), `xflr0/1/2_lot19.dwg` (floor-plan xrefs — walls are AutoCAD Architecture objects that do not survive DXFOUT; useless for the exterior), `cobble stone siding.png`.
+- Model frame: inches, +x east, +y north, front faces south (-y). No house group — everything is loose top-level groups. Exterior wall faces at z 230: west 1181.5, east 1835.4, north 1794.7 (x 1184–1380) / 1822.2 (x 1380–1654) / 1952.2 (Br 2 wing x 1649–1829), south 1405–1417; front-left two-storey bay x 1232–1400, south 1109.4, west bump x 1194.4. Wall plates z 279. Materials: `Material5` shingles, `Material6` standing-seam metal, `Material9` siding (cobble stone siding.png), `Material` brick.
+- **PDF vectors are the usable reference**: `tools/lot19/pdf_vectors.py` extracts the roof plan / elevations in model inches (page rotation 270 handled with `page.rotation_matrix`; 1 pt = 2/3 in. at 1/4"); alignment offsets come from `overlay_pdf.py` (FFT cross-correlation of drawing lines vs model edge maps, both at 2 px/in.). Sheet A-310 sits ~5" higher than A-300 after alignment.
+- **A-220 roof plan contradicts the elevations and floor plans** (single 682 x 532 hip over everything, straight north eave over the deck). Elevations were followed; flagged in the v1 change log.
+- **v1** (`JESB_Lot19_v1.skp`, current; `exports_v1/`; change log): roof rebuilt from the elevations as an envelope of hip blocks A–F (`tools/lot19/roof19.py`, same method as Lot 20 v3) + entry tower hip roof in metal (eave 310.2, 12" fascia) replacing the flat box. Walls/windows already matched and were not touched. Lower roofs within ~5", not changed. Exports with `tools/lot19/export_views.rb` (fixed framing centre 1505/1478/210, height 700) + `tools/lot19/mkpdf_views.py`.
+
 ## 8. Log
 
+- **2026-10-15** — Lot 19 started: model v1 = roof rebuilt to the Revision 1 elevations (see 7c). User instruction: use only the exterior model and the roof plan / elevation drawings as reference.
 - **2026-10-13** — Lot 20 model v9 (`LOT20/JESB_Lot20_v9.skp`, **current**; `exports_v9/`; change log) = the user's hand-edited v8 (14:41 on 10/12) with the entry double door moved 2.3" forward. Complaint (in English, with a crop of an AI render): the black Hardie panel between the entry door and the window above 'pops out'. Cause in the model: the panel (user's own edit, face on the entry wall plane y 3854.07, x 12836.26..12920.26, z 118.16..138.93) and the window frame (front y 3854.03) were flush, but the door leaf face was at y 3856.44, 2.4" back; the AI render exaggerated that step. Fix: doors 131211/131212 translated so the leaf face is at y 3854.12. Lessons: component bounds of the door include the handle (1.2" proud) — measure the leaf by its large front face; keep an element that is wider than its wall opening 0.05" behind the wall plane rather than coplanar. When a render shows a defect, check the model first: the render follows model depth offsets. Script `tools/lot20_v9_entry/build_v9.rb`.
 
 - **2026-10-12** — Lot 20: the user edited `JESB_Lot20_v8.skp` again (saved 14:41; rear side) and asked for the rear elevation PDF output to follow it. `exports_v8/` PNGs and `JESB_Lot20_v8_Views.pdf` re-exported from a copy. Working pattern today: the user edits the current model by hand in SketchUp, then asks for the exports/PDF to be refreshed from it — run `tools/lot20_export_views.rb` on a copy named `JESB_Lot20_vN_*.skp`, then `mkpdf_views.py`.
