@@ -208,7 +208,16 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 - **A-220 roof plan contradicts the elevations and floor plans** (single 682 x 532 hip over everything, straight north eave over the deck). Elevations were followed; flagged in the v1 change log.
 - **v1** (`JESB_Lot19_v1.skp`, current; `exports_v1/`; change log): roof rebuilt from the elevations as an envelope of hip blocks A–F (`tools/lot19/roof19.py`, same method as Lot 20 v3) + entry tower hip roof in metal (eave 310.2, 12" fascia) replacing the flat box. Walls/windows already matched and were not touched. Lower roofs within ~5", not changed. Exports with `tools/lot19/export_views.rb` (fixed framing centre 1505/1478/210, height 700) + `tools/lot19/mkpdf_views.py`.
 
+## 7d. Lot 7
+
+- Folder `LOT7/`: owner's model `JESB_SKETCHUP_LOT7.skp`, `JESB - LOT 7  ARCHITECTURAL PLAN_REVISION1.pdf` (A-220 roof plan, A-300/A-310 elevations, 1/4"), `xelev_lot 7G.dwg` + `xflr0/1/2_lot 7G.dwg` (note the "lot 7G" names).
+- Model frame: inches, front faces south (-y); house x ~1630..2480, y ~3377..4246. Garage wing at the west/front (gable to the south), covered terrace at the rear east. Materials: `Material5` shingles, `Material1` siding, `Material metal`, `D01_Frost_White` soffit, `Brick_05_1K`.
+- A-220 vectors map to the model **unrotated** (page up = +y, right = +x) and need +(11, -14.5) in. after correlation (the correlation locked onto the old roof, not the walls — check eaves ~12" outside the wall cuts with `tools/lot7/plot_plan_compare.py`). Heights: align on upper-floor window heads/sills, the DWG main-floor datum gives heights 13" low.
+- **v1** (`JESB_Lot7_v1.skp`, current; `exports_v1/`; change log): all upper roofs rebuilt from A-220 (`tools/lot7/roof7.py` -> `roof7.json`, `tools/lot7/build_v1.rb`), east garage dormer added, west dormer raised, covered rear terrace roof + 4 brick columns with the deck moved 60.3" south, garage gable window re-placed. Open: first floor/garage ~11–13" low vs drawings, lower garage roof untouched, windows not audited. Exports `tools/lot7/export_views.rb` (centre 1950/3800/210, height 700) + `mkpdf_views.py`.
+
 ## 8. Log
+
+- **2026-10-16** — Lot 7 model v1 (`LOT7/JESB_Lot7_v1.skp`, **current**; `exports_v1/` with views PDF and `pdf_overlay_checks/`; change log). See section 7d. Lessons: a gable body clipped by a half-plane beyond where its ridge dies into the main roof leaves a vertical end face poking through — clip at the ridge/roof intersection (`ymax(4060)` for the cross gable); when searching for a component to move, search one level into top-level groups and with generous z limits (the gable window was group 461201 at z 240..272, missed by a z>250 filter).
 
 - **2026-10-16** — Lot 19 model v5 (`LOT19/JESB_Lot19_v5.skp`, **current**; `exports_v5/`; change log): entry tower piers above the canopy (z 194.18..298.12) extended to the window surround per xelev front elevation (left pier group 333607 front y 1394.60 to x 1558.40; right 334788 front y 1398.86 to x 1637.56); seam edges hidden and texture re-projected from the old face via UVHelper. Script `tools/lot19/build_v5.rb`. Lesson: when splicing a coplanar extension onto an existing face, orient faces before merging and hide any edge that survives; copy UVs with `get_UVHelper` + `position_material`.
 
