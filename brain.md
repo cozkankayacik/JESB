@@ -262,6 +262,10 @@ Noticed while reading the set; none confirmed with the user or architect yet.
   - The owner answered RFI-001.03 with "use the DWG", meaning the rear elevation. The main roof end hips are now `P_END` = 0.5 (6:12) and the ridge is 131 in; the rear elevation matches.
   - The front elevation and A-220 roof (9:12, ridge 308 in) no longer match, which the owner accepted. R11 keeps the A-220 roof.
   - The R12 renders were stopped when the R13 change came in.
+- **2026-10-17** — **Owner: no more rendering by Claude; Astra takes the renders.**
+  - No V-Ray render was running when the instruction came.
+  - The pipeline in `tools/lot7_rebuild/vray/` is kept for reference only.
+  - Open Lot 7 differences that still need a decision: small garage door 6 ft (DWG) vs 8 ft; lower front gable projection ~11 in; north vs south elevation garage end ~10 in.
 - **2026-10-17** — Lot 7 **model R13** (`JESB_Lot7_Model_R13.skp`, **current**).
   - The owner said: "siding deck white" for the covered terrace. The raised terrace deck and skirt are now white lap siding (`ACC Lot 7 - Siding Dec - White - Terrace Deck`, texture from `make_white_siding.py`).
   - The V-Ray renders are in `Renders/R13/`.
