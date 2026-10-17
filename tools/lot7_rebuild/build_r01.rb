@@ -297,7 +297,7 @@ end
 # ------------------------------------------------------------------------------------------------ main
 def build
   m = Sketchup.active_model
-  m.start_operation('JESB Lot 7 R01', true)
+  m.start_operation("JESB Lot 7 #{CFG['rev']}", true)
   src_names = m.materials.map(&:name)
   log "owner materials: #{src_names.join(', ')}"
   # textures from the owner's model, renamed to the ACC selections
@@ -328,7 +328,7 @@ def build
   m.materials.to_a.each { |x| m.materials.remove(x) unless keep.include?(x) rescue nil }
   log "materials now: #{m.materials.map(&:name).join(', ')}"
 
-  house = m.entities.add_group; house.name = 'JESB_Lot7_House (R01)'
+  house = m.entities.add_group; house.name = "JESB_Lot7_House (#{CFG['rev']})"
   he = house.entities
   gw = he.add_group; gw.name = 'Exterior walls'
   SPEC['walls'].each_with_index do |w, i|
@@ -365,7 +365,7 @@ def build
     f.material = mats['interior']; f.back_material = mats['interior']
   end
   gf.layer = 'A-FLOOR'
-  site = m.entities.add_group; site.name = 'Site (R01, from elevation grade lines - no site plan)'
+  site = m.entities.add_group; site.name = "Site (#{CFG['rev']}, from elevation grade lines - no site plan)"
   build_terrain(site.entities, SPEC['terrain'], mats['lawn'])
   SPEC['boxes'].each do |b|
     name, x0, x1, y0, y1, z0, z1, mat, layer = b
@@ -411,14 +411,14 @@ def export_views
   views.each do |name, eye|
     cam = Sketchup::Camera.new(eye, [cx, cy, cz], [0, 0, 1]); cam.perspective = false; cam.height = eh
     v.camera = cam
-    v.write_image(filename: File.join(out, "JESB_Lot7_R01_#{name}.png"), width: ew_px, height: eh_px, antialias: true, transparent: false)
+    v.write_image(filename: File.join(out, "JESB_Lot7_#{CFG['rev']}_#{name}.png"), width: ew_px, height: eh_px, antialias: true, transparent: false)
     pages.add(name.tr('_', ' ')).update
   end
   cam = Sketchup::Camera.new([cx, cy, cz + d], [cx, cy, cz], [0, 1, 0]); cam.perspective = false; cam.height = 1100.0
   v.camera = cam
   site = m.entities.find { |e| e.is_a?(Sketchup::Group) && e.name.start_with?('Site') }
   site.hidden = true if site
-  v.write_image(filename: File.join(out, 'JESB_Lot7_R01_Roof_Plan.png'), width: 2400, height: 2400, antialias: true, transparent: false)
+  v.write_image(filename: File.join(out, "JESB_Lot7_#{CFG['rev']}_Roof_Plan.png"), width: 2400, height: 2400, antialias: true, transparent: false)
   site.hidden = false if site
   pages.add('Roof Plan').update
   ro['DrawHorizon'] = true; ro['DrawGround'] = false
@@ -428,7 +428,7 @@ def export_views
    ['Perspective_Rear_NE', [cx - 1250, cy + 1400, 600], [cx, cy + 40, 90]]].each do |name, eye, tg|
     cam = Sketchup::Camera.new(eye, tg, [0, 0, 1]); cam.perspective = true; cam.fov = 35.0
     v.camera = cam
-    v.write_image(filename: File.join(out, "JESB_Lot7_R01_#{name}.png"), width: 2400, height: 1500, antialias: true, transparent: false)
+    v.write_image(filename: File.join(out, "JESB_Lot7_#{CFG['rev']}_#{name}.png"), width: 2400, height: 1500, antialias: true, transparent: false)
     pages.add(name.tr('_', ' ')).update
   end
   qa = File.join(out, 'qa'); Dir.mkdir(qa) unless File.directory?(qa)

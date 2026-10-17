@@ -11,7 +11,7 @@ sys.path.insert(0, r"C:\Projects\JESB\tmp\python-libs")
 import pymupdf
 from PIL import Image, ImageChops
 
-SPEC = json.load(open(sys.argv[1]))
+SPEC = json.load(open(sys.argv[1], encoding="utf-8-sig"))
 OUT = sys.argv[2]
 W, H = 1190.551, 841.890
 DARK = (0x17 / 255, 0x33 / 255, 0x2F / 255)

@@ -77,9 +77,14 @@ ROOF_UPPER = [
                             plane("N", 329.6, P9, DORMER_EAVE)], (150.0, 294.0, 164.2, 329.6), metal=[0, 1, 2]),
 ]
 GF = -19.0 + GARAGE_SHIFT         # garage roof front (west half) after the garage front moved back
+# Garage roofs per the xelev front elevation (R02):
+#  G  = main garage gable, eaves x -7 / 288 (apex x 140.5 at 216.2 as drawn), gable face in the plane of the right
+#       front wall y 25.36, 6" rake overhang;
+#  LG = lower front gable over the 11" bump of the left garage front (x 0..137.68, face y 14.32): eaves x -7 / 149.7,
+#       apex x 71.35 at 164.4, 9:12, 6" rake overhang; its ridge dies into the G gable face.
 ROOF_GARAGE = [
-    body("G1 garage west", [plane("W", -19.0, P9, GARAGE_EAVE), plane("E", 295.0, P9, GARAGE_EAVE)], (-19.0, 161.7, GF, 400.0)),
-    body("G2 garage east", [plane("W", -19.0, P9, GARAGE_EAVE), plane("E", 295.0, P9, GARAGE_EAVE)], (161.7, 295.0, -3.0 + GARAGE_SHIFT, 434.32)),
+    body("G garage gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 288.0, P9, GARAGE_EAVE)], (-7.0, 288.0, 19.36, 434.32)),
+    body("LG lower front gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 149.7, P9, GARAGE_EAVE)], (-7.0, 149.7, 8.32, 60.0)),
 ]
 ROOF_GBR = [body("B guest bedroom bay", [plane("W", -43.04, P9, GBR_EAVE), plane("S", 382.96, P9, GBR_EAVE),
                                          plane("N", 602.08, P9, GBR_EAVE)], (-43.04, 0.0, 382.96, 602.08), metal=[0, 1, 2])]
@@ -284,7 +289,7 @@ def axis_of(f):
     return "x" if abs(f["p"][1] - f["q"][1]) < 1e-6 else "y"      # 'x': wall runs along x (constant y)
 
 
-def add_wall(f, a, b, zb, floor, thick):
+def add_wall(f, a, b, zb, floor, thick, margin=24.0):
     ax = axis_of(f)
     c = f["p"][1] if ax == "x" else f["p"][0]
     # top profile: sample the lowest roof surface clearly above the wall bottom, minus the roof thickness
@@ -294,7 +299,7 @@ def add_wall(f, a, b, zb, floor, thick):
         x, y = (u, c) if ax == "x" else (c, u)
         # only roofs covering the interior side of the wall count (a lower roof dying into the wall from outside
         # does not stop it); first-floor walls stop at the lowest such roof, upper walls run to the highest
-        cand = [h - FASCIA for h in roof_surfaces_at(x - f["n"][0] * 0.3, y - f["n"][1] * 0.3) if h - FASCIA > zb + 24]
+        cand = [h - FASCIA for h in roof_surfaces_at(x - f["n"][0] * 0.3, y - f["n"][1] * 0.3) if h - FASCIA > zb + margin]
         pick = (min if floor == "L1" else max)
         prof.append((u, round(pick(cand), 3) if cand else None))
     if any(t is None for _, t in prof):
@@ -348,6 +353,24 @@ for f in l2f:
     for a, b in subtract((lo, hi), cuts):
         add_wall(f, a, b, 96.0, "L2", 6.0)
 
+# garage front (R02, xelev front): the bump face y 14.32 is brick only below the water table, white panel above
+# (panels flank the window); the main garage gable face continues above the lower gable in the plane y 25.36
+for w in list(walls):
+    if w["axis"] == "x" and abs(w["c"] - 14.32) < 0.05:
+        if w["mat"] == "brick" and w["zb"] < 0:
+            walls.append(dict(w, zb=16.7, mat="panel", openings=list(w["openings"])))
+            w["top"] = [(w["a"], 16.7), (w["b"], 16.7)]
+            w["openings"] = []
+        else:
+            w["mat"] = "panel"
+    if w["axis"] == "y" and abs(w["c"] - 137.68) < 0.05 and w["zb"] > 50:
+        w["mat"] = "panel"
+        _t = GARAGE_EAVE + P9 * (149.7 - 137.68) - FASCIA     # side of the bump: up to its own roof only
+        w["top"] = [(w["a"], round(_t, 2)), (w["b"], round(_t, 2))]
+_gf = {"p": (0.0, 25.36), "q": (137.68, 25.36), "n": (0.0, -1.0), "view": "front", "floor": "L2"}
+add_wall(_gf, 0.0, 137.68, GARAGE_EAVE - FASCIA, "L2", 6.0, margin=0.05)
+walls[-1]["mat"] = "siding"
+
 # gablet gable infill (siding) in the plane x 637.6: from the hip surface up to the gablet roof underside
 _hip = 248.87 + P9 * (650.96 - 637.6)
 _ya = 605.9 + (_hip + FASCIA - 258.9) / 0.5
@@ -394,7 +417,7 @@ for o in op_list:
     o.setdefault("kind", "window")
     ax = "x" if o["view"] in ("front", "rear") else "y"
     hits = [w for w in walls if w["axis"] == ax and abs(w["c"] - o["c"]) < 0.05 and w["a"] - 0.5 <= o["a"] and o["b"] <= w["b"] + 0.5
-            and w["zb"] <= o["z0"] and list(w["n"]) == list(o["n"])]
+            and w["zb"] <= o["z0"] and o["z1"] <= max(t for _, t in w["top"]) + 0.5 and list(w["n"]) == list(o["n"])]
     if not hits:
         print("  !! opening without wall:", o["floor"], o["view"], o["c"], o["a"], o["b"])
         continue
@@ -409,6 +432,13 @@ boxes = []   # [name, x0, x1, y0, y1, z0, z1, material, tag]
 boxes += [["Portico pier north", 338.96, 362.96, 420.32, 434.32, -38.0, 228.7, "brick", "A-WALL-EXT"],
           ["Portico pier south", 448.96, 472.96, 420.32, 434.32, -38.0, 228.7, "brick", "A-WALL-EXT"],
           ["Portico entablature", 330.0, 472.0, 414.0, 434.32, 228.7, MAIN_EAVE - FASCIA, "trim", "A-TRIM"]]
+# garage front (R02): cornice (eave) returns at the feet of the two front gables (xelev front, 17.5 in wide),
+# and the two decorative panels flanking the bump window (xelev GENERAL_TEXTURE, 26 x 64)
+boxes += [["Eave return - lower gable west", -7.0, 10.5, 8.32, 14.32, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
+          ["Eave return - lower gable east", 132.2, 149.7, 8.32, 14.32, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
+          ["Eave return - garage gable east", 270.5, 288.0, 19.36, 25.36, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 3.0, "trim", "A-TRIM"],
+          ["Panel - garage front west", 17.8, 43.8, 13.57, 14.32, 29.0, 93.0, "panel", "A-TRIM"],
+          ["Panel - garage front east", 99.0, 125.0, 13.57, 14.32, 29.0, 93.0, "panel", "A-TRIM"]]
 # porch stoop and 5 risers down to the front grade (-38)
 boxes += [["Porch stoop", 362.96, 448.96, 420.32, 480.96, -40.0, -0.5, "concrete", "A-SLAB"]]
 r = 37.5 / 5.0

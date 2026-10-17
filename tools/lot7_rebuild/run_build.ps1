@@ -1,7 +1,7 @@
-# JESB Lot 7 R01 - run the SketchUp build headless-ish: copy the owner's model to the work folder, start SketchUp
+﻿# JESB Lot 7 R01 - run the SketchUp build headless-ish: copy the owner's model to the work folder, start SketchUp
 # with build_r01.rb as RubyStartup, wait for the done-file, then close SketchUp.
 # Usage: powershell -File run_build.ps1 -Work <work_dir> -SaveAs <skp> -ExportDir <dir>
-param([string]$Work, [string]$SaveAs, [string]$ExportDir, [int]$TimeoutSec = 900)
+param([string]$Work, [string]$SaveAs, [string]$ExportDir, [string]$Rev = 'R01', [int]$TimeoutSec = 900)
 $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $exe = 'C:\Program Files\SketchUp\SketchUp 2026\SketchUp\SketchUp.exe'
@@ -13,7 +13,7 @@ $done = Join-Path $Work 'r01_done.txt'
 Remove-Item $done -ErrorAction SilentlyContinue
 $cfg = @{
   spec = (Join-Path $Work 'r01_spec.json'); log = (Join-Path $Work 'r01_build_log.txt'); done = $done; tmp = $Work
-  save_as = $SaveAs; export_dir = $ExportDir
+  save_as = $SaveAs; export_dir = $ExportDir; rev = $Rev
   src_brick = 'Brick_05_1K'; src_shingle = 'Material5'; src_siding = 'Material1'; src_metal = 'Material metal'
 } | ConvertTo-Json
 [IO.File]::WriteAllText((Join-Path $here 'run_config.json'), $cfg)

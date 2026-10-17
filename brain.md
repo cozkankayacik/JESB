@@ -239,6 +239,12 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
+- **2026-10-16** — Lot 7 **model R02** (`JESB_Lot7_Model_R02.skp`, **current**): the owner marked the garage-front roof on the front elevation. Changes:
+  - lower 9:12 front gable over the 11" bump (eaves x -7/149.7, apex 164.4) with eave returns;
+  - garage gable eaves at x -7/288 (apex 216.2, as drawn);
+  - bump face as white panel with two decorative panels.
+  - Files: `R02` exports, A3 set and change log. The pipeline takes `-Rev` in `run_build.ps1`; sheets in `sheets_r02.json`.
+  - Lesson: in xelev the hatch `GENERAL_TEXTURE` is the white "siding dec" panel, `_USER` is siding, `PBRICK` is brick.
 - **2026-10-16** — Lot 7 **model R01** issued:
   - model, exports and QA in `LOT7/04_Visualization/Exports/R01/`;
   - A3 set `LOT7/05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R01.pdf` (8 sheets);
