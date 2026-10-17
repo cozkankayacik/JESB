@@ -245,13 +245,19 @@ def build_opening_unit(parent, w, o, mats)
     # sliding door: cross per panel at the drawn height 48; basement windows below grade: none
     if z1 > 0
       mw = 0.75
-      zh = door ? 48.0 : z0 + ht * 0.5
-      units.times do |i|
-        ua = units == 2 ? (i == 0 ? a + fw : m + 1.25) : a + fw
-        ub = units == 2 ? (i == 0 ? m - 1.25 : b - fw) : b - fw
-        uc = (ua + ub) / 2.0
-        bar(e, w, uc - mw / 2, uc + mw / 2, z0 + fw, z1 - fw, inset + 1.4, inset + 2.6, mats['frame'])
-        bar(e, w, ua, ub, zh - mw / 2, zh + mw / 2, inset + 1.4, inset + 2.6, mats['frame'])
+      # stacked units (o['rows'] = split heights): 2 in frame transom at each split, a cross grid in every unit
+      splits = (o['rows'] || []).sort
+      splits.each { |zs| bar(e, w, a + fw, b - fw, zs - 1.0, zs + 1.0, inset, inset + 4.0, mats['frame']) }
+      edges = [z0 + fw] + splits.flat_map { |zs| [zs - 1.0, zs + 1.0] } + [z1 - fw]
+      edges.each_slice(2) do |ra, rb|
+        zh = door ? 48.0 : (ra + rb) / 2.0
+        units.times do |i|
+          ua = units == 2 ? (i == 0 ? a + fw : m + 1.25) : a + fw
+          ub = units == 2 ? (i == 0 ? m - 1.25 : b - fw) : b - fw
+          uc = (ua + ub) / 2.0
+          bar(e, w, uc - mw / 2, uc + mw / 2, ra, rb, inset + 1.4, inset + 2.6, mats['frame'])
+          bar(e, w, ua, ub, zh - mw / 2, zh + mw / 2, inset + 1.4, inset + 2.6, mats['frame'])
+        end
       end
     end
     g.layer = door ? 'A-DOOR' : 'A-WIND'

@@ -239,7 +239,8 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
-- **2026-10-16** — Lot 7 **model R04** (`JESB_Lot7_Model_R04.skp`, **current**), on owner request:
+- **2026-10-16** — Lot 7 **model R05** (`JESB_Lot7_Model_R05.skp`, **current**): the front stair window is split into two stacked units (116.4..156.6 / 156.6..228.6) with a 2" transom and a cross in each, as drawn. Openings take `rows` (split heights) in the spec.
+- **2026-10-16** — Lot 7 **model R04** (`JESB_Lot7_Model_R04.skp`), on owner request:
   - stone headers (8" cast stone over the first-floor openings);
   - window casings and second-floor surrounds (xelev layer `FINE`, green);
   - thin grid muntins on all windows, a cross per unit (xelev red `A-Elev-Glaz-Munt` / `A-Elev-Decking`);

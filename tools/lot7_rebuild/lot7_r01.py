@@ -399,6 +399,11 @@ op_list.append({"floor": "L1", "view": "front", "c": 480.96, "a": 368.8, "b": 44
 for o in op_list:
     if o["floor"] == "L2" and o["view"] == "front" and abs(o["c"] - 480.96) < 0.1:
         o["z0"], o["z1"] = 156.6, 228.6
+# stair window on the front (R05): xelev draws two stacked units in the second-floor opening x 293.2..329.2 -
+# lower 116.4..156.6 and upper 156.6..228.6, split by a 2 in frame transom; each unit has its own cross grid
+for o in op_list:
+    if o["floor"] == "L2" and o["view"] == "front" and abs(o["c"] - 434.32) < 0.1 and abs(o["a"] - 293.2) < 0.5:
+        o["rows"] = [156.6]
 # covered terrace sliding door 6080 (plan), full height
 op_list.append({"floor": "L1", "view": "south", "c": 638.96, "a": 678.2, "b": 750.2, "z0": 0.0, "z1": 96.0, "kind": "slider",
                 "n": [1, 0]})
@@ -422,7 +427,7 @@ for o in op_list:
         print("  !! opening without wall:", o["floor"], o["view"], o["c"], o["a"], o["b"])
         continue
     w = min(hits, key=lambda w: w["b"] - w["a"])
-    w["openings"].append({"a": o["a"], "b": o["b"], "z0": o["z0"], "z1": o["z1"], "kind": o["kind"]})
+    w["openings"].append({"a": o["a"], "b": o["b"], "z0": o["z0"], "z1": o["z1"], "kind": o["kind"], "rows": o.get("rows", [])})
     placed += 1
 print("openings placed:", placed, "of", len(op_list))
 
