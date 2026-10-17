@@ -61,8 +61,11 @@ ROOF_UPPER = [
                      plane("S", 417.36, P6, MAIN_EAVE), plane("N", 924.32, P6, MAIN_EAVE)], (-12, 650.96, 417.36, 924.32)),
     # north-front corner: the main west eave runs on to y 388 (xelev north: fascia 387.96..924.36); a small hip whose
     # east slope dies into the main front plane, its south/east eaves overhang the lower wing roof
-    body("A2 main north-front", [plane("W", -12, P9, MAIN_EAVE), plane("S", 388.0, P6, MAIN_EAVE),
-                                 plane("E", 46.0, P9, MAIN_EAVE), plane("N", 924.32, P6, MAIN_EAVE)], (-12, 46.0, 388.0, 924.32)),
+    # R06 per A-220: front eave y 388 at 6:12, east slope 9:12 with its eave at x 232. This reproduces the drawn hip
+    # from the corner (-12,388), the short ridge at x 110 (y 571..592), the hip against the main front plane
+    # (112,589)..(223,430), and the two wing valleys meeting at the wing ridge (y ~492).
+    body("A2 main north-front", [plane("W", -12, P9, MAIN_EAVE), plane("S", 388.0, 0.5, MAIN_EAVE),
+                                 plane("E", 232.0, P9, MAIN_EAVE), plane("N", 924.32, P6, MAIN_EAVE)], (-12, 232.0, 388.0, 924.32)),
     body("FP1 portico", [plane("S", 408.3, P_FRONT_PROJ, MAIN_EAVE), plane("W", 323.0, P9, MAIN_EAVE),
                          plane("E", 479.0, P9, MAIN_EAVE)], (323.0, 479.0, 408.3, 700.0), metal=[0]),
     body("FP2 front bay", [plane("S", 413.3, P_FRONT_PROJ, MAIN_EAVE), plane("W", 489.0, P9, MAIN_EAVE),
