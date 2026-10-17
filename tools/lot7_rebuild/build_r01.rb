@@ -353,8 +353,14 @@ def build
   mats['garage'] = color_mat(m, 'ACC Lot 7 - Garage Door - Brown (Cottage, glass on top)', [75, 57, 47])
   mats['garage_groove'] = color_mat(m, 'ACC Lot 7 - Garage Door - Brown groove', [58, 44, 36])
   # not in the ACC package (to verify): accent metal roofs, cast-stone headers, railings
-  mats['metal'] = tex_mat(m, 'Not in ACC - Metal Roof - Standing Seam', CFG['src_metal'], [70, 62, 56], nil)
-  mats['stone'] = color_mat(m, 'Not in ACC - Cast Stone Window Header (ACC: no stone)', [214, 206, 190])
+  # owner decisions 2026-10-17: accent metal roofs dark brown bronze (seam texture kept, tinted); headers light
+  # beige cast stone
+  mats['metal'] = tex_mat(m, 'Owner - Metal Roof - Standing Seam - Dark Brown Bronze', CFG['src_metal'], [74, 56, 42], nil)
+  if mats['metal'].texture
+    mats['metal'].colorize_type = Sketchup::Material::COLORIZE_TINT
+    mats['metal'].color = Sketchup::Color.new(74, 56, 42)
+  end
+  mats['stone'] = color_mat(m, 'Owner - Cast Stone Window Header - Light Beige', [214, 206, 190])
   mats['iron'] = color_mat(m, 'Not in ACC - Railing - Black Iron', [28, 28, 28])
   mats['iron_band'] = mats['iron']
   mats['glass'] = color_mat(m, 'Glass', [96, 118, 136], 0.85)

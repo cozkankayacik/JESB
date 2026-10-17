@@ -258,7 +258,11 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
-- **2026-10-17** — Lot 7 **model R08** (`JESB_Lot7_Model_R08.skp`, **current**):
+- **2026-10-17** — Lot 7 **model R09** (`JESB_Lot7_Model_R09.skp`, **current**). Owner decisions:
+  - Metal roofs dark brown bronze (tinted seam texture).
+  - Headers stay light beige cast stone.
+  - **Waiting for the owner before rendering:** engine (V-Ray proposed), views, light and season, site context (trees?), railings black iron?, the open drawing conflicts, delivery folder and format. Take no action on these until the owner answers.
+- **2026-10-17** — Lot 7 **model R08** (`JESB_Lot7_Model_R08.skp`):
   - All finishes come from the ACC package (Lot 7, section 7b), with the sample images as textures at real scale, named `ACC Lot 7 - <item> - <selection>`.
   - Non-ACC materials are named `Not in ACC - ...`: metal roofs, cast-stone headers, railings.
   - Owner's original textures no longer used; gutters and downspouts not modelled (owner instruction).

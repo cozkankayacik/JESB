@@ -72,7 +72,8 @@ Technical notes:
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R05.skp` | R04 + front stair window as two stacked units. See `JESB_Lot7_Model_R05_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R06.skp` | R05 + roof at the wing / main roof junction per A-220. See `JESB_Lot7_Model_R06_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R07.skp` | R06 + continuous headers over window groups, stair railings. See `JESB_Lot7_Model_R07_Change_Log.md`. |
-| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R08.skp` | **Current.** R07 with all finishes per the ACC Material Package (Lot 7). See `JESB_Lot7_Model_R08_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R08.skp` | R07 with all finishes per the ACC Material Package (Lot 7). See `JESB_Lot7_Model_R08_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R09.skp` | **Current.** R08 + owner decisions: metal roofs dark brown bronze, cast-stone headers kept. See `JESB_Lot7_Model_R09_Change_Log.md`. |
 
 ## 5. Issued sets
 
@@ -86,3 +87,4 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R06.pdf` | R06 review set, 9 A3 sheets incl. A-902 roof plan QA (16.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R07.pdf` | R07 review set, 9 A3 sheets (16.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R08.pdf` | R08 review set, 9 A3 sheets (17.10.2026) |
+| `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R09.pdf` | R09 review set, 9 A3 sheets (17.10.2026) |
