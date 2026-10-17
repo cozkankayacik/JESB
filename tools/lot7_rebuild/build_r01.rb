@@ -65,6 +65,16 @@ def box(ents, name, x0, x1, y0, y1, z0, z1, mat, layer)
   g
 end
 
+# bar running along y with a sloped bottom: section (x0..x1) x h, bottom z linear from za at ya to zb at yb
+def sloped_bar(ents, name, x0, x1, ya, yb, za, zb, h, mat)
+  g = ents.add_group; g.name = name
+  f = g.entities.add_face(pt(x0, ya, za), pt(x0, yb, zb), pt(x0, yb, zb + h), pt(x0, ya, za + h))
+  f.reverse! if f.normal.x < 0
+  f.pushpull(x1 - x0)
+  g.entities.grep(Sketchup::Face).each { |x| x.material = mat; x.back_material = mat }
+  g
+end
+
 def align_texture(f, mat)
   return unless mat && mat.texture
   n = f.normal
@@ -329,6 +339,8 @@ def build
   end
   mats['trim'] = color_mat(m, 'Trim - White', [248, 248, 245])
   mats['stone'] = color_mat(m, 'Cast Stone - Window Header', [214, 206, 190])
+  mats['iron'] = color_mat(m, 'Railing - Black Iron', [28, 28, 28])
+  mats['iron_band'] = mats['iron']
   mats['fascia'] = color_mat(m, 'Fascia - White', [248, 248, 245])
   mats['soffit'] = color_mat(m, 'Soffit - White', [240, 240, 236])
   mats['frame'] = color_mat(m, 'Window Frame - White', [250, 250, 250])
@@ -380,6 +392,12 @@ def build
     next if layer == 'L-SITE'
     box(gx.entities, name, x0, x1, y0, y1, z0, z1, mats[mat], layer)
   end
+  gs = he.add_group; gs.name = 'Stair railings'
+  (SPEC['sloped'] || []).each do |sb|
+    name, x0, x1, ya, yb, za, zb, h, mat = sb
+    sloped_bar(gs.entities, name, x0, x1, ya, yb, za, zb, h, mats[mat])
+  end
+  gs.layer = 'A-STAIR'
   gf = he.add_group; gf.name = 'Floor plates (interior, to stop see-through)'
   SPEC['floors'].each do |fl|
     f = gf.entities.add_face(fl['poly'].map { |x, y| pt(x, y, fl['z']) })
@@ -455,7 +473,9 @@ def export_views
   qa = File.join(out, 'qa'); Dir.mkdir(qa) unless File.directory?(qa)
   [['qa_wing_main_junction_S', [cx + 500, cy - 300, 420], [150, 430, 260]], ['qa_wing_main_junction_N', [cx - 700, cy - 250, 450], [100, 430, 260]],
    ['qa_portico', [cx - 100, cy - 650, 300], [400, 430, 200]], ['qa_gablet', [cx + 700, cy + 200, 420], [620, 714, 280]],
-   ['qa_garage_front', [cx - 300, cy - 700, 250], [140, 40, 120]]].each do |name, eye, tg|
+   ['qa_garage_front', [cx - 300, cy - 700, 250], [140, 40, 120]],
+   ['qa_entry_stair', [470, 230, 70], [400, 410, -5]], ['qa_terrace_stair', [cx + 520, cy - 120, 40], [732, 555, -20]],
+   ['qa_rear_headers', [cx - 60, cy + 900, 110], [250, 912, 70]]].each do |name, eye, tg|
     cam = Sketchup::Camera.new(eye, tg, [0, 0, 1]); cam.perspective = true; cam.fov = 40.0
     v.camera = cam
     v.write_image(filename: File.join(qa, name + '.png'), width: 1600, height: 1000, antialias: true, transparent: false)

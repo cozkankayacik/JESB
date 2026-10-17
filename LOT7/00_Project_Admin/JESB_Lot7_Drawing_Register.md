@@ -70,7 +70,8 @@ Technical notes:
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R03.skp` | R02 + decorative textured panels. See `JESB_Lot7_Model_R03_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R04.skp` | R03 + stone headers, window casings and surrounds, grid muntins. See `JESB_Lot7_Model_R04_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R05.skp` | R04 + front stair window as two stacked units. See `JESB_Lot7_Model_R05_Change_Log.md`. |
-| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R06.skp` | **Current.** R05 + roof at the wing / main roof junction per A-220. See `JESB_Lot7_Model_R06_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R06.skp` | R05 + roof at the wing / main roof junction per A-220. See `JESB_Lot7_Model_R06_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R07.skp` | **Current.** R06 + continuous headers over window groups, stair railings. See `JESB_Lot7_Model_R07_Change_Log.md`. |
 
 ## 5. Issued sets
 
@@ -82,3 +83,4 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R04.pdf` | R04 review set, 8 A3 sheets (16.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R05.pdf` | R05 review set, 8 A3 sheets (16.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R06.pdf` | R06 review set, 9 A3 sheets incl. A-902 roof plan QA (16.10.2026) |
+| `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R07.pdf` | R07 review set, 9 A3 sheets (16.10.2026) |

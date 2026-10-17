@@ -452,9 +452,23 @@ boxes += [["Eave return - lower gable west", -7.0, 10.5, 8.32, 14.32, GARAGE_EAV
 #  - second floor brick walls: 4 in side casings and a 5.5 in apron under the sill, top against the frieze band
 #  - siding walls (wing gable, dormer bays): 3.5 in casing all round
 #  - basement egress windows (below grade): none
+#  R07: openings of the same height set side by side (gap <= 13 in, e.g. the rear window ranks and the guest bay) form
+#  one group with ONE continuous stone header and one surround around the whole group, as drawn (FINE)
+def opening_groups(ops):
+    groups = []
+    for o in sorted(ops, key=lambda o: (round(o["z0"]), round(o["z1"]), o["a"])):
+        g = groups[-1] if groups else None
+        if (g and o["kind"] == "window" and g["kind"] == "window" and o["a"] - g["b"] <= 13.0
+                and abs(o["z0"] - g["z0"]) < 1.0 and abs(o["z1"] - g["z1"]) < 1.0):
+            g["b"] = o["b"]; g["n"] += 1
+        else:
+            groups.append({"a": o["a"], "b": o["b"], "z0": o["z0"], "z1": o["z1"], "kind": o["kind"], "n": 1})
+    return groups
+
+
 for w in walls:
     nx, ny = w["n"]
-    for o in w["openings"]:
+    for o in opening_groups(w["openings"]):
         a, b, z0, z1, kind = o["a"], o["b"], o["z0"], o["z1"], o["kind"]
         if z1 < 0:
             continue
@@ -512,7 +526,7 @@ for name, axis, c, n, u0, u1, z0, z1 in DECO_PANELS:
 boxes += [["Porch stoop", 362.96, 448.96, 420.32, 480.96, -40.0, -0.5, "concrete", "A-SLAB"]]
 r = 37.5 / 5.0
 for i in range(5):
-    boxes.append(["Porch step %d" % (i + 1), 368.0, 444.0, 420.32 - 11.0 * (i + 1), 420.32 - 11.0 * i, -40.0, -0.5 - r * (i + 1), "concrete", "A-STAIR"])
+    boxes.append(["Porch step %d" % (i + 1), 363.0, 449.0, 420.32 - 11.0 * (i + 1), 420.32 - 11.0 * i, -40.0, -0.5 - r * (i + 1), "concrete", "A-STAIR"])
 # covered terrace (xflr1: 16x16 brick piers at the slab corners, 42" guardrail, 6R stair on the south edge)
 TD = -4.0                                        # terrace deck top (pier bases on the xelev south/rear views)
 for xa, xb in ((645.0, 660.7), (765.7, 781.7)):
@@ -542,6 +556,37 @@ def guard(name, x0, x1, y0, y1, z, along):
             out.append([name + " baluster", x0 + 0.5, x1 - 0.5, u - 0.75, u + 0.75, z + 5.0, z + 39.0, "trim", "A-STAIR"])
     return out
 
+
+# stair railings (R07, xelev front / south: A-Elev-Decking): wrought-iron style - newel posts at both ends, a double
+# top rail (the ring band between them simplified to square bars), a bottom rail parallel to the nosing line and
+# 5/8 in pickets at about 5 in. Rails run along y down the stairs; 'sloped' items are bars with a linear bottom.
+sloped = []   # [name, x0, x1, y_low, y_high, z_bottom_at_y_low, z_bottom_at_y_high, height, material]
+
+
+def stair_rail(name, xc, y_lo, y_hi, z_nose_lo, z_nose_hi, h_top):
+    k = (z_nose_hi - z_nose_lo) / (y_hi - y_lo)
+    nose = lambda y: z_nose_lo + k * (y - y_lo)
+    x0, x1 = xc - 0.75, xc + 0.75
+    sloped.append([name + " top rail", x0, x1, y_lo, y_hi, nose(y_lo) + h_top - 1.5, nose(y_hi) + h_top - 1.5, 1.5, "iron"])
+    sloped.append([name + " second rail", x0, x1, y_lo, y_hi, nose(y_lo) + h_top - 6.0, nose(y_hi) + h_top - 6.0, 0.75, "iron"])
+    sloped.append([name + " ring band", xc - 0.3, xc + 0.3, y_lo, y_hi, nose(y_lo) + h_top - 5.25, nose(y_hi) + h_top - 5.25, 3.75, "iron_band"])
+    sloped.append([name + " bottom rail", x0, x1, y_lo, y_hi, nose(y_lo) + 3.0, nose(y_hi) + 3.0, 1.0, "iron"])
+    n = int((y_hi - y_lo - 4.0) // 5.0)
+    for i in range(1, n + 1):
+        y = y_lo + 2.0 + i * (y_hi - y_lo - 4.0) / (n + 1)
+        boxes.append([name + " picket", xc - 0.31, xc + 0.31, y - 0.31, y + 0.31, nose(y) + 4.0, nose(y) + h_top - 6.0, "iron", "A-STAIR"])
+    for y in (y_lo, y_hi):
+        boxes.append([name + " newel post", xc - 1.5, xc + 1.5, y - 1.5, y + 1.5, nose(y) - 30.0 if y == y_lo else nose(y) - 6.0,
+                      nose(y) + h_top + 3.0, "iron", "A-STAIR"])
+
+
+# entry steps: 5 risers 7.5 / treads 11 from the porch (z -0.5 at y 420.32) to grade (-38); rail top ~29 in above the
+# nosings as drawn (post tops 28.7 at the porch); one rail each side on the step edges x 363 / 449
+for xc, side in ((363.75, "west"), (448.25, "east")):
+    stair_rail("Entry stair railing %s" % side, xc, 365.32, 420.32, -38.0, -0.5, 29.0)
+# terrace stair: 6 risers from the deck (-4) to grade (-50), x 705..760, rail 32 in above the nosings
+for xc, side in ((705.75, "west"), (759.25, "east")):
+    stair_rail("Terrace stair railing %s" % side, xc, 526.5, 581.5, -50.0 + TR, TD, 32.0)
 
 boxes += guard("Terrace guard north", 660.7, 765.7, 836.0, 839.5, TD, "x")
 boxes += guard("Terrace guard east", 770.0, 773.5, 598.0, 830.4, TD, "y")
@@ -631,7 +676,7 @@ terrain = {"x": gx, "y": gy, "z": [[zgrid(x, y) for x in gx] for y in gy],
 # driveway strip to the street (ASSUMPTION, no site plan)
 boxes += [["Driveway to street (assumed)", 300.0, 516.0, -480.0, 25.36, -40.0, -37.9, "asphalt", "L-SITE"]]
 
-spec = {"roofs": roofs, "walls": walls, "boxes": boxes, "terrain": terrain, "fascia": FASCIA,
+spec = {"roofs": roofs, "walls": walls, "boxes": boxes, "sloped": sloped, "terrain": terrain, "fascia": FASCIA,
         "floors": [],
         "levels": {"main": L1, "upper": L2, "garage": -38.1, "main_eave": MAIN_EAVE, "wing_eave": WING_EAVE},
         "notes": fixes}
