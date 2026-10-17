@@ -307,6 +307,12 @@ def build
   mats['siding'] = tex_mat(m, 'Siding - Cobble Stone', CFG['src_siding'], [150, 146, 136], nil)
   mats['metal'] = tex_mat(m, 'Metal Roof - Standing Seam', CFG['src_metal'], [70, 62, 56], nil)
   mats['panel'] = color_mat(m, 'Panel - White (siding dec)', [244, 243, 238])
+  mats['deco'] = m.materials.add('Panel - Decorative Texture (siding dec)')
+  if CFG['deco_texture'] && File.exist?(CFG['deco_texture'])
+    mats['deco'].texture = CFG['deco_texture']; mats['deco'].texture.size = [24.0, 24.0]
+  else
+    mats['deco'].color = Sketchup::Color.new(226, 222, 214)
+  end
   mats['trim'] = color_mat(m, 'Trim - White', [248, 248, 245])
   mats['fascia'] = color_mat(m, 'Fascia - White', [248, 248, 245])
   mats['soffit'] = color_mat(m, 'Soffit - White', [240, 240, 236])

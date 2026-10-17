@@ -13,7 +13,7 @@ $done = Join-Path $Work 'r01_done.txt'
 Remove-Item $done -ErrorAction SilentlyContinue
 $cfg = @{
   spec = (Join-Path $Work 'r01_spec.json'); log = (Join-Path $Work 'r01_build_log.txt'); done = $done; tmp = $Work
-  save_as = $SaveAs; export_dir = $ExportDir; rev = $Rev
+  save_as = $SaveAs; export_dir = $ExportDir; rev = $Rev; deco_texture = (Join-Path $here 'textures\deco_panel_speckle.png')
   src_brick = 'Brick_05_1K'; src_shingle = 'Material5'; src_siding = 'Material1'; src_metal = 'Material metal'
 } | ConvertTo-Json
 [IO.File]::WriteAllText((Join-Path $here 'run_config.json'), $cfg)

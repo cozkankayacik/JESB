@@ -239,7 +239,8 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
-- **2026-10-16** — Lot 7 **model R02** (`JESB_Lot7_Model_R02.skp`, **current**): the owner marked the garage-front roof on the front elevation. Changes:
+- **2026-10-16** — Lot 7 **model R03** (`JESB_Lot7_Model_R03.skp`, **current**): the owner marked the decorative panels ("motifs") on the front elevation. All 7 `GENERAL_TEXTURE` panels of xelev were modelled as a white frame plus a speckled field (`DECO_PANELS` in `lot7_r01.py`; texture `tools/lot7_rebuild/textures/deco_panel_speckle.png` at 24"). The lower-gable infill uses the same material. The other red DWG layers remain unmodelled options: `A-Elev-Glaz-Munt` window grids (a cross per sash), `A-Elev-Door-Half` garage-door square panels, `A-Elev-Decking` / `A-Flor-Hral` stair rails.
+- **2026-10-16** — Lot 7 **model R02** (`JESB_Lot7_Model_R02.skp`): the owner marked the garage-front roof on the front elevation. Changes:
   - lower 9:12 front gable over the 11" bump (eaves x -7/149.7, apex 164.4) with eave returns;
   - garage gable eaves at x -7/288 (apex 216.2, as drawn);
   - bump face as white panel with two decorative panels.

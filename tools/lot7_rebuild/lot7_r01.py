@@ -362,7 +362,7 @@ for w in list(walls):
             w["top"] = [(w["a"], 16.7), (w["b"], 16.7)]
             w["openings"] = []
         else:
-            w["mat"] = "panel"
+            w["mat"] = "deco"                     # lower gable infill: textured panel (GENERAL_TEXTURE)
     if w["axis"] == "y" and abs(w["c"] - 137.68) < 0.05 and w["zb"] > 50:
         w["mat"] = "panel"
         _t = GARAGE_EAVE + P9 * (149.7 - 137.68) - FASCIA     # side of the bump: up to its own roof only
@@ -436,9 +436,32 @@ boxes += [["Portico pier north", 338.96, 362.96, 420.32, 434.32, -38.0, 228.7, "
 # and the two decorative panels flanking the bump window (xelev GENERAL_TEXTURE, 26 x 64)
 boxes += [["Eave return - lower gable west", -7.0, 10.5, 8.32, 14.32, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
           ["Eave return - lower gable east", 132.2, 149.7, 8.32, 14.32, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
-          ["Eave return - garage gable east", 270.5, 288.0, 19.36, 25.36, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 3.0, "trim", "A-TRIM"],
-          ["Panel - garage front west", 17.8, 43.8, 13.57, 14.32, 29.0, 93.0, "panel", "A-TRIM"],
-          ["Panel - garage front east", 99.0, 125.0, 13.57, 14.32, 29.0, 93.0, "panel", "A-TRIM"]]
+          ["Eave return - garage gable east", 270.5, 288.0, 19.36, 25.36, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 3.0, "trim", "A-TRIM"]]
+
+# decorative panels (R03): every GENERAL_TEXTURE hatch panel of xelev - white frame board (1 in proud) with a
+# speckled textured field (2 in border, 1.5 in proud). Plan position from the hatch, mapped to the wall face; the
+# two dormer panels are re-centred on the bay faces (side elevations are ~5 in off against the plan).
+DECO_PANELS = [  # name, face axis, face coord, outward normal, u0, u1, z0, z1
+    ("Decorative panel - garage front west", "x", 14.32, -1, 17.8, 43.8, 29.0, 93.0),
+    ("Decorative panel - garage front east", "x", 14.32, -1, 99.0, 125.0, 29.0, 93.0),
+    ("Decorative panel - over stair window", "x", 434.32, -1, 292.8, 329.8, 64.3, 113.4),
+    ("Decorative panel - over entry door", "x", 480.96, -1, 369.4, 442.4, 116.4, 151.1),
+    ("Decorative panel - over front window", "x", 429.36, -1, 507.0, 581.0, 115.9, 151.6),
+    ("Decorative panel - east dormer bay", "y", 282.0, 1, 246.9 - 62.9, 246.9 + 62.9, 112.4, 150.1),
+    ("Decorative panel - west dormer bay", "y", 16.9, -1, 171.15 - 64.9, 171.15 + 64.9, 123.6, 152.1),
+]
+
+
+def face_box(axis, c, n, u0, u1, z0, z1, d0, d1):
+    a, b = sorted((c + n * d0, c + n * d1))
+    return (u0, u1, a, b, z0, z1) if axis == "x" else (a, b, u0, u1, z0, z1)
+
+
+for name, axis, c, n, u0, u1, z0, z1 in DECO_PANELS:
+    x0, x1, y0, y1, za, zb_ = face_box(axis, c, n, u0, u1, z0, z1, 0.0, 1.0)
+    boxes.append([name + " frame", x0, x1, y0, y1, za, zb_, "trim", "A-TRIM"])
+    x0, x1, y0, y1, za, zb_ = face_box(axis, c, n, u0 + 2.0, u1 - 2.0, z0 + 2.0, z1 - 2.0, 1.0, 1.5)
+    boxes.append([name + " field", x0, x1, y0, y1, za, zb_, "deco", "A-TRIM"])
 # porch stoop and 5 risers down to the front grade (-38)
 boxes += [["Porch stoop", 362.96, 448.96, 420.32, 480.96, -40.0, -0.5, "concrete", "A-SLAB"]]
 r = 37.5 / 5.0
