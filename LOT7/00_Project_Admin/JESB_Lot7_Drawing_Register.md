@@ -1,0 +1,67 @@
+# JESB Lot 7 – Drawing and File Register
+
+Project: Jade Estates, South Barrington, Illinois – Lot 7
+Owner: Projades
+Architect: Purohit Architects, Inc. (project no. 202601.LOT 7)
+Register updated: 2026-10-16
+
+## 1. Folder structure (Projades project standard)
+
+| Folder | Contents |
+|---|---|
+| `00_Project_Admin/` | This register, the model rebuild plan, Projades brand templates (`Brand_Templates/`, copied from the HoffmanEstate project) |
+| `01_Site_and_Reference/Architectural_Set_PDF/` | Architect's issued PDF set |
+| `03_Shared_CAD_and_Models/Xrefs/Architect_DWG_2026-10-16/` | Architect's DWG files as received (original names kept, see 3) |
+| `03_Shared_CAD_and_Models/Models/00_Owner_Original/` | Owner's original SketchUp model – read only, never edited |
+| `03_Shared_CAD_and_Models/Models/01_Working/` | Current SketchUp working model (the rebuild) |
+| `04_Visualization/Exports/` | Model exports (elevations, perspectives) per revision |
+| `04_Visualization/Working/` | Render work files |
+| `05_Presentations_and_Issued/Issued_Sets/` | Projades-branded A3 PDF sets issued for review |
+| `99_Archive/Superseded_v1_v2/` | Models v1 and v2, their exports and change logs (superseded 2026-10-16) |
+| `99_Archive/Backups/` | SketchUp `.skb` and AutoCAD `.bak` backups (not in Git) |
+
+## 2. Architectural PDF set
+
+`JESB_Lot7_Architectural_Set_Rev1_2026-10-15.pdf`. The architect's original file name was `JESB - LOT 7  ARCHITECTURAL PLAN_REVISION1.pdf`. The set has 10 sheets, 1/4" = 1'-0". Issue history:
+- 07/27/2026 issued
+- 08/10/2026 issued for preliminary review
+- 10/15/2026 Revision 1
+
+| Page | Sheet | Title |
+|---|---|---|
+| 1 | Cover | Cover sheet, general notes, schedules |
+| 2 | A-001 | General notes and specifications |
+| 3 | A-100 | Foundation plan, foundation section, structural and rebar schedules |
+| 4 | – | First floor plan |
+| 5 | – | Second floor plan |
+| 6 | A-220 | Roof plan, attic ventilation schedule |
+| 7 | A-300 | Exterior elevations: front, right side (south) |
+| 8 | A-310 | Exterior elevations: left side (north), rear (east) |
+| 9 | A-311 | Building sections |
+| 10 | A-400 | Typical wall section and details |
+
+The elevation titles give the compass orientation: the rear faces east, so the **front faces west**.
+
+## 3. Architect DWG files (received 2026-10-16)
+
+The file names are kept exactly as received because the files reference each other as xrefs. `xflr1` attaches `.\xflr2_lot 7G.dwg` and `xflr2` attaches `.\xflr1_lot 7G.dwg`. Renaming them would break the references in AutoCAD.
+
+| File | Content | Status against the 2026-10-16 morning copies |
+|---|---|---|
+| `xelev_lot 7G.dwg` | Four exterior elevations; plain lines, hatches and dimensions | Unchanged |
+| `xflr0_lot 7G.dwg` | Foundation / basement plan and a typical wall section (x 2500..3100) | **Changed** (saved 2026-10-16 15:10) |
+| `xflr1_lot 7G.dwg` | First floor plan | **Changed** (saved 2026-10-16 15:10) |
+| `xflr2_lot 7G.dwg` | Second floor plan | Unchanged |
+
+Technical notes:
+- All four drawings are in inches, AutoCAD 2018 format.
+- **Walls, doors, windows and roofs in the floor plans are AutoCAD Architecture objects.** A DXF export does not keep them; it keeps only dimensions, notes, stairs, columns and beams.
+- The walls are extracted by plotting a copy of each DWG to a layered vector PDF at 1:48 from the AutoCAD LT core console. In that PDF, 1 pt = 2/3 in. The script is `tools/lot7_rebuild/`.
+- Source files are never opened for editing. All processing runs on copies.
+
+## 4. SketchUp models
+
+| File | Status |
+|---|---|
+| `JESB_Lot7_Owner_Model_2026-10-15.skp` | Owner's original model. Original file name `JESB_SKETCHUP_LOT7.skp`. Reference only. |
+| `99_Archive/.../JESB_Lot7_v1.skp`, `JESB_Lot7_v2.skp` | Earlier corrections of the owner model (roofs, dormers, windows). Superseded by the rebuild. |
