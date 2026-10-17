@@ -15,3 +15,5 @@ session_archive/
 
 __pycache__/
 tools/lot7_rebuild/run_config.json
+*.dwl
+*.dwl2
