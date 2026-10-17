@@ -1,4 +1,4 @@
-﻿"""Projades A3 review set for JESB Lot 7 (layout copied from PROJADES_A3_Title_Block_Template.pdf:
+"""Projades A3 review set for JESB Lot 7 (layout copied from PROJADES_A3_Title_Block_Template.pdf:
 420 x 297 mm landscape, 28 pt border, title block band y 746.9..813.9 with dividers at x 276 / 718 / 900 / 1038,
 Arial / Arial Bold, colours #17332F / #66736F / #B1663C).
 
@@ -65,8 +65,8 @@ def frame(page, sh):
     text(page, 44, 794.1, "ARCHITECTURE / DESIGN STUDY", 7.5, False, GREY)
     text(page, 292, 759.6, "JADE ESTATES - LOT 7", 12, True)
     text(page, 292, 779.1, "South Barrington, Illinois", 10)
-    text(page, 292, 796.7, "EXTERIOR MODEL / REVIEW SET - NOT FOR CONSTRUCTION", 8, False, ACCENT)
-    text(page, 734, 761.1, "MODEL " + SPEC["revision"], 10, True)
+    text(page, 292, 796.7, SPEC.get("set_label", "EXTERIOR MODEL / REVIEW SET - NOT FOR CONSTRUCTION"), 8, False, ACCENT)
+    text(page, 734, 761.1, SPEC.get("rev_label", "MODEL ") + SPEC["revision"], 10, True)
     text(page, 734, 780.9, "A3 / 420 x 297 mm", 9)
     text(page, 734, 797.7, sh.get("scale", "FIT TO SHEET / NTS"), 8)
     text(page, 916, 761.1, SPEC["date"], 10)
@@ -86,12 +86,13 @@ for sh in SPEC["sheets"]:
         place(page, imgs[0], AREA)
     elif lay == "grid2x2":
         gx, gy = (AREA.width - 16) / 2, (AREA.height - 16) / 2
+        cap = 14 if sh.get("captions") else 0          # caption band under each image
         for i, p in enumerate(imgs[:4]):
             r = pymupdf.Rect(AREA.x0 + (i % 2) * (gx + 16), AREA.y0 + (i // 2) * (gy + 16),
-                             AREA.x0 + (i % 2) * (gx + 16) + gx, AREA.y0 + (i // 2) * (gy + 16) + gy)
-            place(page, p, r)
-            if sh.get("captions"):
-                text(page, r.x0, r.y1 - 2, sh["captions"][i], 8, True, TEAL)
+                             AREA.x0 + (i % 2) * (gx + 16) + gx, AREA.y0 + (i // 2) * (gy + 16) + gy - cap)
+            ri = place(page, p, r)
+            if cap:
+                text(page, ri.x0, ri.y1 + 3, sh["captions"][i], 8, True, TEAL)
     elif lay == "cover":
         img_r = pymupdf.Rect(AREA.x0, AREA.y0, AREA.x0 + 760, AREA.y1)
         place(page, imgs[0], img_r, trim=False)

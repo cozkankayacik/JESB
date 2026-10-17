@@ -1,0 +1,38 @@
+{
+  "revision": "R14",
+  "date": "17.10.2026",
+  "rev_label": "VISUALIZATION ",
+  "set_label": "EXTERIOR VISUALIZATION - FOR DESIGN REVIEW ONLY",
+  "sheets": [
+    {
+      "no": "V-000",
+      "title": "Exterior Elevations - Visualization R14",
+      "subtitle": "Jade Estates Lot 7, South Barrington, Illinois  |  Four photoreal elevations based on exterior model R14",
+      "layout": "cover",
+      "images": ["C:/Projects/JESB/LOT7/04_Visualization/Renders/R14_AI/JESB_Lot7_R14_Render_Front_West.png"],
+      "index": [["V-000", "Cover and notes"], ["V-101", "Front elevation (west)"], ["V-102", "Left side elevation (north)"],
+                ["V-103", "Rear elevation (east)"], ["V-104", "Right side elevation (south)"], ["V-105", "Elevation overview"]],
+      "notes": [
+        "Source: orthographic elevation exports of the SketchUp exterior model R14 (JESB_Lot7_Model_R14.skp). The geometry follows the architect's DWG elevations (xelev, 16.10.2026) and the owner's answers to RFI-001.",
+        "Method: AI image-to-image visualization of the model elevations, not a native V-Ray/Corona render. Geometry, openings, roof outlines and grade follow the model; small details are interpreted by the AI and may differ from the model (e.g. the covered terrace guardrail is white in the model).",
+        "Finishes per the ACC Material Package, Lot 7: Magnolia brick, Cobble Stone lap siding, Mission Brown shingles, white trim, fascia, soffit and windows, and brown front and garage doors. Owner selections: dark brown bronze standing-seam accent roofs, light beige cast-stone headers, and a white siding terrace deck.",
+        "Landscaping is limited to lawn and the existing hardscape. The driveway is assumed (no site plan). No trees or planting are shown.",
+        "For design review only - not for construction. Open drawing questions are listed in RFI-002."
+      ]
+    },
+    {"no": "V-101", "title": "Front Elevation (West)", "subtitle": "Main entry, garage wing with front gables, covered terrace at the south end  |  Model R14", "layout": "single",
+     "images": ["C:/Projects/JESB/LOT7/04_Visualization/Renders/R14_AI/JESB_Lot7_R14_Render_Front_West.png"], "scale": "ORTHOGRAPHIC / NTS"},
+    {"no": "V-102", "title": "Left Side Elevation (North)", "subtitle": "Guest bedroom bay, dormer over the garage wing, basement egress windows  |  Model R14", "layout": "single",
+     "images": ["C:/Projects/JESB/LOT7/04_Visualization/Renders/R14_AI/JESB_Lot7_R14_Render_Left_North.png"], "scale": "ORTHOGRAPHIC / NTS"},
+    {"no": "V-103", "title": "Rear Elevation (East)", "subtitle": "Grouped windows with continuous cast-stone headers, covered terrace  |  Model R14", "layout": "single",
+     "images": ["C:/Projects/JESB/LOT7/04_Visualization/Renders/R14_AI/JESB_Lot7_R14_Render_Rear_East.png"], "scale": "ORTHOGRAPHIC / NTS"},
+    {"no": "V-104", "title": "Right Side Elevation (South)", "subtitle": "Garage doors, side entry stairs, gablet, covered terrace with white siding deck  |  Model R14", "layout": "single",
+     "images": ["C:/Projects/JESB/LOT7/04_Visualization/Renders/R14_AI/JESB_Lot7_R14_Render_Right_South.png"], "scale": "ORTHOGRAPHIC / NTS"},
+    {"no": "V-105", "title": "Elevation Overview", "subtitle": "All four elevations at the same scale and light  |  Model R14", "layout": "grid2x2",
+     "images": ["C:/Projects/JESB/LOT7/04_Visualization/Renders/R14_AI/JESB_Lot7_R14_Render_Front_West.png",
+                "C:/Projects/JESB/LOT7/04_Visualization/Renders/R14_AI/JESB_Lot7_R14_Render_Right_South.png",
+                "C:/Projects/JESB/LOT7/04_Visualization/Renders/R14_AI/JESB_Lot7_R14_Render_Rear_East.png",
+                "C:/Projects/JESB/LOT7/04_Visualization/Renders/R14_AI/JESB_Lot7_R14_Render_Left_North.png"],
+     "captions": ["FRONT (WEST)", "RIGHT SIDE (SOUTH)", "REAR (EAST)", "LEFT SIDE (NORTH)"], "scale": "ORTHOGRAPHIC / NTS"}
+  ]
+}

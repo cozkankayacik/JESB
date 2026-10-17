@@ -100,4 +100,5 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R12.pdf` | R12 review set, 9 A3 sheets (17.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R13.pdf` | R13 review set, 9 A3 sheets (17.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R14.pdf` | R14 review set, 9 A3 sheets (17.10.2026) |
+| `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Visualization_A3_R14.pdf` | Projades A3 visualization set, 6 sheets (V-000 to V-105), in English, laid out from the AI renders in `04_Visualization/Renders/R14_AI/` (17.10.2026). The source PDF in that folder is unchanged. |
 | `04_Visualization/Renders/R13/JESB_Lot7_R13_Render_Elevation_*.png` | V-Ray photoreal elevations from model R13, 4 views at 3200 x 1712 (17.10.2026). DWG cross-check in `QA_Render_vs_DWG/`. |
