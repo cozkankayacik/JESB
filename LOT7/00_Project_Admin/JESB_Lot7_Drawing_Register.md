@@ -89,4 +89,5 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R07.pdf` | R07 review set, 9 A3 sheets (16.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R08.pdf` | R08 review set, 9 A3 sheets (17.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R09.pdf` | R09 review set, 9 A3 sheets (17.10.2026) |
+| `04_Visualization/Renders/R10/JESB_Lot7_R10_Render_Elevation_*.png` | V-Ray photoreal elevations, 4 views at 3200 x 1712 (17.10.2026). The DWG cross-check is in `QA_Render_vs_DWG/`. |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R10.pdf` | R10 review set, 9 A3 sheets (17.10.2026) |

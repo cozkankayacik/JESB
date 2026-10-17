@@ -258,6 +258,12 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
+- **2026-10-17** — Lot 7 **V-Ray elevation renders R10**, in `LOT7/04_Visualization/Renders/R10/`. The owner found the earlier output poor and asked for V-Ray.
+  - V-Ray for SketchUp (Chaos) is installed. It has a Ruby API (`VRay::Context.active`, `VRay::Command.export_vrscene`). Standalone `vray.exe` is in `...\V-Ray for SketchUp\extension\vray\bin`; set `VRAY_PLUGINS=<bin>\plugins` and pass `-camera=<scene name>`.
+  - The scripted pipeline and its gotchas are in `tools/lot7_rebuild/vray/README.md`: orthographicWidth must be halved; the sky is a plate composited behind the image; `-camera` uses the scene's own CameraPhysical.
+  - Renders take about 6 min per view at 3200 px. Run them detached with `Start-Process` and `Wait-Process`; the background tool times out at 10 min.
+  - The owner asked for a cross-check of the renders against the DWG: `vray/render_dwg_check.py`, output in `Renders/R10/QA_Render_vs_DWG/`. Each render matches the model within 2 px.
+  - Nine model-vs-xelev differences were reported to the owner and **not fixed**, pending a decision: garage west end 10–20 in; rear-elevation ridge contradicts the front elevation and A-220; terrace roof pitch; slider door head; south upper window; guest bay window widths; wing gable window; front door panels.
 - **2026-10-17** — Lot 7 **model R10** (`JESB_Lot7_Model_R10.skp`, **current**).
   - The metal roofs use our own standing-seam texture (`make_seam_texture.py`). The owner seam texture read as tiles.
   - The owner gave a photoreal elevation prompt for an AI image tool (Corona look; grass, sky and the existing hardscape only; no trees, cars or props) and decided to keep the driveway as an assumption.
