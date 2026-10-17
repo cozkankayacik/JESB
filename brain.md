@@ -165,7 +165,7 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 - House: two storeys plus full basement, 3-car side-load garage wing (16' + 9' doors on the right side, one 9' on an angled wall, a 9' door at the rear), rear balcony over a covered patio. Rooms: foyer, den, dining, kitchen, pantry, mudroom, family room, bedroom suite on the first floor; owner's suite, bedrooms 2 and 3, loft, laundry, balcony above.
 - DWG layout (model space, inches): elevations along y -2280 (= slab level) at x about -6540..-5440 (left), -5020..-3960 (front), -3560..-2460 (right), -2280..-1240 (rear); roof plan x -4953..-4041, y -725..163; foundation, first and second floor plans at y 499..1435 (x -6124.., -4929.., -3729..).
 - SketchUp: the whole house is one top-level group (pid 198219) at x 12315–13223, y 3330–4347, z 0–374; front faces -Y; sub-groups per wall, window and roof piece. A scale figure sits at the origin, so frame views on the house group, not on model bounds.
-- Comparison of 2026-10-07 is in `LOT20/comparison_2026-10-07/` (report + overlay images). Main differences: front upper windows 3 → 2, siding horizontal → vertical board and batten, three left-side windows 12" toward the rear, ridges 7.6" / 14" higher, roof vents, fascia/gutters, basement windows and grade. The model has not been changed.
+- Comparison of 2026-10-07 is in `LOT20/comparison_2026-10-07/` (report + overlay images). Main differences: front upper windows 3 â†’ 2, siding horizontal â†’ vertical board and batten, three left-side windows 12" toward the rear, ridges 7.6" / 14" higher, roof vents, fascia/gutters, basement windows and grade. The model has not been changed.
 - Comparison method that worked: rasterise DXF lines with PIL (ezdxf's drawing add-on gave black images), export model views with a known scale, brute-force the best x/y shift against an edge map, draw the DWG in red. A vertical best-fit can be pulled off by roof differences; trust the window fit.
 
 - Model v2 (`JESB_Lot20_v2.skp`, `exports_v2/`, change log, `textures/board_batten_white_16in.jpg`): front upper wall windows and board-and-batten siding done. **Still open from the comparison (after v3):** three left-side windows 12" toward the rear; four roof vents; gutters and downspouts; full basement with four 48" x 48" escape windows and a grade line (model stops at the slab, no ground); balcony / covered patio depth (left elevation shows 15"–20" more than the model, right elevation agrees with the model — one DWG elevation may be wrong, measure from the plan); garage door style.
@@ -177,28 +177,47 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 - Board-and-batten is a texture, not geometry; batten spacing restarts on each wall piece, so battens do not always line up at joints. The 16" spacing comes from the DWG hatch pattern name, not a dimension.
 - Interiors and floor plans of Lot 20 have not been compared.
 
-## 7b. ACC material package (`ACC MATERIAL PACKAGE.xlsx`)
+## 7b. ACC material package (`ACC MATERIAL PACKAGE.xlsx`) – read fully 2026-10-17
 
-- Title: "South Barrington – Selection Tracker – Elevation". Sheet `EXTERIOR` (A1:AF34, 82 embedded sample images) has one column pair per lot: Lot 2 = B, Lot 3 = D, Lot 7 = F, Lot 19 = H, Lot 20 = J, Lot 21 = L, Lot 23 = N, Lot 16 = R, Lot 4 = T, Lot 6 = V, Lot 8 = X, Lot 9 = Z, Lot 10 = AB, Lot 11 = AD. `Sheet2` is a small side table.
-- Row 3 status: Lot 2 Phase 1, Lot 3 Approved, Lot 7 Phase 1, Lot 19 Phase 2, Lot 20 Phase 1, Lot 21 Approved. Rows 4–9 name each lot's SketchUp file, video, colour scheme PDF, 3D elevations and old/new architect sets (Lot 2 new set: "LOT 2 - ARCHITECTURAL - PHASE 1 0824.pdf"); those files are not in this folder.
-- Rows 10–32, one item every two rows (the row below each is a "selection" checkbox):
+- Title "South Barrington – Selection Tracker – Elevation". Sheet `EXTERIOR` (A1:AF34).
+- **Lot columns:** each lot is a merged column pair. The left column holds the selection text, the right column the sample image.
+  - Lot 2 = B/C, Lot 3 = D/E, **Lot 7 = F/G**, Lot 19 = H/I, Lot 20 = J/K, Lot 21 = L/M, Lot 23 = N/O, **Lot 16 = P/Q** (not R).
+  - Lots 4, 6, 8, 9, 10, 11 (T, V, X, Z, AB, AD) are empty, selection 0.
+- **Rows:**
+  - row 3: status (Lot 2 Phase 1, Lot 3 Approved, Lot 7 Phase 1, Lot 19 Phase 2, Lot 20 Phase 1, Lot 21 Approved);
+  - rows 4–8: SketchUp, video, colour scheme PDF, 3D elevations, blueprint names (those files are not here);
+  - rows 9–31: odd rows are the item, the next row is "SELECTION" (1 = selected/confirmed, 0 = not).
+  - Items: Roof, Brick, Stone, Siding, Siding dec, Trims, Soffit/Fascia (LP SmartSide), Gutters and downspouts, Front door colour, Windows/patio doors, Garage door colour, Garage door style.
+- **Images:** 92 on EXTERIOR plus 15 on Sheet2. They are shared colour swatches, for example `image13` black, `image15` / `image14` whites, `image18` brown, `image11` Cobble Stone siding, `image16` black window, `image25` white window, `image28` brown window, `image6` cottage door, `image31` long-raised door.
+- **Sheet2:** an unassigned lot or option.
+  - Roof Charcoal, brick Cloud Grey Velour (Cloud Ceramics), stone White Country Squire (Buechel).
+  - Siding Cobble Stone, siding dec Teratone, trims Cobble Stone, soffit/fascia Black, gutters Black.
+  - Front door Teratone, windows Black, garage door Teratone, cottage with glass on top.
+- **Tools:** `tools/acc_dump.py` dumps all cells and images with their anchor cells; `tools/acc_contact_sheet.py` makes a labelled contact sheet.
 
-| Item | Lot 2 | Lot 20 |
-|---|---|---|
-| Roof | Charcoal | Charcoal |
-| Brick | Whitestone Brickcraft | Glen Gery Aspen White Wirecut |
-| Stone | Valders Dovewhite Dimensional Splitface | Valders Dovewhite Dimensional Splitface |
-| Siding | White | White |
-| Siding dec | — | Black |
-| Trims | White | White |
-| Soffit / fascia (LP SmartSide) | Black | White |
-| Gutters and downspouts | Black | Black |
-| Front door | Black | Black |
-| Windows / patio doors | Black | Black |
-| Garage door colour | Black | Black |
-| Garage door style | Long raised with glass on top | Long raised without glass |
+| Item | Lot 2 | Lot 3 | **Lot 7** | Lot 19 | Lot 20 | Lot 21 | Lot 23 | Lot 16 |
+|---|---|---|---|---|---|---|---|---|
+| Roof | Charcoal | Barkwood | **Mission Brown** | Grey | Charcoal | Barkwood | Barkwood | Charcoal |
+| Brick | Whitestone Brickcraft | Avalon usbrick | **Magnolia usbrick** | Sand Dunes usbrick | Glen Gery Aspen White Wirecut | Bellevidere Brickcraft | White Plains Velour GlenGery | – (0) |
+| Stone | Valders Dovewhite Dim. Splitface | no stone | **no stone** | Eden Machine Cut Veneer | Valders Dovewhite | Eden Windsor | White Country Squire Buechel | Eden Machine Cut (0) |
+| Siding | White | White | **Cobble Stone** | Cobble Stone | White | Cobble Stone | Cobble Stone | Cobble Stone (0) |
+| Siding dec | – (0) | White | **White** | Light Brown | Black | Cobble Stone | White | Natural Oak |
+| Trims | White | White | **White** | Cobble Stone | White | Cobble Stone | White | Cobble Stone |
+| Soffit/fascia | Black | White | **White** | Black | White | Brown | White | Black |
+| Gutters/downspouts | Black | Brown | **White** | Black | Black | Brown | Brown | Black |
+| Front door | Black | Brown | **Brown** | Light Brown | Black | Brown | Brown | Black |
+| Windows/patio doors | Black | Brown | **White** | Black | Black | Brown | Brown | Black |
+| Garage door colour | Black | Brown | **Brown** | Light Brown | Black | Brown | Sandstone (0) | Black |
+| Garage door style | Long raised + glass top | Short raised, no glass | **Cottage + glass top** | Long raised + glass top | Long raised, no glass | Long raised + glass top | Cottage + glass top | Long raised + glass top |
 
+- Lot 7 sample images are in `LOT7/00_Project_Admin/ACC_Material_Samples/` and `tools/lot7_rebuild/textures/acc_lot7/`, named by item.
+  - Mission Brown is a brown-taupe blend architectural shingle (average RGB 94,83,75).
+  - Magnolia is white and cream brick with grey and rust (207,202,195).
+  - Cobble Stone is a light greige lap siding (184,180,163).
+  - The brown is #4B392F.
+  - The white window sample is a 6-over-6 double hung (colour reference only; Lot 7 grids follow the elevations).
 - Lot 20's black "siding dec" has not been applied anywhere: the drawings do not show where it goes.
+- **Owner instruction 2026-10-17:** material work for now is Lot 7 only. Do not model gutters or downspouts ("böyle şeylerle uğraşma"); keep to the materials.
 
 ## 7c. Lot 19
 
@@ -227,7 +246,7 @@ Noticed while reading the set; none confirmed with the user or architect yet.
   - `pdf_plan_extract.py`: plot PDF to plan segments. The transform X = px/1.5 - 200, Y = (H - py)/1.5 - 150 is exact.
   - `openings.py`: plan glazing spans plus elevation window units. Windows on xelev are exploded lines on layer `ARWINDOW`/`ARDOOR`, clustered by connectivity.
   - `grade_profiles.py`.
-  - `lot7_r01.py`: roof envelope bodies, wall slabs with a top profile = underside of the covering roof group, boxes, terrain → `r01_spec.json`.
+  - `lot7_r01.py`: roof envelope bodies, wall slabs with a top profile = underside of the covering roof group, boxes, terrain â†’ `r01_spec.json`.
   - `build_r01.rb`.
   - `run_build.ps1`: opens a copy of the owner's model only to reuse its textures, then erases everything.
   - `overlay_check.py`: QA overlay of xelev on the exports.
@@ -239,9 +258,14 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
-- **2026-10-16** — Lot 7 **model R07** (`JESB_Lot7_Model_R07.skp`, **current**):
-  - Windows side by side (gap ≤ 13", same height) form a group with one continuous stone header and one surround (`opening_groups` in `lot7_r01.py`). Openings are sorted by (z0, z1, a), because the full-height rear wall carries both storeys.
-  - Iron stair railings on the entry steps (widened to 363..449) and the terrace stair, via `stair_rail()` → spec `sloped` bars, `sloped_bar()` in Ruby.
+- **2026-10-17** — Lot 7 **model R08** (`JESB_Lot7_Model_R08.skp`, **current**):
+  - All finishes come from the ACC package (Lot 7, section 7b), with the sample images as textures at real scale, named `ACC Lot 7 - <item> - <selection>`.
+  - Non-ACC materials are named `Not in ACC - ...`: metal roofs, cast-stone headers, railings.
+  - Owner's original textures no longer used; gutters and downspouts not modelled (owner instruction).
+  - Lesson: PowerShell `Get-Content`/`Set-Content` on UTF-8 files without `-Encoding UTF8` produces mojibake (`—` → `â€”`). Edit text files with the Edit tool, or pass the encoding; `tools/fix_mojibake.py` repairs them.
+- **2026-10-16** — Lot 7 **model R07** (`JESB_Lot7_Model_R07.skp`):
+  - Windows side by side (gap â‰¤ 13", same height) form a group with one continuous stone header and one surround (`opening_groups` in `lot7_r01.py`). Openings are sorted by (z0, z1, a), because the full-height rear wall carries both storeys.
+  - Iron stair railings on the entry steps (widened to 363..449) and the terrace stair, via `stair_rail()` â†’ spec `sloped` bars, `sloped_bar()` in Ruby.
 - **2026-10-16** — Lot 7 **model R06** (`JESB_Lot7_Model_R06.skp`): owner flagged roof errors at the wing / main junction. The north-front corner body A2 is now W 9:12 from -12, S **6:12 from y 388**, E 9:12 with eave **x 232**; this reproduces every A-220 line there (corner hip, short ridge x 110, cricket hip, wing valleys). The old x-46 hip was a guess and wrong. Owner decision: **keep the south gablet** (elevations), even though A-220 does not show it. New QA `roofplan_check.py` overlays A-220 on the model top view (sheet A-902). `next_sheets.py` derives the next revision's sheet list. Lesson: read the hip/valley/ridge *directions* on the roof plan and solve the planes from them (hip direction gives the pitch ratio); do not invent bodies to close a corner.
 - **2026-10-16** — Lot 7 **model R05** (`JESB_Lot7_Model_R05.skp`): the front stair window is split into two stacked units (116.4..156.6 / 156.6..228.6) with a 2" transom and a cross in each, as drawn. Openings take `rows` (split heights) in the spec.
 - **2026-10-16** — Lot 7 **model R04** (`JESB_Lot7_Model_R04.skp`), on owner request:

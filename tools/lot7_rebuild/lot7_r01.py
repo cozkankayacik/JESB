@@ -676,6 +676,8 @@ terrain = {"x": gx, "y": gy, "z": [[zgrid(x, y) for x in gx] for y in gy],
 # driveway strip to the street (ASSUMPTION, no site plan)
 boxes += [["Driveway to street (assumed)", 300.0, 516.0, -480.0, 25.36, -40.0, -37.9, "asphalt", "L-SITE"]]
 
+# gutters and downspouts: not modelled (owner instruction 2026-10-17 - materials only)
+
 spec = {"roofs": roofs, "walls": walls, "boxes": boxes, "sloped": sloped, "terrain": terrain, "fascia": FASCIA,
         "floors": [],
         "levels": {"main": L1, "upper": L2, "garage": -38.1, "main_eave": MAIN_EAVE, "wing_eave": WING_EAVE},

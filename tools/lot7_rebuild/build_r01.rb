@@ -324,30 +324,40 @@ def build
   m.start_operation("JESB Lot 7 #{CFG['rev']}", true)
   src_names = m.materials.map(&:name)
   log "owner materials: #{src_names.join(', ')}"
-  # textures from the owner's model, renamed to the ACC selections
-  mats = {}
-  mats['brick'] = tex_mat(m, 'Brick - Magnolia (US Brick)', CFG['src_brick'], [222, 205, 180], nil)
-  mats['shingle'] = tex_mat(m, 'Roof Shingles - Mission Brown', CFG['src_shingle'], [92, 72, 60], nil)
-  mats['siding'] = tex_mat(m, 'Siding - Cobble Stone', CFG['src_siding'], [150, 146, 136], nil)
-  mats['metal'] = tex_mat(m, 'Metal Roof - Standing Seam', CFG['src_metal'], [70, 62, 56], nil)
-  mats['panel'] = color_mat(m, 'Panel - White (siding dec)', [244, 243, 238])
-  mats['deco'] = m.materials.add('Panel - Decorative Texture (siding dec)')
-  if CFG['deco_texture'] && File.exist?(CFG['deco_texture'])
-    mats['deco'].texture = CFG['deco_texture']; mats['deco'].texture.size = [24.0, 24.0]
-  else
-    mats['deco'].color = Sketchup::Color.new(226, 222, 214)
+  # R08: every finish selected in the ACC Material Package (sheet EXTERIOR, Lot 7 = columns F/G) is applied from the
+  # ACC sample image (texture) or its colour; names start with 'ACC Lot 7 - <item> - <selection>'. Texture sizes
+  # are real-world: brick module 8 x 2 2/3 in, shingle exposure 5 5/8 in, lap siding exposure 7 in.
+  tx = lambda { |f| File.join(CFG['acc_textures'].to_s, f) }
+  acc_tex = lambda do |name, file, size, rgb|
+    mat = m.materials[name] || m.materials.add(name)
+    if File.exist?(tx.call(file))
+      mat.texture = tx.call(file); mat.texture.size = size
+    else
+      mat.color = Sketchup::Color.new(*rgb)
+    end
+    mat
   end
-  mats['trim'] = color_mat(m, 'Trim - White', [248, 248, 245])
-  mats['stone'] = color_mat(m, 'Cast Stone - Window Header', [214, 206, 190])
-  mats['iron'] = color_mat(m, 'Railing - Black Iron', [28, 28, 28])
+  mats = {}
+  mats['shingle'] = acc_tex.call('ACC Lot 7 - Roof - Mission Brown', 'ACC_Lot7_Roof_Mission_Brown.png', [23.4, 24.2], [94, 83, 75])
+  mats['brick'] = acc_tex.call('ACC Lot 7 - Brick - Magnolia (US Brick)', 'ACC_Lot7_Brick_Magnolia_USBrick.png', [17.6, 17.3], [207, 202, 195])
+  mats['siding'] = acc_tex.call('ACC Lot 7 - Siding - Cobble Stone', 'ACC_Lot7_Siding_Cobble_Stone.png', [13.6, 14.0], [184, 180, 163])
+  dec_white = color_mat(m, 'ACC Lot 7 - Siding Dec - White', [246, 248, 248])
+  mats['panel'] = dec_white
+  mats['deco'] = dec_white                      # decorative panels: ACC siding dec = White (plain)
+  mats['trim'] = color_mat(m, 'ACC Lot 7 - Trims - White', [244, 244, 240])
+  mats['fascia'] = color_mat(m, 'ACC Lot 7 - Soffit and Fascia - White (LP SmartSide)', [246, 248, 248])
+  mats['soffit'] = mats['fascia']
+  mats['gutter'] = color_mat(m, 'ACC Lot 7 - Gutters and Downspouts - White', [248, 250, 250])
+  mats['frame'] = color_mat(m, 'ACC Lot 7 - Windows and Patio Doors - White', [236, 234, 233])
+  mats['door'] = color_mat(m, 'ACC Lot 7 - Front Door - Brown', [75, 57, 47])
+  mats['garage'] = color_mat(m, 'ACC Lot 7 - Garage Door - Brown (Cottage, glass on top)', [75, 57, 47])
+  mats['garage_groove'] = color_mat(m, 'ACC Lot 7 - Garage Door - Brown groove', [58, 44, 36])
+  # not in the ACC package (to verify): accent metal roofs, cast-stone headers, railings
+  mats['metal'] = tex_mat(m, 'Not in ACC - Metal Roof - Standing Seam', CFG['src_metal'], [70, 62, 56], nil)
+  mats['stone'] = color_mat(m, 'Not in ACC - Cast Stone Window Header (ACC: no stone)', [214, 206, 190])
+  mats['iron'] = color_mat(m, 'Not in ACC - Railing - Black Iron', [28, 28, 28])
   mats['iron_band'] = mats['iron']
-  mats['fascia'] = color_mat(m, 'Fascia - White', [248, 248, 245])
-  mats['soffit'] = color_mat(m, 'Soffit - White', [240, 240, 236])
-  mats['frame'] = color_mat(m, 'Window Frame - White', [250, 250, 250])
   mats['glass'] = color_mat(m, 'Glass', [96, 118, 136], 0.85)
-  mats['door'] = color_mat(m, 'Front Door - Brown', [92, 58, 36])
-  mats['garage'] = color_mat(m, 'Garage Door - Brown', [104, 68, 44])
-  mats['garage_groove'] = color_mat(m, 'Garage Door - Brown Groove', [80, 52, 34])
   mats['concrete'] = color_mat(m, 'Concrete', [196, 194, 188])
   mats['asphalt'] = color_mat(m, 'Asphalt', [72, 72, 72])
   mats['lawn'] = color_mat(m, 'Terrain - Lawn', [118, 142, 88])
