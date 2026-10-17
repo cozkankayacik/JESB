@@ -72,6 +72,9 @@ def materials(t):
     # textured finishes: low glossy reflection + bump from their own colour map (mortar / shingle edges / laps)
     t = setp(t, M(BRICK), reflect=acolor(0.10), reflect_glossiness=0.42, bump_map=TEXN(BRICK), bump_amount=0.6)
     t = setp(t, M(SIDING), reflect=acolor(0.16), reflect_glossiness=0.55, bump_map=TEXN(SIDING), bump_amount=0.4)
+    sw = "ACC_Lot_7___Siding_Dec___White___Terrace_Deck"           # R13: white lap siding on the terrace deck
+    if re.search(r"(?m)^\w+ " + re.escape(M(sw)) + r" \{", t):
+        t = setp(t, M(sw), reflect=acolor(0.2), reflect_glossiness=0.6, bump_map=TEXN(sw), bump_amount=0.4)
     t = setp(t, M(SHINGLE), reflect=acolor(0.10), reflect_glossiness=0.45, bump_map=TEXN(SHINGLE), bump_amount=0.7)
     t = setp(t, M("Terrain___Lawn"), reflect=acolor(0.04), reflect_glossiness=0.3,
              bump_map=TEXN("Terrain___Lawn"), bump_amount=0.8)

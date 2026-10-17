@@ -350,6 +350,8 @@ def build
   mats['brick'] = acc_tex.call('ACC Lot 7 - Brick - Magnolia (US Brick)', 'ACC_Lot7_Brick_Magnolia_USBrick.png', [17.6, 17.3], [207, 202, 195])
   mats['siding'] = acc_tex.call('ACC Lot 7 - Siding - Cobble Stone', 'ACC_Lot7_Siding_Cobble_Stone.png', [13.6, 14.0], [184, 180, 163])
   dec_white = color_mat(m, 'ACC Lot 7 - Siding Dec - White', [246, 248, 248])
+  # R13 (owner 2026-10-17): covered terrace deck and skirt in white lap siding (Siding Dec - White, Cobble Stone laps)
+  mats['siding_white'] = acc_tex.call('ACC Lot 7 - Siding Dec - White - Terrace Deck', 'ACC_Lot7_Siding_Dec_White_Lap.png', [13.6, 14.0], [246, 248, 248])
   mats['panel'] = dec_white
   mats['deco'] = dec_white                      # decorative panels: ACC siding dec = White (plain)
   mats['trim'] = color_mat(m, 'ACC Lot 7 - Trims - White', [244, 244, 240])

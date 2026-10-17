@@ -1,0 +1,5 @@
+View, render bbox (x0,y0,x1,y1 px), SketchUp export bbox, max offset px, max offset in, silhouette IoU
+Elevation_Front_West, (np.int64(350), np.int64(278), np.int64(2849), np.int64(1449)), (np.int64(348), np.int64(276), np.int64(2851), np.int64(1449)), 2, 0.67, 0.8359
+Elevation_Right_South, (np.int64(233), np.int64(278), np.int64(2993), np.int64(1449)), (np.int64(232), np.int64(276), np.int64(2995), np.int64(1449)), 2, 0.67, 0.8806
+Elevation_Rear_East, (np.int64(350), np.int64(278), np.int64(2849), np.int64(1449)), (np.int64(348), np.int64(276), np.int64(2851), np.int64(1449)), 2, 0.67, 0.9005
+Elevation_Left_North, (np.int64(206), np.int64(278), np.int64(2966), np.int64(1449)), (np.int64(204), np.int64(276), np.int64(2967), np.int64(1449)), 2, 0.67, 0.9106

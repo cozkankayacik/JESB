@@ -12,6 +12,7 @@ from geometry import *
 
 W = sys.argv[1]
 P9, P6, P_FRONT_PROJ, P_TERR = 0.75, None, 0.55, 0.44
+P_END = 0.5                  # R12: main roof end hips (north / south) per the rear elevation
 FASCIA = 7.25
 MAIN_EAVE = 248.87            # top of main fascia (xelev)
 MAIN_RIDGE = 381.97           # xelev
@@ -59,14 +60,16 @@ def height(b, x, y):
 
 
 ROOF_UPPER = [
-    body("A1 main", [plane("W", -12, P9, MAIN_EAVE), plane("E", 650.96, P9, MAIN_EAVE),
+    # R12 (owner, RFI-001.03 "use the DWG"): end hips at 6:12 as drawn on the rear elevation (xelev: hips from the eave
+    # corners to the ridge 254.17..384.79 at 381.97). R01-R11: 9:12 per A-220 and the front elevation (ridge 165.5..473.5).
+    body("A1 main", [plane("W", -12, P_END, MAIN_EAVE), plane("E", 650.96, P_END, MAIN_EAVE),
                      plane("S", 417.36, P6, MAIN_EAVE), plane("N", 924.32, P6, MAIN_EAVE)], (-12, 650.96, 417.36, 924.32)),
     # north-front corner: the main west eave runs on to y 388 (xelev north: fascia 387.96..924.36); a small hip whose
     # east slope dies into the main front plane, its south/east eaves overhang the lower wing roof
     # R06 per A-220: front eave y 388 at 6:12, east slope 9:12 with its eave at x 232. This reproduces the drawn hip
     # from the corner (-12,388), the short ridge at x 110 (y 571..592), the hip against the main front plane
     # (112,589)..(223,430), and the two wing valleys meeting at the wing ridge (y ~492).
-    body("A2 main north-front", [plane("W", -12, P9, MAIN_EAVE), plane("S", 388.0, 0.5, MAIN_EAVE),
+    body("A2 main north-front", [plane("W", -12, P_END, MAIN_EAVE), plane("S", 388.0, 0.5, MAIN_EAVE),
                                  plane("E", 232.0, P9, MAIN_EAVE), plane("N", 924.32, P6, MAIN_EAVE)], (-12, 232.0, 388.0, 924.32)),
     body("FP1 portico", [plane("S", 408.3, P_FRONT_PROJ, MAIN_EAVE), plane("W", 323.0, P9, MAIN_EAVE),
                          plane("E", 479.0, P9, MAIN_EAVE)], (323.0, 479.0, 408.3, 700.0), metal=[0]),
@@ -376,7 +379,7 @@ add_wall(_gf, 0.0, 137.68, GARAGE_EAVE - FASCIA, "L2", 6.0, margin=0.05)
 walls[-1]["mat"] = "siding"
 
 # gablet gable infill (siding) in the plane x 637.6: from the hip surface up to the gablet roof underside
-_hip = 248.87 + P9 * (650.96 - 637.6)
+_hip = 248.87 + P_END * (650.96 - 637.6)
 _ya = 605.9 + (_hip + FASCIA - 258.9) / 0.5
 _yb = 823.3 - (_hip + FASCIA - 258.9) / 0.5
 walls.append({"axis": "y", "c": 637.6, "n": [1, 0], "a": round(_ya, 2), "b": round(_yb, 2), "zb": round(_hip, 2),
@@ -545,7 +548,8 @@ for xa, xb in ((645.0, 660.7), (765.7, 781.7)):
 boxes += [["Terrace beam south", 645.0, 781.7, 582.3, 598.0, 97.87, 105.12, "trim", "A-TRIM"],
           ["Terrace beam north", 645.0, 781.7, 830.4, 846.7, 97.87, 105.12, "trim", "A-TRIM"],
           ["Terrace beam east", 765.7, 781.7, 582.3, 846.7, 97.87, 105.12, "trim", "A-TRIM"],
-          ["Raised terrace slab", 638.96, 783.3, 581.5, 847.7, -60.0, TD, "concrete", "A-SLAB"]]
+          # R13 (owner 2026-10-17): covered terrace deck and its skirt in white siding (ACC Siding Dec - White)
+          ["Raised terrace deck - white siding", 638.96, 783.3, 581.5, 847.7, -60.0, TD, "siding_white", "A-SLAB"]]
 # terrace stair: 6 risers from the deck to grade (-50), 55 in wide, x 705..760, down towards -y
 TR = (TD - (-50.0)) / 6.0
 for i in range(5):

@@ -258,7 +258,15 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
-- **2026-10-17** — Lot 7 **model R11** (`JESB_Lot7_Model_R11.skp`, **current**). The owner answered RFI-001 (log: `00_Project_Admin/RFI/JESB_Lot7_RFI-001_Response_Log.md`).
+- **2026-10-17** — Lot 7 **model R12** (`JESB_Lot7_Model_R12.skp`).
+  - The owner answered RFI-001.03 with "use the DWG", meaning the rear elevation. The main roof end hips are now `P_END` = 0.5 (6:12) and the ridge is 131 in; the rear elevation matches.
+  - The front elevation and A-220 roof (9:12, ridge 308 in) no longer match, which the owner accepted. R11 keeps the A-220 roof.
+  - The R12 renders were stopped when the R13 change came in.
+- **2026-10-17** — Lot 7 **model R13** (`JESB_Lot7_Model_R13.skp`, **current**).
+  - The owner said: "siding deck white" for the covered terrace. The raised terrace deck and skirt are now white lap siding (`ACC Lot 7 - Siding Dec - White - Terrace Deck`, texture from `make_white_siding.py`).
+  - The V-Ray renders are in `Renders/R13/`.
+  - The phrase "siding dec white" was ambiguous. The owner meant the covered terrace, not the decorative panels or the lap siding on the house.
+- **2026-10-17** — Lot 7 **model R11** (`JESB_Lot7_Model_R11.skp`). The owner answered RFI-001 (log: `00_Project_Admin/RFI/JESB_Lot7_RFI-001_Response_Log.md`).
   - The garage front is per the elevations (`geometry.GARAGE_BUMP_Y` 4.96 / `GARAGE_FACE_Y` 16.0; xflr1's 9.36 in shift undone).
   - Slider head is 84 in, the wing gable window is at x 138–162, and the entry door has six panels (build_r01.rb).
   - Items 04, 06 and 07 are kept as modelled.
