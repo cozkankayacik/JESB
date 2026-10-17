@@ -38,7 +38,9 @@ A new QA sheet, A-902, places the A-220 roof plan in red on the model's top view
 
 ## Remaining roof difference
 
-- **Gablet on the south hip.** It is drawn on the front and south elevations but not on A-220. It is kept, since the elevations govern heights and features. Owner or architect to confirm (see R01 open items).
+- **Gablet on the south hip.** It is drawn on the front and south elevations but not on A-220.
+  - **Decision 2026-10-16 (owner): keep the gablet as on the elevations.** Closed.
+  - A-220 should be updated by the architect to show it.
 
 ## Files
 
