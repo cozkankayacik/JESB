@@ -236,16 +236,24 @@ def build_opening_unit(parent, w, o, mats)
     g.name = format('%s %.0fx%.0f', door ? 'Sliding glass door' : 'Window', width, ht)
     fw = door ? 3.0 : 2.5
     frame_ring(e, w, a, b, z0, z1, fw, inset, inset + 4.0, mats['frame'])
-    # mullion for twin units, meeting rail for double hung
-    if width > 50
-      m = (a + b) / 2.0
-      bar(e, w, m - 1.25, m + 1.25, z0 + fw, z1 - fw, inset, inset + 4.0, mats['frame'])
-    end
-    if !door && ht > 44 && ht < 100
-      zm = z0 + ht * 0.5
-      bar(e, w, a + fw, b - fw, zm - 1.0, zm + 1.0, inset + 0.5, inset + 3.5, mats['frame'])
-    end
+    # twin units: frame mullion between them (xelev draws pairs as two units)
+    units = width > 50 ? 2 : 1
+    m = (a + b) / 2.0
+    bar(e, w, m - 1.25, m + 1.25, z0 + fw, z1 - fw, inset, inset + 4.0, mats['frame']) if units == 2
     glass(e, w, a + fw, b - fw, z0 + fw, z1 - fw, inset + 2.0, mats['glass'])
+    # thin grid muntins as on the elevations (xelev): one vertical and one horizontal bar per unit (4 lites);
+    # sliding door: cross per panel at the drawn height 48; basement windows below grade: none
+    if z1 > 0
+      mw = 0.75
+      zh = door ? 48.0 : z0 + ht * 0.5
+      units.times do |i|
+        ua = units == 2 ? (i == 0 ? a + fw : m + 1.25) : a + fw
+        ub = units == 2 ? (i == 0 ? m - 1.25 : b - fw) : b - fw
+        uc = (ua + ub) / 2.0
+        bar(e, w, uc - mw / 2, uc + mw / 2, z0 + fw, z1 - fw, inset + 1.4, inset + 2.6, mats['frame'])
+        bar(e, w, ua, ub, zh - mw / 2, zh + mw / 2, inset + 1.4, inset + 2.6, mats['frame'])
+      end
+    end
     g.layer = door ? 'A-DOOR' : 'A-WIND'
   end
   g.entities.grep(Sketchup::Face).each { |x| next if x.material; x.material = mats['frame']; x.back_material = mats['frame'] }
@@ -314,6 +322,7 @@ def build
     mats['deco'].color = Sketchup::Color.new(226, 222, 214)
   end
   mats['trim'] = color_mat(m, 'Trim - White', [248, 248, 245])
+  mats['stone'] = color_mat(m, 'Cast Stone - Window Header', [214, 206, 190])
   mats['fascia'] = color_mat(m, 'Fascia - White', [248, 248, 245])
   mats['soffit'] = color_mat(m, 'Soffit - White', [240, 240, 236])
   mats['frame'] = color_mat(m, 'Window Frame - White', [250, 250, 250])

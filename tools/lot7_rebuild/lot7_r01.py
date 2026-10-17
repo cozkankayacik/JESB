@@ -438,6 +438,44 @@ boxes += [["Eave return - lower gable west", -7.0, 10.5, 8.32, 14.32, GARAGE_EAV
           ["Eave return - lower gable east", 132.2, 149.7, 8.32, 14.32, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
           ["Eave return - garage gable east", 270.5, 288.0, 19.36, 25.36, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 3.0, "trim", "A-TRIM"]]
 
+# window / door surrounds and stone headers (R04, xelev layer FINE):
+#  - first floor (head below 130): cast-stone header 8 in high over the opening, 2 in wider each side, 1.25 in proud;
+#    2 in white side casings from the sill to the header
+#  - second floor brick walls: 4 in side casings and a 5.5 in apron under the sill, top against the frieze band
+#  - siding walls (wing gable, dormer bays): 3.5 in casing all round
+#  - basement egress windows (below grade): none
+for w in walls:
+    nx, ny = w["n"]
+    for o in w["openings"]:
+        a, b, z0, z1, kind = o["a"], o["b"], o["z0"], o["z1"], o["kind"]
+        if z1 < 0:
+            continue
+
+        def fb(name, u0, u1, za, zb_, d0, d1, mat):
+            if w["axis"] == "x":
+                ya, yb = sorted((w["c"] + ny * d0, w["c"] + ny * d1))
+                boxes.append([name, u0, u1, ya, yb, za, zb_, mat, "A-TRIM"])
+            else:
+                xa, xb = sorted((w["c"] + nx * d0, w["c"] + nx * d1))
+                boxes.append([name, xa, xb, u0, u1, za, zb_, mat, "A-TRIM"])
+
+        tag = "%s %s %.0f" % (w["view"], kind, (a + b) / 2)
+        if w["mat"] in ("siding", "panel") and w["floor"] == "L2":
+            c = 3.5
+            fb("Casing " + tag, a - c, a, z0 - c, z1 + c, 0.0, 0.75, "trim")
+            fb("Casing " + tag, b, b + c, z0 - c, z1 + c, 0.0, 0.75, "trim")
+            fb("Casing " + tag, a, b, z1, z1 + c, 0.0, 0.75, "trim")
+            fb("Casing " + tag, a, b, z0 - c, z0, 0.0, 0.75, "trim")
+        elif z1 < 130.0:
+            fb("Stone header " + tag, a - 2.0, b + 2.0, z1, z1 + 8.0, 0.0, 1.25, "stone")
+            zs = z0 - (2.0 if kind == "window" else 0.0)
+            fb("Casing " + tag, a - 2.0, a, max(zs, w["zb"] + 0.5), z1, 0.0, 0.75, "trim")
+            fb("Casing " + tag, b, b + 2.0, max(zs, w["zb"] + 0.5), z1, 0.0, 0.75, "trim")
+        else:
+            fb("Surround " + tag, a - 4.0, a, z0 - 5.5, z1, 0.0, 0.75, "trim")
+            fb("Surround " + tag, b, b + 4.0, z0 - 5.5, z1, 0.0, 0.75, "trim")
+            fb("Surround " + tag, a, b, z0 - 5.5, z0 - 2.0, 0.0, 0.75, "trim")
+
 # decorative panels (R03): every GENERAL_TEXTURE hatch panel of xelev - white frame board (1 in proud) with a
 # speckled textured field (2 in border, 1.5 in proud). Plan position from the hatch, mapped to the wall face; the
 # two dormer panels are re-centred on the bay faces (side elevations are ~5 in off against the plan).
@@ -522,7 +560,7 @@ for w in walls:
                 boxes.append([name, xa, xb, a, b, z0, z1, mat, "A-TRIM"])
 
     if tmin > 240.0:
-        band("Frieze board", MAIN_EAVE - FASCIA - 8.0, MAIN_EAVE - FASCIA, 0.75, "trim", False)
+        band("Frieze board", 228.6, 238.1, 0.75, "trim", False)      # xelev frieze band (FINE lines 228.6 / 238.1)
     if w["floor"] == "L1":
         band("Water table (rowlock)", 10.7, 16.7, 1.0, "brick", True)
 # garage slab and driveway apron (ASSUMPTION: no site plan - apron 20 ft wide in front of the garage doors)

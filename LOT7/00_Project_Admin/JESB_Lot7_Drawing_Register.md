@@ -1,6 +1,6 @@
-# JESB Lot 7 – Drawing and File Register
+﻿# JESB Lot 7 â€“ Drawing and File Register
 
-Project: Jade Estates, South Barrington, Illinois – Lot 7
+Project: Jade Estates, South Barrington, Illinois â€“ Lot 7
 Owner: Projades
 Architect: Purohit Architects, Inc. (project no. 202601.LOT 7)
 Register updated: 2026-10-16
@@ -12,7 +12,7 @@ Register updated: 2026-10-16
 | `00_Project_Admin/` | This register, the model rebuild plan, Projades brand templates (`Brand_Templates/`, copied from the HoffmanEstate project) |
 | `01_Site_and_Reference/Architectural_Set_PDF/` | Architect's issued PDF set |
 | `03_Shared_CAD_and_Models/Xrefs/Architect_DWG_2026-10-16/` | Architect's DWG files as received (original names kept, see 3) |
-| `03_Shared_CAD_and_Models/Models/00_Owner_Original/` | Owner's original SketchUp model – read only, never edited |
+| `03_Shared_CAD_and_Models/Models/00_Owner_Original/` | Owner's original SketchUp model â€“ read only, never edited |
 | `03_Shared_CAD_and_Models/Models/01_Working/` | Current SketchUp working model (the rebuild) |
 | `04_Visualization/Exports/` | Model exports (elevations, perspectives) per revision |
 | `04_Visualization/Working/` | Render work files |
@@ -32,8 +32,8 @@ Register updated: 2026-10-16
 | 1 | Cover | Cover sheet, general notes, schedules |
 | 2 | A-001 | General notes and specifications |
 | 3 | A-100 | Foundation plan, foundation section, structural and rebar schedules |
-| 4 | – | First floor plan |
-| 5 | – | Second floor plan |
+| 4 | â€“ | First floor plan |
+| 5 | â€“ | Second floor plan |
 | 6 | A-220 | Roof plan, attic ventilation schedule |
 | 7 | A-300 | Exterior elevations: front, right side (south) |
 | 8 | A-310 | Exterior elevations: left side (north), rear (east) |
@@ -67,7 +67,8 @@ Technical notes:
 | `99_Archive/.../JESB_Lot7_v1.skp`, `JESB_Lot7_v2.skp` | Earlier corrections of the owner model (roofs, dormers, windows). Superseded by the rebuild. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R01.skp` | Exterior model R01 rebuilt from the DWGs. See `JESB_Lot7_Model_R01_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R02.skp` | R01 + lower front gable over the garage bump with eave returns. See `JESB_Lot7_Model_R02_Change_Log.md`. |
-| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R03.skp` | **Current.** R02 + decorative textured panels. See `JESB_Lot7_Model_R03_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R03.skp` | R02 + decorative textured panels. See `JESB_Lot7_Model_R03_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R04.skp` | **Current.** R03 + stone headers, window casings and surrounds, grid muntins. See `JESB_Lot7_Model_R04_Change_Log.md`. |
 
 ## 5. Issued sets
 
@@ -76,3 +77,4 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R01.pdf` | R01 review set, 8 A3 sheets (16.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R02.pdf` | R02 review set, 8 A3 sheets (16.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R03.pdf` | R03 review set, 8 A3 sheets (16.10.2026) |
+| `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R04.pdf` | R04 review set, 8 A3 sheets (16.10.2026) |
