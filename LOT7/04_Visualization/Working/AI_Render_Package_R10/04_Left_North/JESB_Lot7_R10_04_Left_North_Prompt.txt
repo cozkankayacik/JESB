@@ -1,0 +1,22 @@
+Create a premium photorealistic architectural elevation of JESB LOT 7 R10 from the supplied SketchUp elevation (image 1). Treat the elevation as the geometry reference and the supplied perspective(s) as the depth and hardscape reference only. Preserve the exact building silhouette, roof forms, opening positions, window divisions, grouped headers, sills, trims, stairs, railings and terrain profile. Preserve all existing material assignments and their boundaries.
+
+Target the visual finish of a carefully art-directed Corona Renderer architectural image: natural daylight, soft indirect illumination, restrained highlights, detailed contact shadows, realistic material roughness and correctly scaled textures. Keep white surfaces detailed and neutral.
+
+Materials, exactly as assigned in the model (ACC Material Package, Lot 7, plus owner decisions):
+- Main and wing roofs: Mission Brown asphalt architectural shingles (matte, laminated shingle texture). They are NOT metal.
+- Accent roofs only (the small dark brown roofs with vertical seams): dark brown bronze standing-seam metal, seams running down the slope, restrained reflections.
+- Walls: Magnolia brick (light cream / grey blend, fine mortar joints, real brick scale ~8 in x 2 2/3 in).
+- Gable and upper wall siding: Cobble Stone horizontal lap siding (light greige, ~7 in exposure).
+- Trims, fascia, soffit, frieze, window casings and the plain decorative panels: white. The plain white panels stay solid panels; never turn them into windows.
+- Window and patio-door frames: white, with thin dark grid muntins exactly as drawn.
+- Window and door headers: light beige cast stone, one continuous piece over each window group.
+- Front door and garage doors: brown; garage doors are cottage style with a glass top row.
+- Stair and terrace railings: black iron. Steps and terrace base: light concrete.
+- Driveway: dark asphalt, footprint and grade as in the model.
+
+Use only natural grass, the existing hardscape and a lightly clouded sky around the building. The flat dark green band below the grade line in the SketchUp elevation is the terrain section: render it as the lawn ground meeting the building exactly along the drawn grade line. Glass should show subtle sky reflections and believable depth, without invented furniture or vegetation reflections. Garage glazing must not reveal residential furnishings.
+
+Maintain the source elevation projection (orthographic, straight-on, no perspective), straight verticals, complete building framing and crisp architectural detail. No redesigned geometry, additional materials, gutters or downspouts, trees, shrubs, people, vehicles, props, text, watermarks, exaggerated bloom or oversharpening. Match exposure, material appearance and presentation across all four elevations.
+
+This view - Left side (north) elevation: brick walls, bay with three windows under a standing-seam accent roof, dormer with four windows above the garage wing roof, two lower-level windows near grade at the left, main hip roof in shingles.
+Attached: image 1 = elevation (geometry, keep exactly); image 2 = Perspective Front NW (depth and hardscape only, do not copy their camera). Optional finish swatches from 00_Material_References: brick, lap siding, shingle, standing-seam metal, doors (colour and texture only).

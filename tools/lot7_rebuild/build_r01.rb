@@ -353,11 +353,13 @@ def build
   mats['garage'] = color_mat(m, 'ACC Lot 7 - Garage Door - Brown (Cottage, glass on top)', [75, 57, 47])
   mats['garage_groove'] = color_mat(m, 'ACC Lot 7 - Garage Door - Brown groove', [58, 44, 36])
   # not in the ACC package (to verify): accent metal roofs, cast-stone headers, railings
-  # owner decisions 2026-10-17: accent metal roofs dark brown bronze (seam texture kept, tinted); headers light
-  # beige cast stone
-  mats['metal'] = tex_mat(m, 'Owner - Metal Roof - Standing Seam - Dark Brown Bronze', CFG['src_metal'], [74, 56, 42], nil)
-  if mats['metal'].texture
-    mats['metal'].colorize_type = Sketchup::Material::COLORIZE_TINT
+  # owner decisions 2026-10-17: accent metal roofs dark brown bronze; headers light beige cast stone.
+  # R10: own standing-seam texture (16 in panels, seams down the slope) - the owner's seam texture read as tiles
+  seam_png = File.join(File.dirname(CFG['deco_texture'].to_s), 'metal_standing_seam_dark_bronze.png')
+  mats['metal'] = m.materials['Owner - Metal Roof - Standing Seam - Dark Brown Bronze'] || m.materials.add('Owner - Metal Roof - Standing Seam - Dark Brown Bronze')
+  if File.exist?(seam_png)
+    mats['metal'].texture = seam_png; mats['metal'].texture.size = [16, 16]
+  else
     mats['metal'].color = Sketchup::Color.new(74, 56, 42)
   end
   mats['stone'] = color_mat(m, 'Owner - Cast Stone Window Header - Light Beige', [214, 206, 190])

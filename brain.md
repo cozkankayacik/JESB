@@ -258,7 +258,11 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
-- **2026-10-17** — Lot 7 **model R09** (`JESB_Lot7_Model_R09.skp`, **current**). Owner decisions:
+- **2026-10-17** — Lot 7 **model R10** (`JESB_Lot7_Model_R10.skp`, **current**).
+  - The metal roofs use our own standing-seam texture (`make_seam_texture.py`). The owner seam texture read as tiles.
+  - The owner gave a photoreal elevation prompt for an AI image tool (Corona look; grass, sky and the existing hardscape only; no trees, cars or props) and decided to keep the driveway as an assumption.
+  - The AI input package is in `LOT7/04_Visualization/Working/AI_Render_Package_R10/`, made by `make_ai_render_package.py`. The owner runs the image tool; results go to `04_Visualization/Renders/R10/`.
+- **2026-10-17** — Lot 7 **model R09** (`JESB_Lot7_Model_R09.skp`). Owner decisions:
   - Metal roofs dark brown bronze (tinted seam texture).
   - Headers stay light beige cast stone.
   - **Waiting for the owner before rendering:** engine (V-Ray proposed), views, light and season, site context (trees?), railings black iron?, the open drawing conflicts, delivery folder and format. Take no action on these until the owner answers.
