@@ -258,6 +258,13 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
+- **2026-10-17** — Lot 7 **model R11** (`JESB_Lot7_Model_R11.skp`, **current**). The owner answered RFI-001 (log: `00_Project_Admin/RFI/JESB_Lot7_RFI-001_Response_Log.md`).
+  - The garage front is per the elevations (`geometry.GARAGE_BUMP_Y` 4.96 / `GARAGE_FACE_Y` 16.0; xflr1's 9.36 in shift undone).
+  - Slider head is 84 in, the wing gable window is at x 138–162, and the entry door has six panels (build_r01.rb).
+  - Items 04, 06 and 07 are kept as modelled.
+  - **Item 03 is open:** the rear-elevation ridge (131 in) is geometrically incompatible with the front elevation and A-220 (311 in). The owner has to choose A or B.
+  - The V-Ray renders are still R10 and will be re-rendered after item 03.
+  - The run scripts now close only their own SketchUp instance; another process keeps a `source_copy` SketchUp open.
 - **2026-10-17** — Lot 7 **V-Ray elevation renders R10**, in `LOT7/04_Visualization/Renders/R10/`. The owner found the earlier output poor and asked for V-Ray.
   - V-Ray for SketchUp (Chaos) is installed. It has a Ruby API (`VRay::Context.active`, `VRay::Command.export_vrscene`). Standalone `vray.exe` is in `...\V-Ray for SketchUp\extension\vray\bin`; set `VRAY_PLUGINS=<bin>\plugins` and pass `-camera=<scene name>`.
   - The scripted pipeline and its gotchas are in `tools/lot7_rebuild/vray/README.md`: orthographicWidth must be halved; the sky is a plate composited behind the image; `-camera` uses the scene's own CameraPhysical.
@@ -265,7 +272,7 @@ Noticed while reading the set; none confirmed with the user or architect yet.
   - The owner asked for a cross-check of the renders against the DWG: `vray/render_dwg_check.py`, output in `Renders/R10/QA_Render_vs_DWG/`. Each render matches the model within 2 px.
   - The owner said not to change the model yet. **RFI-001** (English, Projades A3, `tools/lot7_rebuild/make_rfi.py`) is in `05_Presentations_and_Issued/RFI/` and `00_Project_Admin/RFI/`. It is waiting for the architect's answers; the model stays at R10 until then.
   - The terrace roof pitch was read as ≈5:12 in R01, but the overlay shows ≈6:12, matching the A-220 note. RFI item 04 proposes 6:12.
-  - Nine model-vs-xelev differences were reported to the owner and **not fixed**, pending a decision: garage west end 10–20 in; rear-elevation ridge contradicts the front elevation and A-220; terrace roof pitch; slider door head; south upper window; guest bay window widths; wing gable window; front door panels.
+  - Nine model-vs-xelev differences were reported to the owner and **not fixed** in R10 (the owner answered later; see R11): garage west end 10–20 in; rear-elevation ridge contradicts the front elevation and A-220; terrace roof pitch; slider door head; south upper window; guest bay window widths; wing gable window; front door panels.
 - **2026-10-17** — Lot 7 **model R10** (`JESB_Lot7_Model_R10.skp`, **current**).
   - The metal roofs use our own standing-seam texture (`make_seam_texture.py`). The owner seam texture read as tiles.
   - The owner gave a photoreal elevation prompt for an AI image tool (Corona look; grass, sky and the existing hardscape only; no trees, cars or props) and decided to keep the driveway as an assumption.

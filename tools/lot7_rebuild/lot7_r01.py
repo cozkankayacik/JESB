@@ -1,4 +1,4 @@
-﻿"""JESB Lot 7 - exterior model R01: geometry generator.
+"""JESB Lot 7 - exterior model R01: geometry generator.
 
 Builds the full exterior description of the house from the architect's drawings and writes r01_spec.json, which
 build_r01.rb turns into a SketchUp model. Plan coordinates are DWG plan inches (xflr0/1/2), z = 0 at the top of the
@@ -20,7 +20,9 @@ DORMER_EAVE = 234.5
 GARAGE_EAVE = 105.62
 TERRACE_EAVE = 112.37          # xelev: fascia 105.12..112.37, beam 97.87..105.12; slope ~5:12 on the elevations
 GBR_EAVE = 127.1              # from the roof/wall line 159.37 on the north elevation at 9:12
-GARAGE_SHIFT = 9.36           # new xflr1 garage front against the roof outlines drawn in xflr2 (old issue)
+# R11: garage front per the architect's elevations (RFI-001.01/.02), see geometry.GARAGE_BUMP_Y / GARAGE_FACE_Y.
+# The xflr1 issue had moved it 9.36" back (R01-R10 followed xflr1); GD shifts the R01-R10 garage-front numbers.
+GD = GARAGE_FACE_Y - 25.36    # -9.36
 
 # main front/rear pitch from the dimensioned ridge (25'-8") and the elevation ridge height
 P6 = (MAIN_RIDGE - MAIN_EAVE) / ((924.32 - 417.36) / 2.0)
@@ -79,15 +81,14 @@ ROOF_UPPER = [
     body("DR dormer east", [plane("E", 294.0, P9, DORMER_EAVE), plane("S", 164.2, P9, DORMER_EAVE),
                             plane("N", 329.6, P9, DORMER_EAVE)], (150.0, 294.0, 164.2, 329.6), metal=[0, 1, 2]),
 ]
-GF = -19.0 + GARAGE_SHIFT         # garage roof front (west half) after the garage front moved back
 # Garage roofs per the xelev front elevation (R02):
 #  G  = main garage gable, eaves x -7 / 288 (apex x 140.5 at 216.2 as drawn), gable face in the plane of the right
-#       front wall y 25.36, 6" rake overhang;
+#       front wall y 25.36 (R11: GARAGE_FACE_Y 16.0, bump face GARAGE_BUMP_Y 4.96), 6" rake overhang;
 #  LG = lower front gable over the 11" bump of the left garage front (x 0..137.68, face y 14.32): eaves x -7 / 149.7,
 #       apex x 71.35 at 164.4, 9:12, 6" rake overhang; its ridge dies into the G gable face.
 ROOF_GARAGE = [
-    body("G garage gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 288.0, P9, GARAGE_EAVE)], (-7.0, 288.0, 19.36, 434.32)),
-    body("LG lower front gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 149.7, P9, GARAGE_EAVE)], (-7.0, 149.7, 8.32, 60.0)),
+    body("G garage gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 288.0, P9, GARAGE_EAVE)], (-7.0, 288.0, 19.36 + GD, 434.32)),
+    body("LG lower front gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 149.7, P9, GARAGE_EAVE)], (-7.0, 149.7, 8.32 + GD, 60.0)),
 ]
 ROOF_GBR = [body("B guest bedroom bay", [plane("W", -43.04, P9, GBR_EAVE), plane("S", 382.96, P9, GBR_EAVE),
                                          plane("N", 602.08, P9, GBR_EAVE)], (-43.04, 0.0, 382.96, 602.08), metal=[0, 1, 2])]
@@ -359,7 +360,7 @@ for f in l2f:
 # garage front (R02, xelev front): the bump face y 14.32 is brick only below the water table, white panel above
 # (panels flank the window); the main garage gable face continues above the lower gable in the plane y 25.36
 for w in list(walls):
-    if w["axis"] == "x" and abs(w["c"] - 14.32) < 0.05:
+    if w["axis"] == "x" and abs(w["c"] - GARAGE_BUMP_Y) < 0.05:
         if w["mat"] == "brick" and w["zb"] < 0:
             walls.append(dict(w, zb=16.7, mat="panel", openings=list(w["openings"])))
             w["top"] = [(w["a"], 16.7), (w["b"], 16.7)]
@@ -370,7 +371,7 @@ for w in list(walls):
         w["mat"] = "panel"
         _t = GARAGE_EAVE + P9 * (149.7 - 137.68) - FASCIA     # side of the bump: up to its own roof only
         w["top"] = [(w["a"], round(_t, 2)), (w["b"], round(_t, 2))]
-_gf = {"p": (0.0, 25.36), "q": (137.68, 25.36), "n": (0.0, -1.0), "view": "front", "floor": "L2"}
+_gf = {"p": (0.0, GARAGE_FACE_Y), "q": (137.68, GARAGE_FACE_Y), "n": (0.0, -1.0), "view": "front", "floor": "L2"}
 add_wall(_gf, 0.0, 137.68, GARAGE_EAVE - FASCIA, "L2", 6.0, margin=0.05)
 walls[-1]["mat"] = "siding"
 
@@ -393,6 +394,14 @@ for o in OPEN:
             fixes.append("wing gable window: z from xelev (horizontal from plan)")
         else:
             continue
+    # R11: garage front walls moved forward (RFI-001.01/.02) - openings in them follow
+    if o["view"] == "front" and abs(o["c"] - 14.32) < 0.05:
+        o["c"] = GARAGE_BUMP_Y
+    elif o["view"] == "front" and abs(o["c"] - 25.36) < 0.05:
+        o["c"] = GARAGE_FACE_Y
+    # R11 (RFI-001.08): wing gable window horizontally per the front elevation (xelev x 138..162; plan 124.96..148.96)
+    if o["floor"] == "L2" and o["view"] == "front" and abs(o["c"] - 62.96) < 0.1:
+        o["a"], o["b"] = 138.0, 162.0
     op_list.append(o)
 # entry door with two side lights and transom replaces the two side-light spans found on the porch wall
 op_list = [o for o in op_list if not (o["floor"] == "L1" and o["view"] == "front" and abs(o["c"] - 480.96) < 0.1)]
@@ -407,8 +416,9 @@ for o in op_list:
 for o in op_list:
     if o["floor"] == "L2" and o["view"] == "front" and abs(o["c"] - 434.32) < 0.1 and abs(o["a"] - 293.2) < 0.5:
         o["rows"] = [156.6]
-# covered terrace sliding door 6080 (plan), full height
-op_list.append({"floor": "L1", "view": "south", "c": 638.96, "a": 678.2, "b": 750.2, "z0": 0.0, "z1": 96.0, "kind": "slider",
+# covered terrace sliding door 6 ft wide; R11 (RFI-001.05): size per the south elevation - unit x 678.86..750.86,
+# head 84.0 (7'-0"); R01-R10 had an assumed 8'-0" head
+op_list.append({"floor": "L1", "view": "south", "c": 638.96, "a": 678.86, "b": 750.86, "z0": 0.0, "z1": 84.0, "kind": "slider",
                 "n": [1, 0]})
 # garage doors (plan positions, xelev heights: bottom = garage slab -38.1, 8 ft)
 op_list.append({"floor": "L1", "view": "south", "c": 276.0, "a": 52.0, "b": 150.0, "z0": -38.1, "z1": 57.9, "kind": "garage8", "n": [1, 0]})
@@ -442,9 +452,9 @@ boxes += [["Portico pier north", 338.96, 362.96, 420.32, 434.32, -38.0, 228.7, "
           ["Portico entablature", 330.0, 472.0, 414.0, 434.32, 228.7, MAIN_EAVE - FASCIA, "trim", "A-TRIM"]]
 # garage front (R02): cornice (eave) returns at the feet of the two front gables (xelev front, 17.5 in wide),
 # and the two decorative panels flanking the bump window (xelev GENERAL_TEXTURE, 26 x 64)
-boxes += [["Eave return - lower gable west", -7.0, 10.5, 8.32, 14.32, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
-          ["Eave return - lower gable east", 132.2, 149.7, 8.32, 14.32, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
-          ["Eave return - garage gable east", 270.5, 288.0, 19.36, 25.36, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 3.0, "trim", "A-TRIM"]]
+boxes += [["Eave return - lower gable west", -7.0, 10.5, 8.32 + GD, GARAGE_BUMP_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
+          ["Eave return - lower gable east", 132.2, 149.7, 8.32 + GD, GARAGE_BUMP_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
+          ["Eave return - garage gable east", 270.5, 288.0, 19.36 + GD, GARAGE_FACE_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 3.0, "trim", "A-TRIM"]]
 
 # window / door surrounds and stone headers (R04, xelev layer FINE):
 #  - first floor (head below 130): cast-stone header 8 in high over the opening, 2 in wider each side, 1.25 in proud;
@@ -502,8 +512,8 @@ for w in walls:
 # speckled textured field (2 in border, 1.5 in proud). Plan position from the hatch, mapped to the wall face; the
 # two dormer panels are re-centred on the bay faces (side elevations are ~5 in off against the plan).
 DECO_PANELS = [  # name, face axis, face coord, outward normal, u0, u1, z0, z1
-    ("Decorative panel - garage front west", "x", 14.32, -1, 17.8, 43.8, 29.0, 93.0),
-    ("Decorative panel - garage front east", "x", 14.32, -1, 99.0, 125.0, 29.0, 93.0),
+    ("Decorative panel - garage front west", "x", GARAGE_BUMP_Y, -1, 17.8, 43.8, 29.0, 93.0),
+    ("Decorative panel - garage front east", "x", GARAGE_BUMP_Y, -1, 99.0, 125.0, 29.0, 93.0),
     ("Decorative panel - over stair window", "x", 434.32, -1, 292.8, 329.8, 64.3, 113.4),
     ("Decorative panel - over entry door", "x", 480.96, -1, 369.4, 442.4, 116.4, 151.1),
     ("Decorative panel - over front window", "x", 429.36, -1, 507.0, 581.0, 115.9, 151.6),
@@ -617,8 +627,8 @@ for w in walls:
     if w["floor"] == "L1":
         band("Water table (rowlock)", 10.7, 16.7, 1.0, "brick", True)
 # garage slab and driveway apron (ASSUMPTION: no site plan - apron 20 ft wide in front of the garage doors)
-boxes += [["Garage slab", 0.0, 276.0, 14.32, 400.0, -42.0, -38.1, "concrete", "A-SLAB"],
-          ["Driveway apron (assumed)", 276.0, 516.0, 25.36, 400.0, -40.0, -37.9, "asphalt", "L-SITE"]]
+boxes += [["Garage slab", 0.0, 276.0, GARAGE_BUMP_Y, 400.0, -42.0, -38.1, "concrete", "A-SLAB"],
+          ["Driveway apron (assumed)", 276.0, 516.0, GARAGE_FACE_Y, 400.0, -40.0, -37.9, "asphalt", "L-SITE"]]
 # frieze board under the main soffit (white, 8 in) on the brick walls
 trims = [{"wall": i, "z0": MAIN_EAVE - FASCIA - 8.0 + 9.0 * 0, "z1": None} for i in range(0)]   # placeholder (frieze built in Ruby from wall tops)
 
@@ -651,7 +661,7 @@ STEP = 24.0
 gx = [-480.0 + STEP * i for i in range(int((1300 + 480) / STEP) + 1)]
 gy = [-600.0 + STEP * j for j in range(int((1400 + 600) / STEP) + 1)]
 foot = [L1_OUTLINE, [(638.96, 581.5), (783.3, 581.5), (783.3, 847.7), (638.96, 847.7)], [(705.0, 526.5), (760.0, 526.5), (760.0, 581.5), (705.0, 581.5)],
-        [(276.0, 25.36), (516.0, 25.36), (516.0, 400.0), (276.0, 400.0)], [(362.96, 365.0), (448.96, 365.0), (448.96, 434.32), (362.96, 434.32)]]
+        [(276.0, GARAGE_FACE_Y), (516.0, GARAGE_FACE_Y), (516.0, 400.0), (276.0, 400.0)], [(362.96, 365.0), (448.96, 365.0), (448.96, 434.32), (362.96, 434.32)]]
 
 
 def in_poly(x, y, poly):
@@ -674,7 +684,7 @@ def zgrid(x, y):
 terrain = {"x": gx, "y": gy, "z": [[zgrid(x, y) for x in gx] for y in gy],
            "skip": [[any(in_poly(x + STEP / 2, y + STEP / 2, p) for p in foot) for x in gx] for y in gy]}
 # driveway strip to the street (ASSUMPTION, no site plan)
-boxes += [["Driveway to street (assumed)", 300.0, 516.0, -480.0, 25.36, -40.0, -37.9, "asphalt", "L-SITE"]]
+boxes += [["Driveway to street (assumed)", 300.0, 516.0, -480.0, GARAGE_FACE_Y, -40.0, -37.9, "asphalt", "L-SITE"]]
 
 # gutters and downspouts: not modelled (owner instruction 2026-10-17 - materials only)
 

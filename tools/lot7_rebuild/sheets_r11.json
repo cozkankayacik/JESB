@@ -1,0 +1,158 @@
+{
+ "revision": "R11",
+ "date": "17.10.2026",
+ "sheets": [
+  {
+   "no": "A-000",
+   "title": "JESB LOT 7 - EXTERIOR MODEL R11",
+   "subtitle": "SketchUp model rebuilt from the architect's floor plan and elevation DWGs (issue 17.10.2026)",
+   "layout": "cover",
+   "images": [
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Perspective_Front_SW.png"
+   ],
+   "index": [
+    [
+     "A-000",
+     "Cover, sheet index, notes"
+    ],
+    [
+     "A-101",
+     "Front elevation (west)"
+    ],
+    [
+     "A-102",
+     "Right side elevation (south)"
+    ],
+    [
+     "A-103",
+     "Rear elevation (east)"
+    ],
+    [
+     "A-104",
+     "Left side elevation (north)"
+    ],
+    [
+     "A-201",
+     "Roof plan (model top view)"
+    ],
+    [
+     "A-301",
+     "Perspectives"
+    ],
+    [
+     "A-901",
+     "QA - model over architect's elevations (red)"
+    ],
+    [
+     "A-902",
+     "QA - model roof plan over A-220 (red)"
+    ]
+   ],
+   "notes": [
+    "Design: Purohit Architects, Inc. (202601.LOT 7), Revision 1. Modelled as drawn; exterior only, no interior.",
+    "Plan geometry from the floor plan DWGs xflr0/1/2 (17.10.2026); heights, roof heights and window heads/sills from the elevation DWG xelev; roof layout from A-220.",
+    "Datum: z = 0 at the top of the main floor (839.20'). Front faces west.",
+    "Materials per the ACC Material Package, Lot 7: roof Mission Brown, brick Magnolia, siding Cobble Stone, trims / soffit / fascia / windows white, front and garage doors brown (cottage style with glass on top).",
+    "Grade from the elevation grade lines only (no site plan). Driveway is an assumption.",
+    "R02: lower front gable over the garage bump with eave returns; garage gable eaves per the front elevation. R03: decorative textured panels (white frame, speckled field) at all seven panel positions of the elevations. R04: cast-stone headers over first-floor openings, window casings and surrounds, thin grid muntins (4 lites per unit) on all windows; frieze band at 228.6..238.1. R05: front stair window as two stacked units with a frame transom, each with its grid.",
+    "R06: roof at the wing / main roof junction corrected to the A-220 roof plan (front-left main roof 6:12 from y 388, cricket hip to x 232); A-902 roof plan QA.",
+    "R07: one continuous stone header and surround over grouped windows (rear ranks, guest bay); iron railings on the entry steps and the terrace stair, as on the elevations.",
+    "R08: all finishes applied from the ACC Material Package, Lot 7 (sample images as textures): roof Mission Brown, brick Magnolia, siding Cobble Stone, siding dec / trims / soffit / fascia / windows White, front and garage doors Brown.",
+    "R09 (owner decisions 17.10.2026): accent metal roofs dark brown bronze; window headers stay light beige cast stone.",
+    "R10: accent metal roofs re-textured as true standing seam (16 in panels, seams down the slope), dark brown bronze.",
+    "R11 (owner answers to RFI-001, 17.10.2026): garage front per the elevations (9.36 in forward); terrace slider head 7 ft 0 in; wing gable window and six-panel entry door per the front elevation.",
+    "Open items: see JESB_Lot7_Model_R11_Change_Log.md (garage front moved 9.36 in. in the new first floor plan but not on the elevations; portico upper window 60 in. in plan vs 86 in. on the elevation; and others)."
+   ]
+  },
+  {
+   "no": "A-101",
+   "title": "FRONT ELEVATION (WEST)",
+   "subtitle": "Parallel projection from the SketchUp model R11",
+   "layout": "single",
+   "images": [
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Elevation_Front_West.png"
+   ]
+  },
+  {
+   "no": "A-102",
+   "title": "RIGHT SIDE ELEVATION (SOUTH)",
+   "subtitle": "Parallel projection from the SketchUp model R11",
+   "layout": "single",
+   "images": [
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Elevation_Right_South.png"
+   ]
+  },
+  {
+   "no": "A-103",
+   "title": "REAR ELEVATION (EAST)",
+   "subtitle": "Parallel projection from the SketchUp model R11",
+   "layout": "single",
+   "images": [
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Elevation_Rear_East.png"
+   ]
+  },
+  {
+   "no": "A-104",
+   "title": "LEFT SIDE ELEVATION (NORTH)",
+   "subtitle": "Parallel projection from the SketchUp model R11",
+   "layout": "single",
+   "images": [
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Elevation_Left_North.png"
+   ]
+  },
+  {
+   "no": "A-201",
+   "title": "ROOF PLAN",
+   "subtitle": "Model top view; standing-seam metal on the portico, front bay, dormers and guest bedroom bay",
+   "layout": "single",
+   "images": [
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Roof_Plan.png"
+   ]
+  },
+  {
+   "no": "A-301",
+   "title": "PERSPECTIVES",
+   "subtitle": "SketchUp model R11 (no render)",
+   "layout": "grid2x2",
+   "images": [
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Perspective_Front_SW.png",
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Perspective_Front_NW.png",
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Perspective_Rear_SE.png",
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/JESB_Lot7_R11_Perspective_Rear_NE.png"
+   ],
+   "captions": [
+    "FRONT - SOUTH-WEST",
+    "FRONT - NORTH-WEST",
+    "REAR - SOUTH-EAST",
+    "REAR - NORTH-EAST"
+   ]
+  },
+  {
+   "no": "A-901",
+   "title": "QA - MODEL OVER ARCHITECT'S ELEVATIONS",
+   "subtitle": "Red: xelev_lot 7G.dwg line work placed on the model views (plan x/y mapping, z = DWG y - 1429.31)",
+   "layout": "grid2x2",
+   "images": [
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/QA_Overlay_vs_Architect_DWG/JESB_Lot7_R11_Elevation_Front_West_vs_DWG.png",
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/QA_Overlay_vs_Architect_DWG/JESB_Lot7_R11_Elevation_Right_South_vs_DWG.png",
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/QA_Overlay_vs_Architect_DWG/JESB_Lot7_R11_Elevation_Rear_East_vs_DWG.png",
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/QA_Overlay_vs_Architect_DWG/JESB_Lot7_R11_Elevation_Left_North_vs_DWG.png"
+   ],
+   "captions": [
+    "FRONT (WEST)",
+    "RIGHT (SOUTH)",
+    "REAR (EAST)",
+    "LEFT (NORTH)"
+   ]
+  },
+  {
+   "no": "A-902",
+   "title": "QA - MODEL ROOF PLAN OVER A-220",
+   "subtitle": "Red: A-220 roof plan (Revision 1) placed on the model top view",
+   "layout": "single",
+   "images": [
+    "C:/Projects/JESB/LOT7/04_Visualization/Exports/R11/QA_Overlay_vs_Architect_DWG/JESB_Lot7_R11_Roof_Plan_vs_A-220.png"
+   ]
+  }
+ ]
+}

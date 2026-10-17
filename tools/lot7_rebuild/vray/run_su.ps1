@@ -5,7 +5,7 @@ param([string]$Script, [string]$Model, [string]$Work, [string]$Extra = '{}', [in
 $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $exe = 'C:\Program Files\SketchUp\SketchUp 2026\SketchUp\SketchUp.exe'
-if (Get-Process SketchUp -ErrorAction SilentlyContinue) { throw 'SketchUp is open - close it first (the run would force-close it).' }
+# other SketchUp instances may stay open: only the instance started here is closed at the end
 New-Item -ItemType Directory -Force $Work | Out-Null
 $copy = Join-Path $Work 'su_run_copy.skp'
 Copy-Item $Model $copy -Force
@@ -23,6 +23,6 @@ while (-not (Test-Path $done)) {
   if (((Get-Date) - $t0).TotalSeconds -gt $TimeoutSec) { break }
 }
 Start-Sleep -Seconds 3
-Get-Process SketchUp -ErrorAction SilentlyContinue | Stop-Process -Force
+Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue
 if (Test-Path $done) { 'done: ' + (Get-Content $done) } else { 'TIMEOUT' }
 Get-Content (Join-Path $Work 'su_log.txt') -ErrorAction SilentlyContinue | Select-Object -Last 60

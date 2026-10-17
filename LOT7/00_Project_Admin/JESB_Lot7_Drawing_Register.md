@@ -74,7 +74,8 @@ Technical notes:
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R07.skp` | R06 + continuous headers over window groups, stair railings. See `JESB_Lot7_Model_R07_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R08.skp` | R07 with all finishes per the ACC Material Package (Lot 7). See `JESB_Lot7_Model_R08_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R09.skp` | R08 + owner decisions: metal roofs dark brown bronze, cast-stone headers kept. See `JESB_Lot7_Model_R09_Change_Log.md`. |
-| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R10.skp` | **Current.** R09 with true standing-seam texture on the metal roofs. AI render input package in `04_Visualization/Working/AI_Render_Package_R10/`. See `JESB_Lot7_Model_R10_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R10.skp` | R09 with true standing-seam texture on the metal roofs. AI render input package in `04_Visualization/Working/AI_Render_Package_R10/`. See `JESB_Lot7_Model_R10_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R11.skp` | **Current.** R10 + owner answers to RFI-001: garage front, slider, wing gable window and entry door per the elevations. Item 03 is open. See `JESB_Lot7_Model_R11_Change_Log.md`. |
 
 ## 5. Issued sets
 
@@ -90,5 +91,6 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R08.pdf` | R08 review set, 9 A3 sheets (17.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R09.pdf` | R09 review set, 9 A3 sheets (17.10.2026) |
 | `04_Visualization/Renders/R10/JESB_Lot7_R10_Render_Elevation_*.png` | V-Ray photoreal elevations, 4 views at 3200 x 1712 (17.10.2026). The DWG cross-check is in `QA_Render_vs_DWG/`. |
-| `05_Presentations_and_Issued/RFI/PROJADES_JESB_Lot7_RFI-001_Elevations_vs_Model_2026-10-17.pdf` | RFI-001 to Purohit Architects: 9 elevation-vs-model differences, 10 A3 pages (17.10.2026). Text and evidence in `00_Project_Admin/RFI/`. **Open – awaiting response.** |
+| `05_Presentations_and_Issued/RFI/PROJADES_JESB_Lot7_RFI-001_Elevations_vs_Model_2026-10-17.pdf` | RFI-001 to Purohit Architects: 9 elevation-vs-model differences, 10 A3 pages (17.10.2026). Text and evidence in `00_Project_Admin/RFI/`. The owner answered on 17.10.2026 (see the response log in the RFI .md). Item 03 is open. |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R10.pdf` | R10 review set, 9 A3 sheets (17.10.2026) |
+| `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R11.pdf` | R11 review set, 9 A3 sheets (17.10.2026) |

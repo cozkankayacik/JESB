@@ -1,11 +1,11 @@
-﻿# JESB Lot 7 R01 - run the SketchUp build headless-ish: copy the owner's model to the work folder, start SketchUp
+# JESB Lot 7 R01 - run the SketchUp build headless-ish: copy the owner's model to the work folder, start SketchUp
 # with build_r01.rb as RubyStartup, wait for the done-file, then close SketchUp.
 # Usage: powershell -File run_build.ps1 -Work <work_dir> -SaveAs <skp> -ExportDir <dir>
 param([string]$Work, [string]$SaveAs, [string]$ExportDir, [string]$Rev = 'R01', [int]$TimeoutSec = 900)
 $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $exe = 'C:\Program Files\SketchUp\SketchUp 2026\SketchUp\SketchUp.exe'
-if (Get-Process SketchUp -ErrorAction SilentlyContinue) { throw 'SketchUp is open - close it first (the run would force-close it).' }
+# other SketchUp instances may stay open: only the instance started here is closed at the end
 $owner = 'C:\Projects\JESB\LOT7\03_Shared_CAD_and_Models\Models\00_Owner_Original\JESB_Lot7_Owner_Model_2026-10-15.skp'
 $base = Join-Path $Work 'r01_base_copy.skp'
 Copy-Item $owner $base -Force
@@ -24,6 +24,6 @@ while (-not (Test-Path $done)) {
   if (((Get-Date) - $t0).TotalSeconds -gt $TimeoutSec) { break }
 }
 Start-Sleep -Seconds 3
-Get-Process SketchUp -ErrorAction SilentlyContinue | Stop-Process -Force
+Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue
 if (Test-Path $done) { "done: " + (Get-Content $done) } else { 'TIMEOUT' }
 Get-Content (Join-Path $Work 'r01_build_log.txt') -ErrorAction SilentlyContinue | Select-Object -Last 40

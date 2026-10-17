@@ -34,8 +34,13 @@ def to_elev(view, x, y):
 
 
 # ---- outlines (outer face) ------------------------------------------------------------------------------------
-# First floor (xflr1, 2026-10-16). Garage front moved 9.36" back against the previous issue.
-L1_OUTLINE = [(0, 14.32), (137.68, 14.32), (137.68, 25.36), (276.0, 25.36), (276.0, 434.32), (362.96, 434.32),
+# First floor (xflr1, 2026-10-16). xflr1 moved the garage front 9.36" back against the previous issue; R11 (owner,
+# RFI-001.01/.02): garage front per the architect's elevations = previous position (south elevation within 0.6"):
+# bump face y 4.96, main garage face y 16.0.
+GARAGE_BUMP_Y = 4.96
+GARAGE_FACE_Y = 16.0
+L1_OUTLINE = [(0, GARAGE_BUMP_Y), (137.68, GARAGE_BUMP_Y), (137.68, GARAGE_FACE_Y), (276.0, GARAGE_FACE_Y),
+              (276.0, 434.32), (362.96, 434.32),
               (362.96, 480.96), (448.96, 480.96), (448.96, 429.36), (638.96, 429.36), (638.96, 912.32), (0, 912.32),
               (0, 590.08), (-31.04, 590.08), (-31.04, 394.96), (0, 394.96)]
 # Second floor (xflr2): main block + bonus-room wing over the garage with its two bay dormers.

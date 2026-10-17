@@ -237,6 +237,14 @@ def build_opening_unit(parent, w, o, mats)
     bar(e, w, dr, dr + 1.5, z0, 96.0, inset, inset + 4.0, mats['frame'])
     bar(e, w, a + 2.5, b - 2.5, 96.0, 98.0, inset, inset + 4.0, mats['frame'])
     bar(e, w, dl, dr, z0, 96.0, inset + 1.0, inset + 3.0, mats['door'])
+    # R11 (RFI-001.09): six-panel leaf as drawn on the front elevation (xelev ARDOOR, leaf 36 in): panel outline
+    # 0.35 in proud, raised field (1.5 in inside the outline) 0.75 in proud
+    [[4.51, 16.0], [20.0, 31.5]].each do |u0, u1|
+      [[9.87, 41.69], [45.69, 74.5], [78.5, 90.5]].each do |v0, v1|
+        bar(e, w, dl + u0, dl + u1, z0 + v0, z0 + v1, inset + 0.65, inset + 1.0, mats['door'])
+        bar(e, w, dl + u0 + 1.5, dl + u1 - 1.5, z0 + v0 + 1.5, z0 + v1 - 1.5, inset + 0.25, inset + 0.65, mats['door'])
+      end
+    end
     glass(e, w, a + 2.5, dl - 1.5, z0 + 2.5, 96.0, inset + 2.0, mats['glass'])
     glass(e, w, dr + 1.5, b - 2.5, z0 + 2.5, 96.0, inset + 2.0, mats['glass'])
     glass(e, w, a + 2.5, b - 2.5, 98.0, z1 - 2.5, inset + 2.0, mats['glass'])
