@@ -24,6 +24,8 @@ GBR_EAVE = 127.1              # from the roof/wall line 159.37 on the north elev
 # R11: garage front per the architect's elevations (RFI-001.01/.02), see geometry.GARAGE_BUMP_Y / GARAGE_FACE_Y.
 # The xflr1 issue had moved it 9.36" back (R01-R10 followed xflr1); GD shifts the R01-R10 garage-front numbers.
 GD = GARAGE_FACE_Y - 25.36    # -9.36
+G_RAKE_Y = 8.36               # R14: main garage gable rake front (xelev south)
+LG_FRONT_Y = G_RAKE_Y - 20.0  # R14: lower front gable front, 20 in ahead of the main gable (both side elevations)
 
 # main front/rear pitch from the dimensioned ridge (25'-8") and the elevation ridge height
 P6 = (MAIN_RIDGE - MAIN_EAVE) / ((924.32 - 417.36) / 2.0)
@@ -90,8 +92,11 @@ ROOF_UPPER = [
 #  LG = lower front gable over the 11" bump of the left garage front (x 0..137.68, face y 14.32): eaves x -7 / 149.7,
 #       apex x 71.35 at 164.4, 9:12, 6" rake overhang; its ridge dies into the G gable face.
 ROOF_GARAGE = [
-    body("G garage gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 288.0, P9, GARAGE_EAVE)], (-7.0, 288.0, 19.36 + GD, 434.32)),
-    body("LG lower front gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 149.7, P9, GARAGE_EAVE)], (-7.0, 149.7, 8.32 + GD, 60.0)),
+    # R14 (owner: "fix to the DWG if sure"): front planes per the side elevations - both draw the lower gable front
+    # 20.0 in ahead of the main garage gable rake (south: rake y 8.36, lower gable -11.64; north the same 20.0 with
+    # its ~4.6 in global offset). R11-R13: G 10.0, LG -1.04.
+    body("G garage gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 288.0, P9, GARAGE_EAVE)], (-7.0, 288.0, G_RAKE_Y, 434.32)),
+    body("LG lower front gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 149.7, P9, GARAGE_EAVE)], (-7.0, 149.7, LG_FRONT_Y, 60.0)),
 ]
 ROOF_GBR = [body("B guest bedroom bay", [plane("W", -43.04, P9, GBR_EAVE), plane("S", 382.96, P9, GBR_EAVE),
                                          plane("N", 602.08, P9, GBR_EAVE)], (-43.04, 0.0, 382.96, 602.08), metal=[0, 1, 2])]
@@ -455,9 +460,10 @@ boxes += [["Portico pier north", 338.96, 362.96, 420.32, 434.32, -38.0, 228.7, "
           ["Portico entablature", 330.0, 472.0, 414.0, 434.32, 228.7, MAIN_EAVE - FASCIA, "trim", "A-TRIM"]]
 # garage front (R02): cornice (eave) returns at the feet of the two front gables (xelev front, 17.5 in wide),
 # and the two decorative panels flanking the bump window (xelev GENERAL_TEXTURE, 26 x 64)
-boxes += [["Eave return - lower gable west", -7.0, 10.5, 8.32 + GD, GARAGE_BUMP_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
-          ["Eave return - lower gable east", 132.2, 149.7, 8.32 + GD, GARAGE_BUMP_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
-          ["Eave return - garage gable east", 270.5, 288.0, 19.36 + GD, GARAGE_FACE_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 3.0, "trim", "A-TRIM"]]
+# R14: the lower gable returns run from its front (y -11.64) back to the bump wall, as drawn on the south elevation
+boxes += [["Eave return - lower gable west", -7.0, 10.5, LG_FRONT_Y, GARAGE_BUMP_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
+          ["Eave return - lower gable east", 132.2, 149.7, LG_FRONT_Y, GARAGE_BUMP_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
+          ["Eave return - garage gable east", 270.5, 288.0, G_RAKE_Y, GARAGE_FACE_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 3.0, "trim", "A-TRIM"]]
 
 # window / door surrounds and stone headers (R04, xelev layer FINE):
 #  - first floor (head below 130): cast-stone header 8 in high over the opening, 2 in wider each side, 1.25 in proud;

@@ -265,8 +265,15 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 - **2026-10-17** — **Owner: no more rendering by Claude; Astra takes the renders.**
   - No V-Ray render was running when the instruction came.
   - The pipeline in `tools/lot7_rebuild/vray/` is kept for reference only.
-  - Open Lot 7 differences that still need a decision: small garage door 6 ft (DWG) vs 8 ft; lower front gable projection ~11 in; north vs south elevation garage end ~10 in.
-- **2026-10-17** — Lot 7 **model R13** (`JESB_Lot7_Model_R13.skp`, **current**).
+  - Open Lot 7 differences after R14:
+    - Small garage door: the elevation draws 6 ft, but the plan labels "8'-0" x 8'-0" OVHD"; the model keeps 8 ft.
+    - North vs south elevation garage end: ~10 in, contradictory drawings; the model follows the south view.
+- **2026-10-17** — Lot 7 **model R14** (`JESB_Lot7_Model_R14.skp`, **current**). The owner said "fix to the DWG if sure".
+  - The lower front gable now projects 20 in ahead of the main garage gable, as both side views agree (`LG_FRONT_Y` −11.64).
+  - The garage gable rake is at 8.36 (`G_RAKE_Y`).
+  - The garage door and the north end were not changed (not certain); reasons are in the R14 change log.
+  - The elevation sheets note "James Hardie siding Arctic White"; the ACC says Cobble Stone. Reported to the owner, not acted on.
+- **2026-10-17** — Lot 7 **model R13** (`JESB_Lot7_Model_R13.skp`).
   - The owner said: "siding deck white" for the covered terrace. The raised terrace deck and skirt are now white lap siding (`ACC Lot 7 - Siding Dec - White - Terrace Deck`, texture from `make_white_siding.py`).
   - The V-Ray renders are in `Renders/R13/`.
   - The phrase "siding dec white" was ambiguous. The owner meant the covered terrace, not the decorative panels or the lap siding on the house.

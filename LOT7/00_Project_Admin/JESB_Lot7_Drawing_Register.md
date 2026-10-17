@@ -77,7 +77,8 @@ Technical notes:
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R10.skp` | R09 with true standing-seam texture on the metal roofs. AI render input package in `04_Visualization/Working/AI_Render_Package_R10/`. See `JESB_Lot7_Model_R10_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R11.skp` | R10 + owner answers to RFI-001: garage front, slider, wing gable window and entry door per the elevations. Roof per A-220. See `JESB_Lot7_Model_R11_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R12.skp` | R11 + RFI-001.03: main roof end hips 6:12 per the rear elevation (ridge 131 in). See `JESB_Lot7_Model_R12_Change_Log.md`. |
-| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R13.skp` | **Current.** R12 + covered terrace deck and skirt in white lap siding (Siding Dec - White). See `JESB_Lot7_Model_R13_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R13.skp` | R12 + covered terrace deck and skirt in white lap siding (Siding Dec - White). See `JESB_Lot7_Model_R13_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R14.skp` | **Current.** R13 + lower front gable projection and garage gable rake per the side elevations. See `JESB_Lot7_Model_R14_Change_Log.md`. |
 
 ## 5. Issued sets
 
@@ -98,4 +99,5 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R11.pdf` | R11 review set, 9 A3 sheets (17.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R12.pdf` | R12 review set, 9 A3 sheets (17.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R13.pdf` | R13 review set, 9 A3 sheets (17.10.2026) |
+| `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R14.pdf` | R14 review set, 9 A3 sheets (17.10.2026) |
 | `04_Visualization/Renders/R13/JESB_Lot7_R13_Render_Elevation_*.png` | V-Ray photoreal elevations from model R13, 4 views at 3200 x 1712 (17.10.2026). DWG cross-check in `QA_Render_vs_DWG/`. |
