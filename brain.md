@@ -223,7 +223,26 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 - Elevation sheet titles say "Right side–South", "Left side–North", "Rear–East", so the Lot 7 front faces **west**. Old v1/v2 models used front = -y.
 - **Company template (Projades):** `HoffmanEstate/00_Project_Admin/Brand_Templates`: A3 landscape 420x297, 10 mm border, title block at the bottom, Arial / Arial Bold, colours #17332F #27766E #B1663C, text wordmark "PROJADES". A copy is in `LOT7/00_Project_Admin/Brand_Templates/`. GStudio (Derby) is a landscape consultant's sealed title block; never use it.
 
+- **Lot 7 model R01** (`LOT7/03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R01.skp`, **current**). Built from scratch, exterior only, in **DWG plan coordinates** (inches, z = 0 at the main floor 839.20', DWG elevation y 1429.31). Decisions of 2026-10-16: model as drawn, no interior, terrain from the grade lines only, A3 Projades PDFs, no renders. Pipeline in `tools/lot7_rebuild/`:
+  - `pdf_plan_extract.py`: plot PDF to plan segments. The transform X = px/1.5 - 200, Y = (H - py)/1.5 - 150 is exact.
+  - `openings.py`: plan glazing spans plus elevation window units. Windows on xelev are exploded lines on layer `ARWINDOW`/`ARDOOR`, clustered by connectivity.
+  - `grade_profiles.py`.
+  - `lot7_r01.py`: roof envelope bodies, wall slabs with a top profile = underside of the covering roof group, boxes, terrain → `r01_spec.json`.
+  - `build_r01.rb`.
+  - `run_build.ps1`: opens a copy of the owner's model only to reuse its textures, then erases everything.
+  - `overlay_check.py`: QA overlay of xelev on the exports.
+  - `make_a3_set.py` + `sheets_r01.json`: A3 set in the Projades layout.
+- Lot 7 drawing mappings: elevation x = plan x + 6482.98 (front/west), 4411.64 - plan x (rear/east), plan y + 7598.36 (south), 6134.36 - plan y (north). The side elevations are about 5" inconsistent. A-220 roof plan PDF page 6: plan = (pt·2/3 - 171.0, -pt_y·2/3 + 1332.82) with `rotation_matrix`; it is not rotated or mirrored against the plans. Automatic line voting failed on it (gutter hatch); anchor on the main eave rectangle instead.
+- Lot 7 key heights (z): main eave top 248.87 (fascia 7.25), ridge 381.97; wing eave 201.12, ridge 300.85; bay dormers 234.5; garage eave 105.62; garage slab -38.1; terrace eave 112.37; gablet base 258.9, ridge 313.2; main plate 121.12, L2 floor 133.75, upper plate 242.87. Grades: front -38, rear -76, north -59.6..-76.
+- **SketchUp API lesson (R01):** a group or definition that is created empty and filled *after* other geometry work in the same operation can be silently deleted ("reference to deleted Entities"); a placeholder edge or cpoint does not help. Build each group's geometry immediately after `add_group`, and compute topology (free edges, undersides) in Python instead of reading it back from SketchUp. Merge coplanar faces with tolerance (dot > 0.99999, plane distance < 0.05).
+- **Wall-top rule that works:** sample the roof groups covering the wall's *interior* side (0.3" inside). First-floor walls stop at the lowest such group envelope, upper walls at the highest. Use the envelope (max of the group's bodies), not single bodies.
+
 ## 8. Log
+
+- **2026-10-16** — Lot 7 **model R01** issued:
+  - model, exports and QA in `LOT7/04_Visualization/Exports/R01/`;
+  - A3 set `LOT7/05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R01.pdf` (8 sheets);
+  - change log `LOT7/00_Project_Admin/JESB_Lot7_Model_R01_Change_Log.md`, with 9 open drawing conflicts. The main one: the new xflr1 moves the garage front 9.36" back but xelev was not updated.
 
 - **2026-10-16** — Lot 7: folder reorganised to the Projades standard, drawing register and rebuild plan R01 written, new DWGs surveyed (DXF + layered plot PDFs in scratch; `tools/lot7_rebuild/dxf_survey.py`). No model work yet; waiting for approval of the plan.
 

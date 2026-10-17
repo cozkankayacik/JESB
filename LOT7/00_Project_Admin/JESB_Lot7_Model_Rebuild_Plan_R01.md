@@ -1,8 +1,23 @@
 # JESB Lot 7 – SketchUp Model Rebuild Plan (R01)
 
 Date: 2026-10-16
-Status: **for approval**
+Status: **approved with changes (2026-10-16)**
 Prepared for: Projades
+
+## 0. Decisions (2026-10-16): these override the rest of this plan
+
+| # | Question | Decision |
+|---|---|---|
+| 1 | Scope | Model the architect's design **as drawn** |
+| 2 | Interior | **No interior.** Exterior envelope only. No interior walls, stairs inside, casework or fixtures. Floor plates are kept only so the windows do not look through the building. |
+| 3 | Site | Terrain **only from the grade lines** on the elevations |
+| 4 | Sheets | PDF outputs on the **Projades A3** template; the elevations are drawn to fit the sheet |
+| 5 | Renders | **No renders.** Modelling and model exports only. |
+
+What this removes from the sections below:
+- Tags A-WALL-INT, A-CASEWORK, A-FIXT, M-EQUIP and ANNO-TEXT are not used.
+- Section 8 (visualisation) is dropped.
+- Section 7 is reduced to an A3 set: cover, four elevations, roof plan view and perspectives.
 
 ## 1. Brief summary
 

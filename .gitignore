@@ -12,3 +12,6 @@ session_archive/
 
 # Large intermediate exports
 *.dxf
+
+__pycache__/
+tools/lot7_rebuild/run_config.json

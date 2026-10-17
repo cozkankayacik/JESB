@@ -65,3 +65,10 @@ Technical notes:
 |---|---|
 | `JESB_Lot7_Owner_Model_2026-10-15.skp` | Owner's original model. Original file name `JESB_SKETCHUP_LOT7.skp`. Reference only. |
 | `99_Archive/.../JESB_Lot7_v1.skp`, `JESB_Lot7_v2.skp` | Earlier corrections of the owner model (roofs, dormers, windows). Superseded by the rebuild. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R01.skp` | **Current.** Exterior model R01 rebuilt from the DWGs. See `JESB_Lot7_Model_R01_Change_Log.md`. |
+
+## 5. Issued sets
+
+| File | Content |
+|---|---|
+| `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R01.pdf` | R01 review set, 8 A3 sheets (16.10.2026) |
