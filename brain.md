@@ -263,6 +263,8 @@ Noticed while reading the set; none confirmed with the user or architect yet.
   - The scripted pipeline and its gotchas are in `tools/lot7_rebuild/vray/README.md`: orthographicWidth must be halved; the sky is a plate composited behind the image; `-camera` uses the scene's own CameraPhysical.
   - Renders take about 6 min per view at 3200 px. Run them detached with `Start-Process` and `Wait-Process`; the background tool times out at 10 min.
   - The owner asked for a cross-check of the renders against the DWG: `vray/render_dwg_check.py`, output in `Renders/R10/QA_Render_vs_DWG/`. Each render matches the model within 2 px.
+  - The owner said not to change the model yet. **RFI-001** (English, Projades A3, `tools/lot7_rebuild/make_rfi.py`) is in `05_Presentations_and_Issued/RFI/` and `00_Project_Admin/RFI/`. It is waiting for the architect's answers; the model stays at R10 until then.
+  - The terrace roof pitch was read as ≈5:12 in R01, but the overlay shows ≈6:12, matching the A-220 note. RFI item 04 proposes 6:12.
   - Nine model-vs-xelev differences were reported to the owner and **not fixed**, pending a decision: garage west end 10–20 in; rear-elevation ridge contradicts the front elevation and A-220; terrace roof pitch; slider door head; south upper window; guest bay window widths; wing gable window; front door panels.
 - **2026-10-17** — Lot 7 **model R10** (`JESB_Lot7_Model_R10.skp`, **current**).
   - The metal roofs use our own standing-seam texture (`make_seam_texture.py`). The owner seam texture read as tiles.

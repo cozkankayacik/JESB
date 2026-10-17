@@ -90,4 +90,5 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R08.pdf` | R08 review set, 9 A3 sheets (17.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R09.pdf` | R09 review set, 9 A3 sheets (17.10.2026) |
 | `04_Visualization/Renders/R10/JESB_Lot7_R10_Render_Elevation_*.png` | V-Ray photoreal elevations, 4 views at 3200 x 1712 (17.10.2026). The DWG cross-check is in `QA_Render_vs_DWG/`. |
+| `05_Presentations_and_Issued/RFI/PROJADES_JESB_Lot7_RFI-001_Elevations_vs_Model_2026-10-17.pdf` | RFI-001 to Purohit Architects: 9 elevation-vs-model differences, 10 A3 pages (17.10.2026). Text and evidence in `00_Project_Admin/RFI/`. **Open – awaiting response.** |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R10.pdf` | R10 review set, 9 A3 sheets (17.10.2026) |
