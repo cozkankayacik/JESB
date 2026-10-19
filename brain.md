@@ -258,6 +258,8 @@ Noticed while reading the set; none confirmed with the user or architect yet.
 
 ## 8. Log
 
+- **2026-10-19** — Lot 19 model v6 (`LOT19/JESB_Lot19_v6.skp`, **current**; `exports_v6/`; change log), from the owner's v5 saved 2026-10-19 10:19 (they had added `Material8`, a pale wood screenshot texture, on accent panels, entry door, garage doors and deck). Materials only: the 8 accent panel faces between windows (groups 352505, 351512, 348235, 334843, 334452, 347116, 346879) -> new `ACC Lot 19 - Siding dec - Light Brown` (ACC I17 image29, 19.3 x 20.2 in., horizontal lap); Cobble Stone `Material9` / `Material3` textures lightened 22 % towards white at the same size. Door/garage doors left on Material8 (ACC says Light Brown too — offered). Script `tools/lot19/build_v6.rb`. Tip: `material.texture.image_rep.save_file` exports an embedded texture; replace a texture with `mt.texture = file` then restore `texture.size` so existing UVs stay.
+
 - **2026-10-17** — Lot 7 **model R12** (`JESB_Lot7_Model_R12.skp`).
   - The owner answered RFI-001.03 with "use the DWG", meaning the rear elevation. The main roof end hips are now `P_END` = 0.5 (6:12) and the ridge is 131 in; the rear elevation matches.
   - The front elevation and A-220 roof (9:12, ridge 308 in) no longer match, which the owner accepted. R11 keeps the A-220 roof.
