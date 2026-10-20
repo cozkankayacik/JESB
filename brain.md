@@ -266,7 +266,15 @@ Noticed while reading the set; none confirmed with the user or architect yet.
   - The owner answered RFI-001.03 with "use the DWG", meaning the rear elevation. The main roof end hips are now `P_END` = 0.5 (6:12) and the ridge is 131 in; the rear elevation matches.
   - The front elevation and A-220 roof (9:12, ridge 308 in) no longer match, which the owner accepted. R11 keeps the A-220 roof.
   - The R12 renders were stopped when the R13 change came in.
-- **2026-10-20** — Lot 7 **model R15** (`JESB_Lot7_Model_R15.skp`, **current**). The changes come from Dominika's review of 19.10, mark-ups made on the R14 AI render; the check and plan are in `LOT7/00_Project_Admin/Reviews/`.
+- **2026-10-20** — Lot 7 **model R16** (`JESB_Lot7_Model_R16.skp`, **current**).
+  - **The owner edited R15 by hand** (17:30). From now on, continue on the owner's model with scripted edits (`tools/lot7_rebuild/su_edit/*.rb`, run via `vray/run_su.ps1` on a copy and saved as the next R). **Do not re-run the generator** (`lot7_r01.py` / `build_r01.rb`): it would wipe the owner's edits.
+  - R16 changes:
+    - Lap siding is white (Dominika plus the DWG note "Arctic White"). This answers Q1.
+    - Entry steps follow xelev: porch at −7.5, 4 risers, the bottom two wide in front of the piers, rails at x 358 / 454.
+    - Garage bump corner follows the DWG: brick base, sill course, corner boards.
+  - The second "check blueprint" point (garage/main junction) is downspouts in the DWG. Gutters and downspouts are not modelled (owner, 17.10), so nothing was changed there.
+  - Still open: Q2 (headers to white?), Q3, Q5.
+- **2026-10-20** — Lot 7 **model R15** (`JESB_Lot7_Model_R15.skp`). The changes come from Dominika's review of 19.10, mark-ups made on the R14 AI render; the check and plan are in `LOT7/00_Project_Admin/Reviews/`.
   - D01: garage front pent roof (`PG` body).
   - D02: water table 12.21–14.87 and sill course 22.87–24.87.
   - D03, D04: gable rake friezes and apex trim, using the new spec list `plates` (polygon trim in a wall plane).
