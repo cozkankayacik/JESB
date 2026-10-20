@@ -266,13 +266,28 @@ Noticed while reading the set; none confirmed with the user or architect yet.
   - The owner answered RFI-001.03 with "use the DWG", meaning the rear elevation. The main roof end hips are now `P_END` = 0.5 (6:12) and the ridge is 131 in; the rear elevation matches.
   - The front elevation and A-220 roof (9:12, ridge 308 in) no longer match, which the owner accepted. R11 keeps the A-220 roof.
   - The R12 renders were stopped when the R13 change came in.
+- **2026-10-20** — Lot 7 **model R15** (`JESB_Lot7_Model_R15.skp`, **current**). The changes come from Dominika's review of 19.10, mark-ups made on the R14 AI render; the check and plan are in `LOT7/00_Project_Admin/Reviews/`.
+  - D01: garage front pent roof (`PG` body).
+  - D02: water table 12.21–14.87 and sill course 22.87–24.87.
+  - D03, D04: gable rake friezes and apex trim, using the new spec list `plates` (polygon trim in a wall plane).
+  - D05: two-sash basement windows (`mull`).
+  - D06: dormer side eaves in their own roof group, so the wing roof runs under them; plain wing walls use the `DORMERS` exclusion.
+  - D07: garage slab inset.
+  - D08: fascia merged; coplanar seams are split and hidden in `hide_wall_seams`.
+  - Waiting:
+    - Q1: all lap siding white (DWG note "Arctic White") vs ACC Cobble Stone.
+    - Q2: headers to white trim vs the 17.10 cast-stone decision.
+    - Q3: apex trim on the lower gable.
+    - Q4: entry stair, cheek walls vs open.
+    - Q5: arrow at the entry and eave junction.
+  - Lesson: many mark-ups on AI renders are render artifacts (downspouts, white strips). Always check them against the model export and the DWG first.
 - **2026-10-17** — **Owner: no more rendering by Claude; Astra takes the renders.**
   - No V-Ray render was running when the instruction came.
   - The pipeline in `tools/lot7_rebuild/vray/` is kept for reference only.
   - Open Lot 7 differences after R14:
     - Small garage door: the elevation draws 6 ft, but the plan labels "8'-0" x 8'-0" OVHD"; the model keeps 8 ft.
     - North vs south elevation garage end: ~10 in, contradictory drawings; the model follows the south view.
-- **2026-10-17** — Lot 7 **model R14** (`JESB_Lot7_Model_R14.skp`, **current**). The owner said "fix to the DWG if sure".
+- **2026-10-17** — Lot 7 **model R14** (`JESB_Lot7_Model_R14.skp`). The owner said "fix to the DWG if sure".
   - The lower front gable now projects 20 in ahead of the main garage gable, as both side views agree (`LG_FRONT_Y` −11.64).
   - The garage gable rake is at 8.36 (`G_RAKE_Y`).
   - The garage door and the north end were not changed (not certain); reasons are in the R14 change log.

@@ -26,6 +26,8 @@ GBR_EAVE = 127.1              # from the roof/wall line 159.37 on the north elev
 GD = GARAGE_FACE_Y - 25.36    # -9.36
 G_RAKE_Y = 8.36               # R14: main garage gable rake front (xelev south)
 LG_FRONT_Y = G_RAKE_Y - 20.0  # R14: lower front gable front, 20 in ahead of the main gable (both side elevations)
+PENT_EAVE_Y = -7.64           # R15: garage front pent roof eave (xelev south profile)
+DORMERS = ("DL", "DR")        # R15: dormer roof bodies - not used for the tops of the plain wing walls beside them
 
 # main front/rear pitch from the dimensioned ridge (25'-8") and the elevation ridge height
 P6 = (MAIN_RIDGE - MAIN_EAVE) / ((924.32 - 417.36) / 2.0)
@@ -61,6 +63,8 @@ def height(b, x, y):
     return min(zpl(pl, x, y) for pl in b["planes"])
 
 
+DL_PLANES = [plane("W", 4.9, P9, DORMER_EAVE), plane("S", 89.3, P9, DORMER_EAVE), plane("N", 253.0, P9, DORMER_EAVE)]
+DR_PLANES = [plane("E", 294.0, P9, DORMER_EAVE), plane("S", 164.2, P9, DORMER_EAVE), plane("N", 329.6, P9, DORMER_EAVE)]
 ROOF_UPPER = [
     # R12 (owner, RFI-001.03 "use the DWG"): end hips at 6:12 as drawn on the rear elevation (xelev: hips from the eave
     # corners to the ridge 254.17..384.79 at 381.97). R01-R11: 9:12 per A-220 and the front elevation (ridge 165.5..473.5).
@@ -81,10 +85,17 @@ ROOF_UPPER = [
     # 6:12, ridge 313.2 dying into the hip at x 565
     body("GB gablet south", [plane("S", 605.9, 0.5, 258.9), plane("N", 823.3, 0.5, 258.9)], (480.0, 637.6, 605.9, 823.3)),
     body("W wing", [plane("W", 17.0, P9, WING_EAVE), plane("E", 282.96, P9, WING_EAVE)], (17.0, 282.96, 54.96, 760.0)),
-    body("DL dormer west", [plane("W", 4.9, P9, DORMER_EAVE), plane("S", 89.3, P9, DORMER_EAVE),
-                            plane("N", 253.0, P9, DORMER_EAVE)], (4.9, 150.0, 89.3, 253.0), metal=[0, 1, 2]),
-    body("DR dormer east", [plane("E", 294.0, P9, DORMER_EAVE), plane("S", 164.2, P9, DORMER_EAVE),
-                            plane("N", 329.6, P9, DORMER_EAVE)], (150.0, 294.0, 164.2, 329.6), metal=[0, 1, 2]),
+    # R15: dormer roofs split - the part over the bay (between its side walls) stays in this envelope (it replaces the
+    # wing roof there); the 12 in side overhangs are a separate group (ROOF_DORMER_EAVES) so the wing roof runs on
+    # under them, as drawn (xelev: wing fascia runs to the bay sides, shingles under the dormer eaves)
+    body("DL dormer west", DL_PLANES, (4.9, 150.0, 101.3, 241.0), metal=[0, 1, 2]),
+    body("DR dormer east", DR_PLANES, (150.0, 294.0, 176.2, 317.6), metal=[0, 1, 2]),
+]
+ROOF_DORMER_EAVES = [
+    body("DL dormer west - south eave", DL_PLANES, (4.9, 150.0, 89.3, 101.3), metal=[0, 1, 2]),
+    body("DL dormer west - north eave", DL_PLANES, (4.9, 150.0, 241.0, 253.0), metal=[0, 1, 2]),
+    body("DR dormer east - south eave", DR_PLANES, (150.0, 294.0, 164.2, 176.2), metal=[0, 1, 2]),
+    body("DR dormer east - north eave", DR_PLANES, (150.0, 294.0, 317.6, 329.6), metal=[0, 1, 2]),
 ]
 # Garage roofs per the xelev front elevation (R02):
 #  G  = main garage gable, eaves x -7 / 288 (apex x 140.5 at 216.2 as drawn), gable face in the plane of the right
@@ -97,13 +108,18 @@ ROOF_GARAGE = [
     # its ~4.6 in global offset). R11-R13: G 10.0, LG -1.04.
     body("G garage gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 288.0, P9, GARAGE_EAVE)], (-7.0, 288.0, G_RAKE_Y, 434.32)),
     body("LG lower front gable", [plane("W", -7.0, P9, GARAGE_EAVE), plane("E", 149.7, P9, GARAGE_EAVE)], (-7.0, 149.7, LG_FRONT_Y, 60.0)),
+    # R15 (Dominika D01 "missing roof"): standing-seam pent roof across the foot of the main garage gable, right of the
+    # lower gable - xelev front A-Elev-Patt seams x 150.7..284 between the eave 105.62 and ~119.4; xelev south draws its
+    # profile from the eave at y -7.64 rising 6:12 to the gable; it hips into the garage east eave (288, 9:12)
+    body("PG garage front pent roof", [plane("S", PENT_EAVE_Y, 0.5, GARAGE_EAVE), plane("E", 288.0, P9, GARAGE_EAVE)],
+         (149.7, 288.0, PENT_EAVE_Y, GARAGE_FACE_Y), metal=[0, 1]),
 ]
 ROOF_GBR = [body("B guest bedroom bay", [plane("W", -43.04, P9, GBR_EAVE), plane("S", 382.96, P9, GBR_EAVE),
                                          plane("N", 602.08, P9, GBR_EAVE)], (-43.04, 0.0, 382.96, 602.08), metal=[0, 1, 2])]
 ROOF_TERRACE = [body("T covered terrace", [plane("E", 795.0, P_TERR, TERRACE_EAVE), plane("S", 569.7, P_TERR, TERRACE_EAVE),
                                            plane("N", 859.3, P_TERR, TERRACE_EAVE)], (638.96, 795.0, 569.7, 859.3))]
 ROOF_GROUPS = [("Roof - Main and wing", ROOF_UPPER), ("Roof - Garage", ROOF_GARAGE), ("Roof - Guest bedroom bay", ROOF_GBR),
-               ("Roof - Covered terrace", ROOF_TERRACE)]
+               ("Roof - Covered terrace", ROOF_TERRACE), ("Roof - Dormer side eaves", ROOF_DORMER_EAVES)]
 ALL_BODIES = [b for _, g in ROOF_GROUPS for b in g]
 
 
@@ -249,11 +265,11 @@ for gname, bodies in ROOF_GROUPS:
     print("%-26s %3d cells, top %.2f, free edges %d" % (gname, len(cells), top, len(fe)))
 
 
-def roof_surfaces_at(x, y):
+def roof_surfaces_at(x, y, exclude=()):
     """Visible roof height of every roof group covering (x, y): the envelope (max) of its bodies."""
     out = []
     for _, bodies in ROOF_GROUPS:
-        hs = [height(b, x, y) for b in bodies if inside(b, x, y)]
+        hs = [height(b, x, y) for b in bodies if inside(b, x, y) and not b["name"].startswith(exclude)]
         if hs:
             out.append(max(hs))
     return out
@@ -307,11 +323,14 @@ def add_wall(f, a, b, zb, floor, thick, margin=24.0):
     # top profile: sample the lowest roof surface clearly above the wall bottom, minus the roof thickness
     us = sorted(set([a, b] + [a + i * 2.0 for i in range(1, int((b - a) / 2.0))]))
     prof = []
+    # R15 (Dominika D06): plain wing walls beside a dormer stop at the wing roof - the dormer overhang above them
+    # made small siding "ears" over the wing eave
+    excl = DORMERS if floor == "L2" and zone_material(f["p"], f["q"], 0, floor) == "siding" else ()
     for u in us:
         x, y = (u, c) if ax == "x" else (c, u)
         # only roofs covering the interior side of the wall count (a lower roof dying into the wall from outside
         # does not stop it); first-floor walls stop at the lowest such roof, upper walls run to the highest
-        cand = [h - FASCIA for h in roof_surfaces_at(x - f["n"][0] * 0.3, y - f["n"][1] * 0.3) if h - FASCIA > zb + margin]
+        cand = [h - FASCIA for h in roof_surfaces_at(x - f["n"][0] * 0.3, y - f["n"][1] * 0.3, excl) if h - FASCIA > zb + margin]
         pick = (min if floor == "L1" else max)
         prof.append((u, round(pick(cand), 3) if cand else None))
     if any(t is None for _, t in prof):
@@ -435,8 +454,10 @@ op_list.append({"floor": "L1", "view": "south", "c": 276.0, "a": 174.0, "b": 366
 x0segs = json.load(open(os.path.join(W, "xflr0_plan_segs.json")))
 bw = sorted({round(min(s[1], s[3]), 1) for s in x0segs if s[4] == "A-Glaz" and abs(s[0] - s[2]) < 0.05 and s[0] < 15 and abs(s[1] - s[3]) > 40})
 print("basement glazing on the north wall (xflr0):", bw)
-for a in (bw if len(bw) == 2 else (636.6, 833.3)):
-    op_list.append({"floor": "B", "view": "north", "c": 0.0, "a": a, "b": a + 48.0, "z0": -80.0, "z1": -32.0, "kind": "window", "n": [-1, 0]})
+# R15 (Dominika D05): two sashes each as drawn (xelev ARWINDOW): 26 + 22 in (west unit) and 22 + 26 in (east unit)
+for a, mull in zip(bw if len(bw) == 2 else (636.6, 833.3), (26.0, 22.0)):
+    op_list.append({"floor": "B", "view": "north", "c": 0.0, "a": a, "b": a + 48.0, "z0": -80.0, "z1": -32.0, "kind": "window", "n": [-1, 0],
+                    "mull": a + mull})
 
 placed = 0
 for o in op_list:
@@ -448,7 +469,8 @@ for o in op_list:
         print("  !! opening without wall:", o["floor"], o["view"], o["c"], o["a"], o["b"])
         continue
     w = min(hits, key=lambda w: w["b"] - w["a"])
-    w["openings"].append({"a": o["a"], "b": o["b"], "z0": o["z0"], "z1": o["z1"], "kind": o["kind"], "rows": o.get("rows", [])})
+    w["openings"].append({"a": o["a"], "b": o["b"], "z0": o["z0"], "z1": o["z1"], "kind": o["kind"], "rows": o.get("rows", []),
+                          "mull": o.get("mull")})
     placed += 1
 print("openings placed:", placed, "of", len(op_list))
 
@@ -464,6 +486,45 @@ boxes += [["Portico pier north", 338.96, 362.96, 420.32, 434.32, -38.0, 228.7, "
 boxes += [["Eave return - lower gable west", -7.0, 10.5, LG_FRONT_Y, GARAGE_BUMP_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
           ["Eave return - lower gable east", 132.2, 149.7, LG_FRONT_Y, GARAGE_BUMP_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 4.0, "trim", "A-TRIM"],
           ["Eave return - garage gable east", 270.5, 288.0, G_RAKE_Y, GARAGE_FACE_Y, GARAGE_EAVE - FASCIA, GARAGE_EAVE + 3.0, "trim", "A-TRIM"]]
+
+# R15 (Dominika D03 / D04): white gable trim per xelev front (FINE): a frieze board under each rake of the wing gable,
+# the main garage gable and the lower gable (lower edge = xelev FINE line, upper edge = the model's rake underside),
+# a base board across the lower gable between its eave returns, and the apex trim (board + post) of the wing and main
+# garage gables. 'plates' = [name, axis, face c, outward normal (nx, ny), [(u, z), ...], d0, d1, material]: a polygon in
+# the face plane, extruded from d0 to d1 in. in front of the face.
+plates = []
+
+
+def rake_under(eave_u, rise_dir, ze, u):
+    """Underside of a 9:12 rake at u: eave line at eave_u rising in direction rise_dir (+1 / -1)."""
+    return ze + P9 * (u - eave_u) * rise_dir - FASCIA
+
+
+def gable_trim(name, c, left_eave, right_eave, ze, lo_l, lo_r, end_l=None, end_r=None):
+    """Frieze boards under both rakes. lo_l / lo_r = xelev lower edges ((u0, z0), (u1, z1)), outer end first."""
+    for side, eave, sgn, lo in (("west", left_eave, 1, lo_l), ("east", right_eave, -1, lo_r)):
+        (ua, za), (ub, zb_) = lo
+        pts = [(ua, za), (ub, zb_), (ub, rake_under(eave, sgn, ze, ub)), (ua, rake_under(eave, sgn, ze, ua))]
+        plates.append(["Rake frieze %s - %s" % (side, name), "x", c, (0.0, -1.0), pts, 0.0, 0.75, "trim"])
+
+
+# wing front gable (face y 62.96, eaves x 17 / 282.96 at 201.12)
+gable_trim("wing gable", 62.96, 17.0, 282.96, WING_EAVE, ((34.5, 196.12), (146.38, 280.03)), ((265.5, 196.12), (153.63, 280.03)))
+plates.append(["Apex trim board - wing gable", "x", 62.96, (0.0, -1.0),
+               [(146.38, 265.81), (153.63, 265.81), (153.63, rake_under(282.96, -1, WING_EAVE, 153.63)), (150.0, rake_under(17.0, 1, WING_EAVE, 150.0)),
+                (146.38, rake_under(17.0, 1, WING_EAVE, 146.38))], 0.0, 0.75, "trim"])
+plates.append(["Apex trim post - wing gable", "x", 62.96, (0.0, -1.0), [(148.25, 267.81), (151.75, 267.81), (151.75, 290.5), (148.25, 290.5)], 0.75, 1.75, "trim"])
+# main garage gable (face y GARAGE_FACE_Y, eaves x -7 / 288 at 105.62); east board ends level at 115.62 (FINE 250.5..262.59)
+gable_trim("main garage gable", GARAGE_FACE_Y, -7.0, 288.0, GARAGE_EAVE, ((83.45, 155.27), (136.92, 195.37)), ((250.5, 115.62), (144.17, 195.37)))
+plates.append(["Rake frieze east end - main garage gable", "x", GARAGE_FACE_Y, (0.0, -1.0),
+               [(250.5, 115.62), (262.59, 115.62), (262.59, rake_under(288.0, -1, GARAGE_EAVE, 262.59)), (250.5, rake_under(288.0, -1, GARAGE_EAVE, 250.5))], 0.0, 0.75, "trim"])
+plates.append(["Apex trim board - main garage gable", "x", GARAGE_FACE_Y, (0.0, -1.0),
+               [(136.92, 181.15), (144.17, 181.15), (144.17, rake_under(288.0, -1, GARAGE_EAVE, 144.17)), (140.5, rake_under(-7.0, 1, GARAGE_EAVE, 140.5)),
+                (136.92, rake_under(-7.0, 1, GARAGE_EAVE, 136.92))], 0.0, 0.75, "trim"])
+plates.append(["Apex trim post - main garage gable", "x", GARAGE_FACE_Y, (0.0, -1.0), [(138.79, 183.15), (142.29, 183.15), (142.29, 205.84), (138.79, 205.84)], 0.75, 1.75, "trim"])
+# lower gable (gable face = garage bump face, eaves x -7 / 149.7 at 105.62): rake friezes and the base board 98.37..103.87
+gable_trim("lower gable", GARAGE_BUMP_Y, -7.0, 149.7, GARAGE_EAVE, ((10.5, 102.75), (67.74, 145.68)), ((132.24, 102.75), (74.99, 145.68)))
+plates.append(["Base board - lower gable", "x", GARAGE_BUMP_Y, (0.0, -1.0), [(10.5, 98.37), (132.24, 98.37), (132.24, 103.87), (10.5, 103.87)], 0.0, 0.75, "trim"])
 
 # window / door surrounds and stone headers (R04, xelev layer FINE):
 #  - first floor (head below 130): cast-stone header 8 in high over the opening, 2 in wider each side, 1.25 in proud;
@@ -635,9 +696,16 @@ for w in walls:
     if tmin > 240.0:
         band("Frieze board", 228.6, 238.1, 0.75, "trim", False)      # xelev frieze band (FINE lines 228.6 / 238.1)
     if w["floor"] == "L1":
-        band("Water table (rowlock)", 10.7, 16.7, 1.0, "brick", True)
+        # R15 (Dominika D02 "this line is connected with window sill"): the two continuous xelev bands on all four
+        # elevations (FINE 12.21/14.87 and 22.87/24.87); the first-floor sills (24.87) sit on the sill course.
+        # R01-R14: one band 10.7..16.7
+        for nm, z0, z1 in (("Water table (rowlock)", 12.21, 14.87), ("Sill course (rowlock)", 22.87, 24.87)):
+            if z1 <= tmin:
+                band(nm, z0, z1, 1.0, "brick", True)
 # garage slab and driveway apron (ASSUMPTION: no site plan - apron 20 ft wide in front of the garage doors)
-boxes += [["Garage slab", 0.0, 276.0, GARAGE_BUMP_Y, 400.0, -42.0, -38.1, "concrete", "A-SLAB"],
+# R15 (Dominika D07): slab held 1 in inside the wall faces (it shared the north / front faces and showed as lines)
+boxes += [["Garage slab (bump)", 1.0, 137.68, GARAGE_BUMP_Y + 1.0, 399.0, -42.0, -38.1, "concrete", "A-SLAB"],
+          ["Garage slab", 137.68, 275.0, GARAGE_FACE_Y + 1.0, 399.0, -42.0, -38.1, "concrete", "A-SLAB"],
           ["Driveway apron (assumed)", 276.0, 516.0, GARAGE_FACE_Y, 400.0, -40.0, -37.9, "asphalt", "L-SITE"]]
 # frieze board under the main soffit (white, 8 in) on the brick walls
 trims = [{"wall": i, "z0": MAIN_EAVE - FASCIA - 8.0 + 9.0 * 0, "z1": None} for i in range(0)]   # placeholder (frieze built in Ruby from wall tops)
@@ -698,7 +766,7 @@ boxes += [["Driveway to street (assumed)", 300.0, 516.0, -480.0, GARAGE_FACE_Y, 
 
 # gutters and downspouts: not modelled (owner instruction 2026-10-17 - materials only)
 
-spec = {"roofs": roofs, "walls": walls, "boxes": boxes, "sloped": sloped, "terrain": terrain, "fascia": FASCIA,
+spec = {"roofs": roofs, "walls": walls, "boxes": boxes, "sloped": sloped, "plates": plates, "terrain": terrain, "fascia": FASCIA,
         "floors": [],
         "levels": {"main": L1, "upper": L2, "garage": -38.1, "main_eave": MAIN_EAVE, "wing_eave": WING_EAVE},
         "notes": fixes}

@@ -2,7 +2,10 @@
 
 Source: `03_Shared_CAD_and_Models/JESB Lot7 Render Elevations 1019.pdf`, 4 pages. These are mark-ups on the R14 AI visualization.
 Checked against: model R14 (exports and DWG overlays in `04_Visualization/Exports/R14/`), the architect's xelev DWG and plan A200 (Rev1 PDF).
-Status: **plan only – the model has not been changed yet.**
+Status (20.10.2026):
+- **D01–D08 are done in model R15**; see `../JESB_Lot7_Model_R15_Change_Log.md`.
+- D09 and D10 wait for the owner's answers to Q1 and Q2.
+- D15, D16 and Q3 wait for Dominika.
 
 The mark-ups are on an AI render, not on the model. Each item below was therefore checked twice: is the problem in the model, or only in the render? Is the request supported by the DWG?
 

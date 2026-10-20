@@ -132,6 +132,7 @@ def build_roof(parent, spec, mats)
     end
   end
   merge_coplanar(ents)
+  merge_coplanar(be)                       # R15 (Dominika D08): no joint lines in the fascia / soffit boards
   ents.grep(Sketchup::Face).each { |f| align_texture(f, f.material) }
   bg.layer = 'A-ROOF'; tg.layer = 'A-ROOF'
   log format('roof %-26s surface faces %4d, under/edge faces %4d, failed %d', spec['name'],
@@ -175,6 +176,78 @@ def build_wall(parent, w, mats, idx)
   end
   g.layer = 'A-WALL-EXT'
   g
+end
+
+# R15: flat trim plate in a wall plane - polygon (u, z) on the face c of axis ('x' = face y const), outward normal n,
+# extruded from d0 to d1 in. in front of the face
+def build_plate(ents, pl, mats)
+  name, axis, c, n, poly, d0, d1, mat = pl
+  g = ents.add_group; g.name = name
+  w = { 'axis' => axis, 'c' => c, 'n' => n }
+  f = g.entities.add_face(poly.map { |u, z| wpt(w, u, z, -d0) })
+  nv = Geom::Vector3d.new(n[0], n[1], 0)
+  f.reverse! if f.normal.dot(nv) < 0
+  f.pushpull(d1 - d0)
+  g.entities.grep(Sketchup::Face).each { |x| x.material = mats[mat]; x.back_material = mats[mat] }
+  g.layer = 'A-TRIM'
+  g
+end
+
+# R15 (Dominika D08): hide the vertical seam lines where two wall groups meet in the same plane (flat brick read as
+# joints / downspouts in the renders). Where a coplanar face of another group (wall, or a band / frieze board) runs
+# along the same vertical line, the edge is split at the ends of that overlap and the overlapping part is hidden; the
+# rest (e.g. a real corner with a bay below) stays.
+def seam_recs(groups)
+  recs = []
+  groups.each do |g|
+    g.entities.grep(Sketchup::Edge).each do |e|
+      a = e.start.position; b = e.end.position
+      next unless (a.x - b.x).abs < 0.01 && (a.y - b.y).abs < 0.01 && (a.z - b.z).abs > 0.5
+      e.faces.each do |f|
+        nz = f.normal
+        next if nz.z.abs > 0.01
+        recs << [g, e, a.x, a.y, [a.z, b.z].min, [a.z, b.z].max, nz, f.plane]
+      end
+    end
+  end
+  recs
+end
+
+def hide_wall_seams(groups)
+  recs = seam_recs(groups)
+  todo = []
+  recs.each do |g, e, x, y, z0, z1, nz, pl|
+    recs.each do |g2, e2, x2, y2, w0, w1, nz2, pl2|
+      next if g2 == g || (x - x2).abs > 0.05 || (y - y2).abs > 0.05
+      next unless nz.dot(nz2) > 0.999 && (pl[3] - pl2[3]).abs < 0.05
+      o0 = [z0, w0].max; o1 = [z1, w1].min
+      todo << [e, o0, o1] if o1 - o0 > 0.5
+    end
+  end
+  hidden = 0
+  todo.each do |e, o0, o1|
+    next unless e.valid?
+    # split the (vertical) edge at o0 / o1 where they fall inside it, then hide the pieces inside [o0, o1]
+    pieces = [e]
+    [o0, o1].each do |zc|
+      pieces = pieces.flat_map do |pe|
+        next [pe] unless pe.valid?
+        za = pe.start.position.z; zb = pe.end.position.z
+        lo, hi = [za, zb].minmax
+        next [pe] unless zc > lo + 0.05 && zc < hi - 0.05
+        ne = pe.split((zc - za) / (zb - za))
+        ne ? [pe, ne] : [pe]
+      end
+    end
+    pieces.each do |pe|
+      next unless pe.valid?
+      za, zb = [pe.start.position.z, pe.end.position.z].minmax
+      next unless za >= o0 - 0.05 && zb <= o1 + 0.05
+      next if pe.hidden?
+      pe.hidden = true; hidden += 1
+    end
+  end
+  log "wall seams hidden: #{hidden}"
 end
 
 # ------------------------------------------------------------------------------------------------ windows / doors
@@ -255,8 +328,8 @@ def build_opening_unit(parent, w, o, mats)
     fw = door ? 3.0 : 2.5
     frame_ring(e, w, a, b, z0, z1, fw, inset, inset + 4.0, mats['frame'])
     # twin units: frame mullion between them (xelev draws pairs as two units)
-    units = width > 50 ? 2 : 1
-    m = (a + b) / 2.0
+    units = (width > 50 || o['mull']) ? 2 : 1
+    m = o['mull'] || (a + b) / 2.0          # R15: off-centre mullion where drawn (basement sliders)
     bar(e, w, m - 1.25, m + 1.25, z0 + fw, z1 - fw, inset, inset + 4.0, mats['frame']) if units == 2
     glass(e, w, a + fw, b - fw, z0 + fw, z1 - fw, inset + 2.0, mats['glass'])
     # thin grid muntins as on the elevations (xelev): one vertical and one horizontal bar per unit (4 lites);
@@ -426,6 +499,16 @@ def build
     sloped_bar(gs.entities, name, x0, x1, ya, yb, za, zb, h, mats[mat])
   end
   gs.layer = 'A-STAIR'
+  (SPEC['plates'] || []).each do |pl|
+    begin
+      build_plate(gx.entities, pl, mats)
+    rescue => ex
+      log "plate #{pl[0]} FAILED: #{ex.message}"
+    end
+  end
+  log "plates: #{(SPEC['plates'] || []).length}"
+  bands = gx.entities.grep(Sketchup::Group).select { |g| g.name =~ /^(Frieze board|Water table|Sill course)/ }
+  hide_wall_seams(gw.entities.grep(Sketchup::Group).to_a + bands)
   gf = he.add_group; gf.name = 'Floor plates (interior, to stop see-through)'
   SPEC['floors'].each do |fl|
     f = gf.entities.add_face(fl['poly'].map { |x, y| pt(x, y, fl['z']) })
