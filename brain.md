@@ -266,7 +266,11 @@ Noticed while reading the set; none confirmed with the user or architect yet.
   - The owner answered RFI-001.03 with "use the DWG", meaning the rear elevation. The main roof end hips are now `P_END` = 0.5 (6:12) and the ridge is 131 in; the rear elevation matches.
   - The front elevation and A-220 roof (9:12, ridge 308 in) no longer match, which the owner accepted. R11 keeps the A-220 roof.
   - The R12 renders were stopped when the R13 change came in.
-- **2026-10-20** — Lot 7 **model R17** (`JESB_Lot7_Model_R17.skp`, **current**). Scripted on R16 (`su_edit/r17_edits.rb`; shared helpers in `su_edit/common.rb`: `run_edit`, `export_views`, `plate_y`).
+- **2026-10-20** — Lot 7 **model R18** (`JESB_Lot7_Model_R18.skp`, **current**). The owner said: white siding **only** where Dominika wrote "white siding".
+  - White: the wing gable side triangles (dormer bay fronts above the wing rake, with a frieze at 216–225), the main garage gable, the south gablet.
+  - All other lap siding is back to Cobble Stone, so the R16 "all white" is undone.
+  - Lesson: apply review mark-ups literally, to the marked area only; do not generalise to a whole material.
+- **2026-10-20** — Lot 7 **model R17** (`JESB_Lot7_Model_R17.skp`). Scripted on R16 (`su_edit/r17_edits.rb`; shared helpers in `su_edit/common.rb`: `run_edit`, `export_views`, `plate_y`).
   - Q2: headers are white trim. The cast-stone material was recoloured and renamed, reversing the 17.10 decision.
   - Q3: the lower gable has apex trim.
   - Q5: done by the owner.

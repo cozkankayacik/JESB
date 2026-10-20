@@ -16,13 +16,25 @@ def find_groups(ents, &blk)
   out
 end
 
+# world-scale texture mapping on a face (same as build_r01.rb)
+def align_texture(f, mat)
+  return unless mat && mat.texture
+  n = f.normal
+  u = n.z.abs > 0.999 ? Geom::Vector3d.new(1, 0, 0) : Geom::Vector3d.new(0, 0, 1).cross(n)
+  u.normalize!
+  up = n.cross(u); up.normalize!
+  up.reverse! if n.z.abs <= 0.999 && up.z < 0
+  p0 = f.vertices.first.position
+  f.position_material(mat, [p0, [0, 0], p0.offset(u, mat.texture.width), [1, 0], p0.offset(up, mat.texture.height), [0, 1]], true)
+end
+
 # flat plate in a vertical plane y = c (outward normal -y): polygon of (x, z), from depth d0 to d1 in front of the face
 def plate_y(ents, name, c, poly, d0, d1, mat, layer = 'A-TRIM')
   g = ents.add_group; g.name = name
   f = g.entities.add_face(poly.map { |x, z| pt(x, c - d0, z) })
   f.reverse! if f.normal.y > 0
   f.pushpull(d1 - d0)
-  g.entities.grep(Sketchup::Face).each { |x| x.material = mat; x.back_material = mat }
+  g.entities.grep(Sketchup::Face).each { |x| x.material = mat; x.back_material = mat; align_texture(x, mat) }
   g.layer = layer
   g
 end
