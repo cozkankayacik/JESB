@@ -266,7 +266,12 @@ Noticed while reading the set; none confirmed with the user or architect yet.
   - The owner answered RFI-001.03 with "use the DWG", meaning the rear elevation. The main roof end hips are now `P_END` = 0.5 (6:12) and the ridge is 131 in; the rear elevation matches.
   - The front elevation and A-220 roof (9:12, ridge 308 in) no longer match, which the owner accepted. R11 keeps the A-220 roof.
   - The R12 renders were stopped when the R13 change came in.
-- **2026-10-20** — Lot 7 **model R16** (`JESB_Lot7_Model_R16.skp`, **current**).
+- **2026-10-20** — Lot 7 **model R17** (`JESB_Lot7_Model_R17.skp`, **current**). Scripted on R16 (`su_edit/r17_edits.rb`; shared helpers in `su_edit/common.rb`: `run_edit`, `export_views`, `plate_y`).
+  - Q2: headers are white trim. The cast-stone material was recoloured and renamed, reversing the 17.10 decision.
+  - Q3: the lower gable has apex trim.
+  - Q5: done by the owner.
+  - The owner reconfirmed: no downspouts. Dominika's review 19.10 is closed.
+- **2026-10-20** — Lot 7 **model R16** (`JESB_Lot7_Model_R16.skp`).
   - **The owner edited R15 by hand** (17:30). From now on, continue on the owner's model with scripted edits (`tools/lot7_rebuild/su_edit/*.rb`, run via `vray/run_su.ps1` on a copy and saved as the next R). **Do not re-run the generator** (`lot7_r01.py` / `build_r01.rb`): it would wipe the owner's edits.
   - R16 changes:
     - Lap siding is white (Dominika plus the DWG note "Arctic White"). This answers Q1.

@@ -80,7 +80,8 @@ Technical notes:
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R13.skp` | R12 + covered terrace deck and skirt in white lap siding (Siding Dec - White). See `JESB_Lot7_Model_R13_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R14.skp` | R13 + lower front gable projection and garage gable rake per the side elevations. See `JESB_Lot7_Model_R14_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R15.skp` | R14 + Dominika review items D01–D08, then edited by the owner (20.10.2026 17:30). See `JESB_Lot7_Model_R15_Change_Log.md`. |
-| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R16.skp` | **Current.** The owner's R15 + white lap siding, entry steps per xelev, garage bump corner per DWG. See `JESB_Lot7_Model_R16_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R16.skp` | The owner's R15 + white lap siding, entry steps per xelev, garage bump corner per DWG. See `JESB_Lot7_Model_R16_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R17.skp` | **Current.** R16 + white trim headers, lower gable apex trim. Dominika's review is closed. See `JESB_Lot7_Model_R17_Change_Log.md`. |
 
 ## 5. Issued sets
 
@@ -104,5 +105,6 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R14.pdf` | R14 review set, 9 A3 sheets (17.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R15.pdf` | R15 review set, 9 A3 sheets (20.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R16.pdf` | R16 review set, 9 A3 sheets (20.10.2026) |
+| `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R17.pdf` | R17 review set, 9 A3 sheets (20.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Visualization_A3_R14.pdf` | Projades A3 visualization set, 6 sheets (V-000 to V-105), in English, laid out from the AI renders in `04_Visualization/Renders/R14_AI/` (17.10.2026). The source PDF in that folder is unchanged. |
 | `04_Visualization/Renders/R13/JESB_Lot7_R13_Render_Elevation_*.png` | V-Ray photoreal elevations from model R13, 4 views at 3200 x 1712 (17.10.2026). DWG cross-check in `QA_Render_vs_DWG/`. |
