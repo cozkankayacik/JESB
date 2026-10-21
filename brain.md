@@ -266,7 +266,13 @@ Noticed while reading the set; none confirmed with the user or architect yet.
   - The owner answered RFI-001.03 with "use the DWG", meaning the rear elevation. The main roof end hips are now `P_END` = 0.5 (6:12) and the ridge is 131 in; the rear elevation matches.
   - The front elevation and A-220 roof (9:12, ridge 308 in) no longer match, which the owner accepted. R11 keeps the A-220 roof.
   - The R12 renders were stopped when the R13 change came in.
-- **2026-10-20** — Lot 7 **model R19** (`JESB_Lot7_Model_R19.skp`, **current**). The frieze above the wing gable side triangles now runs up to the dormer soffit (227.25); before, a 2.25 in gap showed what was behind. Lesson: new trim must close against the adjacent soffit or fascia; check with a pixel zoom of the elevation.
+- **2026-10-21** — Lot 7 **model R20** (`JESB_Lot7_Model_R20.skp`, **current**).
+  - Owner: the terrace base wall is brick like the house (it was white siding, R13).
+  - Owner: all railings dark brown (`Owner - Railings - Dark Brown` 60/44/34).
+  - Owner: grass under the rear terrace, done by filling the terrain hole with lawn.
+  - Also fixed: a white gap along the rear wall base. The rear grade (−88 to −107) is below the wall bottoms (−84), so brick footings were added to −130 and the terrain cells around the house filled.
+  - Lesson: the generator's terrain skips cells under footprints. Always fill them, or the openings show in perspectives.
+- **2026-10-20** — Lot 7 **model R19** (`JESB_Lot7_Model_R19.skp`). The frieze above the wing gable side triangles now runs up to the dormer soffit (227.25); before, a 2.25 in gap showed what was behind. Lesson: new trim must close against the adjacent soffit or fascia; check with a pixel zoom of the elevation.
 - **2026-10-20** — Lot 7 **model R18** (`JESB_Lot7_Model_R18.skp`). The owner said: white siding **only** where Dominika wrote "white siding".
   - White: the wing gable side triangles (dormer bay fronts above the wing rake, with a frieze at 216–225), the main garage gable, the south gablet.
   - All other lap siding is back to Cobble Stone, so the R16 "all white" is undone.

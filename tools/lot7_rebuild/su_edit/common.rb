@@ -28,6 +28,16 @@ def align_texture(f, mat)
   f.position_material(mat, [p0, [0, 0], p0.offset(u, mat.texture.width), [1, 0], p0.offset(up, mat.texture.height), [0, 1]], true)
 end
 
+def box(ents, name, x0, x1, y0, y1, z0, z1, mat, layer)
+  g = ents.add_group; g.name = name
+  f = g.entities.add_face(pt(x0, y0, z0), pt(x1, y0, z0), pt(x1, y1, z0), pt(x0, y1, z0))
+  f.reverse! if f.normal.z > 0
+  f.pushpull(-(z1 - z0))
+  g.entities.grep(Sketchup::Face).each { |x| x.material = mat; x.back_material = mat; align_texture(x, mat) }
+  g.layer = layer if layer
+  g
+end
+
 # flat plate in a vertical plane y = c (outward normal -y): polygon of (x, z), from depth d0 to d1 in front of the face
 def plate_y(ents, name, c, poly, d0, d1, mat, layer = 'A-TRIM')
   g = ents.add_group; g.name = name
