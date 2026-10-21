@@ -82,7 +82,8 @@ Technical notes:
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R15.skp` | R14 + Dominika review items D01–D08, then edited by the owner (20.10.2026 17:30). See `JESB_Lot7_Model_R15_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R16.skp` | The owner's R15 + white lap siding, entry steps per xelev, garage bump corner per DWG. See `JESB_Lot7_Model_R16_Change_Log.md`. |
 | `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R17.skp` | R16 + white trim headers, lower gable apex trim. See `JESB_Lot7_Model_R17_Change_Log.md`. |
-| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R18.skp` | **Current.** R17 + white siding only where Dominika marked it (wing gable side triangles, main garage gable, gablet); the rest is Cobble Stone again. See `JESB_Lot7_Model_R18_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R18.skp` | R17 + white siding only where Dominika marked it (wing gable side triangles, main garage gable, gablet); the rest is Cobble Stone again. See `JESB_Lot7_Model_R18_Change_Log.md`. |
+| `03_Shared_CAD_and_Models/Models/01_Working/JESB_Lot7_Model_R19.skp` | **Current.** R18 + no gaps at the wing gable side triangles (frieze up to the dormer soffit). See `JESB_Lot7_Model_R19_Change_Log.md`. |
 
 ## 5. Issued sets
 
@@ -108,5 +109,6 @@ Technical notes:
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R16.pdf` | R16 review set, 9 A3 sheets (20.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R17.pdf` | R17 review set, 9 A3 sheets (20.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R18.pdf` | R18 review set, 9 A3 sheets (20.10.2026) |
+| `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Model_A3_R19.pdf` | R19 review set, 9 A3 sheets (20.10.2026) |
 | `05_Presentations_and_Issued/Issued_Sets/PROJADES_JESB_Lot7_Exterior_Visualization_A3_R14.pdf` | Projades A3 visualization set, 6 sheets (V-000 to V-105), in English, laid out from the AI renders in `04_Visualization/Renders/R14_AI/` (17.10.2026). The source PDF in that folder is unchanged. |
 | `04_Visualization/Renders/R13/JESB_Lot7_R13_Render_Elevation_*.png` | V-Ray photoreal elevations from model R13, 4 views at 3200 x 1712 (17.10.2026). DWG cross-check in `QA_Render_vs_DWG/`. |
